@@ -1,0 +1,47 @@
+\def\baselinestretch{1}
+\chapter*{Capitolo 2} \label{cap2}
+\def\baselinestretch{1.66}
+
+\section*{Tecnologie e piattaforme}
+\def\baselinestretch{1.66}
+\noindent In questo capitolo verranno trattate le tecnologie utilizzate, a partire dai linguaggi, i tools utilizzate e le piattaforme hardware di lavoro. È stato fondamentale l’utilizzo di macchine in remoto per eseguire le operazioni di training del modello. In questo caso le macchine messe a disposizione dall’Università Parthenope e dal CNR sono state fondamentali in quanto hanno garantito stabilità ed efficienza.
+
+\section*{2.1 Linguaggi e tools}
+\def\baselinestretch{1.66}
+\noindent La scelta del linguaggio di programmazione è stata importante in quanto ci sono tantissimi linguaggi con librerie adatte allo scopo, solo pochi ricevono costante supporto e sono anche utilizzati nel mondo del lavoro.
+
+\subsection*{2.1.1 Python}
+\def\baselinestretch{1.66}
+\noindent Python è un linguaggio di programmazione dinamico orientato agli oggetti utilizzabile per molti tipi  di sviluppo software. Offre un forte supporto all'integrazione con altri linguaggi e programmi, è fornito di una estesa libreria standard e può essere imparato in pochi giorni. Python inoltre è fornito delle librerie di bioinformatica adatte allo scopo del software realizzato. Di seguito le principali utilizzate:
+\begin{itemize}
+\item \textbf{pubchempy}, per le ricerche chimiche per nome, sottostruttura e somiglianza, standardizzazione chimica, conversione tra formati di file chimici, rappresentazione e recupero delle proprietà chimiche
+\item \textbf{prody}, per l'analisi della dinamica strutturale delle proteine
+\item \textbf{pandas}, per la manipolazione ed analisi dei dati
+\item \textbf{customTkinter}, per la realizzazione dell'interfaccia grafica
+\item \textbf{MolKit}, pacchetto che fornisce classi per leggere le molecole in diversi formati di file (PDB, Mol2...) e costruire una struttura gerarchica ad albero che riproduce la struttura interna della molecola
+\item \textbf{Matplotlib}, per la creazione di visualizzazioni statiche, animate e interattive
+\item \textbf{customTkinter}, per la realizzazione dell'interfaccia grafica
+\item \textbf{numpy}, per la gestione delle strutture dati
+\item \textbf{os}, per la gestione dei files
+\end{itemize} 
+La versione di Python utilizzata è la \textbf{2.7} in quanto maggiormente compatibile con le librerie e i pacchetti utilizzati.
+
+\subsection*{2.1.2 ADFRsuite}
+\def\baselinestretch{1.66}
+\noindent \textbf{AutoDockFR} (o \textbf{ADFR} in breve) è un tool open source per il docking di ligandi flessibili a recettori con flessibilità selettiva. È distribuito come parte della suite di software ADFR e implementato utilizzando una filosofia di componenti software riutilizzabili.
+
+\subsection*{2.1.3 MGLTools}
+\def\baselinestretch{1.66}
+\noindent La suite software \textbf{MGLTools} è stata sviluppata nel laboratorio Sanner presso il Center for Computational Structural Biology (CCRB) precedentemente noto come Molecular Graphics Laboratory (MGL) dello Scripps Research Institute per la visualizzazione e l'analisi delle strutture molecolari. In particolare sono stati utilizzati due script: \textbf{prepare\_ligand4} e \textbf{prepare\_receptors4}, rispettivamente per la preparazione dei ligandi e dei recettori e per effettuare la loro conversione dal formato .pdb al formato .pdbqt necessario per la procedura di docking.
+
+\subsection*{2.1.4 Open Babel}
+\def\baselinestretch{1.66}
+\noindent \textbf{Open Babel} è un tool per applicazioni di chimica progettato per interpretare i molteplici formati dei dati chimici e per cercare, convertire, analizzare o archiviare dati da modellistica molecolare, chimica, materiali a stato solido, biochimica o aree correlate.
+
+\section*{2.2 Database}
+\def\baselinestretch{1.66}
+\noindent \textbf{PubChem} è il più grande database al mondo di informazioni chimiche liberamente accessibili, attraverso il quale è possibile cercare le sostanze chimiche per nome, formula molecolare, struttura e altri identificatori. Inoltre è possibile trovare proprietà chimiche e fisiche, attività biologiche, informazioni sulla sicurezza e sulla tossicità, brevetti, citazioni bibliografiche e altro ancora. L'interfaccia tra l'applicazione ed il database è realizzata mediante la libreria di Python \textbf{pubchempy}. 
+
+\section*{2.3 Autodock Vina}
+\def\baselinestretch{1.66}
+\noindent \textbf{AutoDock Vina} è uno dei motori di docking open source più veloci e più utilizzati, basato su una semplice funzione di scoring e sulla ricerca conformazionale (analisi della disposizione degli atomi all'interno della molecola) a rapida ottimizzazione del gradiente. La filosofia di progettazione di AutodockVina non prevede che l'utente ne comprenda i dettagli di implementazione, modifichi parametri di ricerca, risultati di cluster o conosca l'algebra avanzata. Tutto ciò che serve sono le strutture delle molecole e la specifica dello spazio di ricerca compreso il sito di legame. Non è necessario calcolare le mappe della griglia e assegnare cariche atomiche. Inoltre, sfrutta le molteplici CPU o cores del sistema per ridurre notevolmente il tempo di esecuzione, il che lo rende più veloce e preciso nelle previsioni rispetto ad altri prodotti simili. Autodock vina prende in input i ligandi ed i recettori in formato .pdbqt.
