@@ -1,0 +1,119 @@
+\documentclass[12pt,italian,a4paper,oneside,openright]{book}
+\usepackage{notes2bib}
+\usepackage{url,amsfonts,epsfig}
+\usepackage[italian]{babel}
+\usepackage{amssymb}                
+\usepackage[OT1]{fontenc}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[utf8]{inputenc}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage[hyperindex]{hyperref}
+\usepackage[sorting=none,style=numeric-comp,backend=biber]{biblatex}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage[toc,page]{appendix}
+
+\selectlanguage{italian}
+
+\captionsetup{labelformat=parens, textfont=small}
+
+\addbibresource{bibliografia.bib}
+
+\graphicspath{{immagini/}}
+
+\hypersetup{colorlinks=true, linkcolor=black}
+\setmarginsrb{35mm}{30mm}{30mm}{30mm}{0mm}{10mm}{0mm}{10mm}
+
+\title{Tesi.tex}
+\author{Alfredo Mungari}
+\date{23/11/2022}
+
+\begin{document}
+
+\baselineskip 1.5cm 
+
+\thispagestyle{empty}
+
+\vskip 1cm 
+
+    \large \centerline{\bf Universit\'a degli Studi di Napoli ``Parthenope''}
+    \centerline{\bf Scuola interdipartimentale delle Scienze, dell'Ingegneria e della Salute}
+    \centerline{\bf Dipartimento di Scienze e Tecnologie}
+
+    \centerline{\small Corso di laurea in Informatica}
+
+    \vskip 1.0 cm
+
+    \begin{figure}[H]
+    \centering
+        \includegraphics[scale=0.30]{immagini/logoParthenope.png}
+        \label{fig:logoParthenope}
+    \end{figure}
+
+    \vskip 0.5cm
+
+    \large \centerline {Tesi di laurea triennale}
+
+    \vskip 0.5cm
+
+    \Large \centerline {\bf Analisi delle interazioni molecolari e sviluppo }
+    \Large \centerline {\bf di un software per l'automatizzazione del docking molecolare}
+
+    \centerline {\small Preparazione dei ligandi e dei recettori, docking ed estrazione dei legami}
+
+    \vskip 1.0cm
+
+    \large
+    \begin{minipage}[t]{7cm}
+        \textbf{Relatore}
+        Ch.mo 
+
+        Prof. Angelo Ciaramella\\
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{5cm}
+        \textbf{Laureando}
+
+        Alfredo Mungari\\
+        Matr. 0124002134
+    \end{minipage}
+
+    \large
+    \begin{minipage}[t]{7cm}
+        \textbf{Correlatore}
+
+        Dott. Ferdinando Febbraio\\
+
+    \end{minipage}
+
+    \vskip 1.5 cm
+
+    \hrule
+    \vskip 0.5 cm \Large \centerline {Anno Accademico 2021-2022}
+    \vfill \eject
+
+    \pagestyle{plain}
+    \pagenumbering{arabic}
+
+    \tableofcontents
+
+    \listoffigures
+
+    \listoftables
+
+    \input{tesina/capitolo1.tex}
+    \input{tesina/capitolo2.tex}
+    \input{tesina/capitolo3.tex}
+    \input{tesina/capitolo4.tex}
+    \input{tesina/appendice.tex}
+
+    \printbibliography
+
+\end{document}
