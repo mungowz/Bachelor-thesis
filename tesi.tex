@@ -1,23 +1,21 @@
-\documentclass[12pt,italian,a4paper,oneside,openright]{book}
-\usepackage{notes2bib}
-\usepackage{url,amsfonts,epsfig}
-\usepackage[italian]{babel}
-\usepackage{amssymb}                
+\documentclass[12pt,a4paper,oneside,openright]{book}
+\usepackage[italian]{babel}                
 \usepackage[OT1]{fontenc}
-\renewcommand*\familydefault{\sfdefault}
 \usepackage[utf8]{inputenc}
-\usepackage{vmargin}
 \usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{indentfirst}
 \usepackage{float}
+\usepackage{vmargin}
 \usepackage{csquotes}
 \usepackage{graphicx}
-\usepackage[hyperindex]{hyperref}
-\usepackage[sorting=none,style=numeric-comp,backend=biber]{biblatex}
+\usepackage{hyperref}
+\usepackage[sorting=none]{biblatex}
 \usepackage{caption}
 \usepackage{longtable}
-\usepackage[toc,page]{appendix}
+\usepackage{appendix}
+
+\renewcommand*\familydefault{\sfdefault}
+
+\setlength{\parindent}{0pt}
 
 \selectlanguage{italian}
 
@@ -28,7 +26,15 @@
 \graphicspath{{immagini/}}
 
 \hypersetup{colorlinks=true, linkcolor=black}
+
 \setmarginsrb{35mm}{30mm}{30mm}{30mm}{0mm}{10mm}{0mm}{10mm}
+
+\makeatletter
+\patchcmd{\@verbatim}
+  {\verbatim@font}
+  {\verbatim@font\small}
+  {}{}
+\makeatother
 
 \title{Tesi.tex}
 \author{Alfredo Mungari}
@@ -36,11 +42,11 @@
 
 \begin{document}
 
-\baselineskip 1.5cm 
+    \baselineskip 1.5cm 
 
-\thispagestyle{empty}
+    \thispagestyle{empty}
 
-\vskip 1cm 
+    \vskip 1cm 
 
     \large \centerline{\bf Universit\'a degli Studi di Napoli ``Parthenope''}
     \centerline{\bf Scuola interdipartimentale delle Scienze, dell'Ingegneria e della Salute}
@@ -51,7 +57,7 @@
     \vskip 1.0 cm
 
     \begin{figure}[H]
-    \centering
+        \centering
         \includegraphics[scale=0.30]{immagini/logoParthenope.png}
         \label{fig:logoParthenope}
     \end{figure}
@@ -72,6 +78,7 @@
     \large
     \begin{minipage}[t]{7cm}
         \textbf{Relatore}
+
         Ch.mo 
 
         Prof. Angelo Ciaramella\\

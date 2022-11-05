@@ -1,14 +1,66 @@
-\def\baselinestretch{1}
-\chapter{Applicazione realizzata} \label{cap3}
-\def\baselinestretch{1.66}
-\noindent Il progetto di tesi proposto ha come focus principale la realizzazione del docking tra i ligandi contenuti in specifici pesticidi e i recettori dell'apis mellifera e l'estrazione dei legami che si vengono a formare. Il software realizzato può essere utilizzato in due modalità: mediante script python da terminale o mediante interfaccia grafica. 
+\chapter{Applicazione realizzata}\label{cap:3}
+Il progetto di tesi proposto ha come focus principale la realizzazione del docking tra i ligandi contenuti in specifici pesticidi e i recettori dell'apis mellifera e l'estrazione dei legami che si vengono a formare. 
 
-\section{Dati in input}
-\def\baselinestretch{1.66}
-\noindent I dati in input all'applicazione trattata sono: ligandi e proteine. La lista dei ligandi è fornita in input tramite foglio calcolo (.xlsx, .xls) o mediante file di testo (.txt), in entrambi i casi ogni riga corrisponde al nome di un ligando. Essendo l'applicazione incentrata sullo studio degli effetti dei ligandi dei pesticidi sull'apis mellifera, come dati di esempio sono state utilizzati i ligandi le cui molecole costituiscono i pesticidi maggiormente diffusi 
-sul mercato %inserire tabella con lista dei pesticidi.
-per un totale di 297 ligandi. La lista è disponibile nell'appendice \ref{tab:Tabella dei Ligandi}.\newline
-I recettori vengono selezionati mediante una web view aperta sulla pagina di ricerca del sito di \textbf{PubChem}, l'utente digiterà la propria query e dopo aver selezionato il tasto \textit{research} gli verranno mostrati tutti i composti organici relativi alla query digitata, tramite il tasto \textit{Get Query} l'utente andrà a scaricare tutti i file dei composti organici in formato .pdb. Nel caso di esempio sono state scelte tutte le proteine dei recettori dell'Apis Mellifera come mostrato nelle foto: \ref{fig:queryRecettori} e \ref{fig:fileRecettori}, per un totale di 60 file .pdb contenenti le strutture di determinate proteine.
+\section{Installazione}\label{sec:3.1}
+L'applicazione viene scaricata dalla \href{https://github.com/mungowz/Computational-Docking/tree/development}{repository di github} mediante il comando:
+
+\begin{verbatim}
+    git clone https://github.com/mungowz/Computational-Docking.git    
+\end{verbatim}
+
+Verrà quindi installata nella directory corrente la repository contenente il progetto, all'interno di questa si trovano gli script utilizzati dall'applicazione e le directory ed i file di input di default, tra cui:
+
+\begin{itemize}
+    \item Il file di input dei ligandi, ovvero \textit{ligands\_list.txt}
+    \item La directory contenente la lista di default dei ligandi, ovvero \textit{/data/files/}
+    \item La directory di default che conterrà i file \textit{.xlsx} di output prodotti, ovvero \textit{/output/excel\_files}
+    \item La directory di default che conterrà i file \textit{.sdf} prodotti, ovvero \textit{/data/ligands/sdf/}
+    \item Le directory di default che conterranno i file \textit{.pdb} prodotti, ovvero \textit{/data/ligands/pdb/} per i ligandi e \textit{/data/proteins/pdb/} per i recettori
+    \item Le directory di default che conterranno i file \textit{.pdbqt prodotti}, ovvero \textit{/data/ligands/pdbqt/} per i ligandi e \textit{/data/proteins/pdbqt/} per i recettori.
+\end{itemize}
+
+Sarà necessario inoltre installare alcune dipendenze esterne ed interne per far funzionare l'applicazione, la lista delle dipendenze e la procedura di installazione è specificata nel file \textit{README} della repository di github.
+
+\section{Modalità di utilizzo}\label{sec:3.2}
+Il software realizzato può essere utilizzato in due modalità: mediante script python da terminale o mediante interfaccia grafica realizzata seguendo il paradigma \textit{model-view-controller}.\newline
+Non sarà necessario effettuare ulteriori installazione per usufruire di entrambe le modalità ma bisognerà semplicemente scaricare la repository e seguire le istruzioni del \textit{README}.\newline
+Per eseguire l'applicazione da riga di comando devono essere eseguiti separatamente nell'ordine i seguenti script:
+\begin{itemize}
+    \item \textbf{prepare\_ligands.py}
+    \item \textbf{prepare\_receptors.py}
+    \item \textbf{performDocking.sh}
+\end{itemize}
+
+La GUI usufruirà di versione modificate degli script lanciati da riga di comando il che garantisce le stesse funzionalità in entrambe le modalità di utilizzo.\newline
+Per avviare la GUI deve essere digitato nel terminale il comando:
+
+\begin{verbatim}
+    python app.py    
+\end{verbatim}
+
+Avviando la GUI si aprirà la home page con le seguenti opzioni:
+
+\begin{itemize}
+    \item Opzione \textbf{Preparation}: si accede alla sezione relativa alla preparazione degli input
+    \item Opzione \textbf{Docking}: sarà possibile effettuare il docking.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/homePage.png}
+    \caption{Sezione \textbf{Home Page} della GUI}
+    \label{fig:Home Page}
+\end{figure}
+
+\section{Dati in input}\label{sec:3.3}
+I dati in input all'applicazione trattata sono: ligandi e proteine. La lista dei ligandi è fornita in input tramite foglio calcolo (\textit{.xlsx}, \textit{.xls}) o mediante file di testo (\textit{.txt}), 
+in entrambi i casi ogni riga corrisponde al nome di un ligando. Essendo l'applicazione incentrata sullo studio degli effetti dei ligandi dei pesticidi sull'apis mellifera, 
+come dati di esempio sono state utilizzati i ligandi le cui molecole costituiscono i pesticidi maggiormente diffusi sul mercato, per un totale di 297 ligandi. La lista è disponibile nell'appendice \ref{tab:Tabella dei Ligandi}.\newline
+I recettori vengono selezionati mediante una \textbf{web view} aperta sulla pagina di ricerca del sito di \href{https://www.rcsb.org/search}{PubChem}, quivi l'utente digiterà la propria query e 
+dopo aver selezionato il  tasto \textbf{research} gli verranno mostrati tutti i composti organici relativi alla query digitata, tramite il tasto \textbf{Get Query} l'utente andrà a 
+scaricare tutti i file  dei composti organici in formato \textit{.pdb}. Nel caso di esempio sono state scelte tutte le proteine dei recettori dell'Apis Mellifera come mostrato nelle foto: 
+\ref{fig:queryRecettori} e  \ref{fig:fileRecettori}, per un totale di 60 file \textit{.pdb} contenenti le strutture di determinate proteine. La lista delle proteine scaricate è disponibile nell'appendice: \ref{Tabella dei Recettori}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{immagini/queryRecettori.png}
@@ -23,10 +75,218 @@ I recettori vengono selezionati mediante una web view aperta sulla pagina di ric
     \label{fig:fileRecettori}
 \end{figure}
 
-\section{Preparazione dei ligandi e dei recettori}
-\def\baselinestretch{1.66}
-\noindent Il primo step propedeutico per il docking è la preparazione dei ligandi e dei recettori, questa
-fase viene esplicitamente eseguita dal software realizzato.
+\section{Preparazione dei ligandi e dei recettori}\label{sec:3.4}
+Il primo step propedeutico per il docking è la preparazione dei ligandi e dei recettori, questa
+fase viene esplicitamente eseguita dal software realizzato. L'intera fase è svolta: per i ligandi dallo script python \textbf{prepare\_ligands.py} mentre, per i recettori dallo script python \textbf{prepare\_receptors.py}. Se l'applicazione viene utilizzata mediante GUI la preparazione dei ligandi e dei recettori può essere effettuata mediante la sezione \textbf{Preparation} della pagina principale come mostrato in figura \ref{fig:preparation}.
 
-\subsection{Preparazione dei ligandi}
-\noindent La lista di ligandi da scaricare è fornita in input mediante un file di testo (.txt) alla nostra applicazione o mediante foglio di calcolo (.xlsx, .xls), all'interno della lista sono presenti i nomi dei ligandi uno sotto all'altro. Tramite la funzione
+\begin{itemize}
+    \item Selezionando l'opzione \textbf{Ligands} si accede alla sezione relativa alla preparazione dei ligandi
+    \item Selezionando l'opzione \textbf{Receptors} si accede alla sezione relativa alla preparazione dei recettori
+    \item Selezionando l'opzione \textbf{Back} si ritorna alla pagina principale.
+\end{itemize}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/preparation.png}
+    \caption{Sezione \textbf{Preparation} della GUI}
+    \label{fig:preparation}
+\end{figure}
+
+\subsection{Preparazione dei ligandi tramite script}\label{sec:3.4.1}
+Lo script python \textbf{prepare\_ligands.py}, che esegue tale fase, viene eseguito da terminale mediante il comando:
+
+\begin{verbatim}
+    python prepare_ligands.py
+\end{verbatim}
+
+Questo script può ricevere diversi argomenti in input:
+
+\begin{itemize}
+    \item $[-v] | [--verbose]$: serve per attivare il verbose e se non viene specificata tale opzione viene lasciata di default inattivo
+    \item $[-e] | [--input-file]$: specifica un nuovo file di input (\textit{.xlsx}, \textit{.xls}) o (\textit{.txt}) da cui prendere i nomi dei ligandi, se non viene specificata tale opzione verrà scelto il file di default scaricato insieme al software
+    \item $[-E] | [--excel-folder]$: specifica la directory dei file \textit{.xlsx} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-s] | [--sdf-folder]$: specifica la directory dei file \textit{.sdf} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-P] | [--pdb-folder]$: specifica la directory dei file \textit{.pdb} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-p] | [--pdbqt-folder]$: specifica la directory dei file \textit{.pdbqt} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-k] | [--keep-ligands]$: specificando questa opzione viene scelto di non cancellare i file dei ligandi precedentemente scaricati, se non viene specificata tale opzione i file verranno cancellati
+    \item $[-h] | [--help]$: stampa la spiegazione degli input per lo script.
+\end{itemize}
+
+Lo script quando eseguito andrà ad inizializzare i vari percorsi, e nel caso siano stati inseriti in input verrà controllata l'esistenza e la validità degli stessi. Nel caso non siano presenti le directory contenenti i file \textit{.sdf}, \textit{.pdb} e .\textit{pdbqt}, queste verranno create automaticamente dall'applicazione a meno di input inseriti dall'utente e saranno cancellati i file precedentemente scaricati a meno di input contrario.\newline
+Lo script richiama la funzione \textbf{selectLigands} la quale si occupa di scaricare da \textbf{Pubchem}
+i file \textit{.sdf} corrispondenti alla lista dei ligandi in input. La funzione prende in input: 
+
+\begin{itemize}
+    \item \textit{input\_path}, il path del file di input
+    \item \textit{sdf\_folder}, il path della directory di output per i file \textit{.sdf}
+    \item \textit{excel\_folder}, il path della directory di output per i file \textit{.xlsx}
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+In output ci vengono dati i file \textit{.sdf} corrispondenti ai ligandi in input, dove il nome di ogni file è preceduto dal suffisso \textit{ligand\_}, e un file \textit{.xlsx} contenente i risultati dell'operazione di download nominato \textit{ligands\_sdf\_output.xls}.
+
+\begin{verbatim}
+    selectLigands(input_path, sdf_folder, excel_folder, verbose)
+\end{verbatim}
+
+L'interfaccia con il database avviene tramite il pacchetto \textbf{pubchempy}, in particolare la funzione \textbf{pubchempy.get\_compounds} permette di ricercare nel database il record relativo allo specifico ligando il cui nome, a cui viene precedentemente aggiunto il suffisso \textit{ligand\_}, gli viene fornito in input. Questa prende in input:
+
+\begin{itemize}
+    \item \textit{identifier}, il composto da ricercare nel database
+    \item \textit{namespace}, il parametro in base al quale ricercare il composto, nel nostro caso il parametro scelto è il nome indicato dalla stringa \textit{"name"}
+    \item \textit{record\_type} ovvero il tipo di record relativo al composto in questione da scaricare, 
+    nel nostro caso il parametro scelto è la stringa \textit{"3d"} che indica la struttura 3D del ligando.
+\end{itemize}
+
+In output verrà fornito il record della struttura 3D del ligando in questione.
+
+\begin{verbatim}
+    pubchempy.get_compounds(identifier, "name", record_type="3d")
+\end{verbatim}
+
+La funzione che effettivamente si occupa di scaricare la struttura 3D del ligando in formato \textit{.sdf}, richiamata da \textbf{selectLigands} è \textbf{pubchempy.download}, prende in input:
+
+\begin{itemize}
+    \item \textit{outformat}, il formato in cui deve essere scaricato il file,  nel nostro caso il parametro scelto è il formato \textit{.sdf} indicato dalla stringa \textit{"SDF"}
+    \item \textit{path}, il path della directory in cui vengono scaricati i file \textit{.sdf}
+    \item \textit{identifier}, il composto da scaricare nel database
+    \item \textit{namespace}, il parametro in base al quale ricercare il composto, nel nostro caso il parametro scelto è il nome indicato dalla stringa \textit{"name"}
+    \item \textit{record\_type} ovvero il tipo di record relativo al composto in questione da scaricare, 
+    nel nostro caso il parametro scelto è la stringa \textit{"3d"} che indica la struttura 3D del ligando.
+\end{itemize}
+
+L'output di tale funzione sarà il file \textit{.sdf} del ligando in questione.
+
+\begin{verbatim}
+    pubchempy.download("SDF", path, identifier, "name", record_type="3d")
+\end{verbatim}
+
+I nomi di alcuni file potrebbero non essere presenti nel database oppure, a causa di spazi presenti nel loro nome, non essere riconosciuti. Nel primo caso i ligandi vengono semplicemente scartati nel secondo caso gli spazi vengono sostituiti da underscore (\_), seguendo quindi la nomenclatura del database, e viene effettuata nuovamente la ricerca di questi nel database. Se anche stavolta la ricerca non ha successo il ligando in questione viene definitivamente scartato.\newline
+Oltre ai file \textit{.sdf} la \textbf{selectLigands} produrrà anche un file \textit{.xlsx} contenente il riepigolo dei risultati ottenuti dalla funzione, ovvero:
+
+\begin{itemize}
+    \item file scaricati
+    \item file scaricati con il nome modificato 
+    \item ligandi non trovati all'interno del database.
+\end{itemize}
+
+Nel caso di esempio, dei 297 ligandi in input, 289 sono stati trovati e scaricati con successo, i restanti 8 sono stati scartati: \ref{tab:Ligandi scartati}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    Sodium 4-nitrophenolate & Silthiofa \\ \hline
+    Sodium 2-methoxy-5-nitrophenolate & Potassium bicarbonate \\ \hline
+    (E,E)-7,9-Dodecadien-1-yl acetate & Dodine \\ \hline
+    Sodium 2-nitrophenolate & Ziram \\ \hline
+    \end{tabular}
+    \caption{Ligandi non scaricati}
+    \label{tab:Ligandi scartati}
+\end{table}
+
+Dopo aver scaricato i file \textit{.sdf} questi devono essere convertiti in formato \textit{.pdb}, per fare ciò lo script richiama la funzione \textbf{sdf2pdb}, la quale prende in input:
+
+\begin{itemize}
+    \item \textit{sdf\_folder}, la directory con i file \textit{.sdf} in input
+    \item \textit{pdb\_folder}, la directory con i file \textit{.pdb} in output
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+La funzione restituisce in output i file \textit{.pdb} corrispondenti a tutti i file \textit{.sdf} dati in input.
+
+\begin{verbatim}
+    sdf2pdb(sdf_folder, pdb_folder, verbose)
+\end{verbatim}
+
+La funzione usufruisce del programma \textbf{Open babel} in particolare esegue la conversione da \textit{.sdf} a \textit{.pdb} richiamando la sua versione da terminale tramite il comando \textbf{obabel}:
+
+\begin{verbatim}
+    obabel sdf_file_path -O pdb_path
+\end{verbatim}
+
+Nell'istruzione sopra \textit{sdf\_file\_path} indica la directory con i file \textit{.sdf} in input, la directory con i file \textit{.pdb} in output, \textit{pdb\_path}, viene specificata tramite lo switch \textit{-O}. Tramite tale istruzione è possibile effettuare la conversione di un singolo file, la conversione di tutti i \textit{.sdf} avviene ciclando su tutti i file nella directory corrispondente.\newline
+L'ultimo step nella preparazione dei ligandi è effettuato dalla funzione \textbf{prepareLigands}, questa funzione prende in input:
+
+\begin{itemize}
+    \item \textit{pdb\_folder}, la directory con i file \textit{.pdb} in input
+    \item \textit{pdbqt\_folder}, la directory con i file \textit{.pdbqt} in output
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+La funzione restituisce la conversione in file \textit{.pdbqt} dei corrispondenti i file \textit{.pdb} dati in input.
+
+\begin{verbatim}
+    prepareLigands(pdb_folder, pdbqt_folder, verbose)
+\end{verbatim}
+
+\textbf{prepareLigands} usufruisce dello script \textbf{prepare\_ligand4} offerto dalla suite \textbf{ADFR} tramite il quale effettua la corretta conversione da \textit{.pdb} a \textit{.pdbqt}. Lo script viene richiamato tramite riga di comando dalla funzione mediante il comando \textbf{prepare\_ligand}:
+
+\begin{verbatim}
+    prepare_ligand -l pdb_file_path -v -o pdbqt_path
+\end{verbatim}
+
+Nell'istruzione sopra, \textit{pdb\_file\_path} indica la directory con i file \textit{.pdb} in input ed è specificata tramite lo switch \textit{-l}, lo switch \textit{-v} indica che è attivato il verbose e la directory con i file \textit{.pdbqt} in output, \textit{pdbqt\_path}, viene specificata tramite lo switch \textit{-o}. Tramite tale istruzione è possibile effettuare la conversione di un singolo file, la conversione di tutti i \textit{.pdb} avviene ciclando su tutti i file nella directory corrispondente.
+
+\subsection{Preparazione dei ligandi tramite GUI}\label{sec:3.4.2}
+La preparazione dei ligandi tramite GUI avviene selezionando il tasto \textbf{Ligands} nella sezione \textbf{Preparation} del software. All'inteno della pagina relativa alla preparazione dei ligandi premendo il tasto \textbf{Execute} è possibile effettuare i procedimenti precedentemente spiegati nella sezione relativa all'esecuzione tramite script (\ref{sec:3.4.1}). Premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Preparation} relativa alla preparazione degli input.
+Come si osserva nella figura \ref{fig:ligands} all'interno di tale sezione sono presenti delle \textbf{entry} dove è possibile specificare diversi input tra cui:
+
+\begin{itemize}
+    \item un file di input (\textit{.xlsx}, \textit{.xls}) o (\textit{.txt}) da cui prendere i nomi dei ligandi
+    \item la directory dei file \textit{.xlsx} di output
+    \item la directory dei file \textit{.sdf} di output
+    \item la directory dei file \textit{.pdb} di output
+    \item la directory dei file \textit{.pdbqt} di output.
+\end{itemize}
+
+Se lasciate vuote queste entry verrano impostate le configurazioni di default. E' presente anche un \textbf{checkbox} il quale se selezionato permette di mantenere i file precedentemente scaricati che altrimenti verrebbero cancellati.\newline
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/ligands.png}
+    \caption{Sezione \textbf{Ligands} della GUI}
+    \label{fig:ligands}
+\end{figure}
+
+La GUI per la preparazione dei ligandi richiama versioni modificate delle funzioni e dello script \textbf{prepare\_ligands.py} discussi nella precedente sezioni, le modifiche apportate semplicemente adattano le procedure e gli script all'interfaccia grafica senza eliminare alcuna funzionalità precedentemente illustrata per la versione da riga di comando.\newline
+Durante l'esecuzione vengono mostrate diverse  \textbf{progress bar} (figure: \ref{fig:sdf progress bar}, \ref{fig:pdb progress bar} e \ref{fig:pdbqt progress bar}) in modo tale che sia restituito un feedback all'utente relativo al progresso della preparazione dei ligandi. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:Invalid input}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/sdfProgressBar.png}
+    \caption{\textbf{Progress bar} dei file \textit{.sdf}}
+    \label{fig:sdf progress bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/pdbProgressBar.png}
+    \caption{\textbf{Progress bar} dei file \textit{.pdb}}
+    \label{fig:pdb progress bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/pdbqtProgressBar.png}
+    \caption{\textbf{Progress bar} dei file \textit{.pdbqt}}
+    \label{fig:pdbqt progress bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/progressCompleted.png}
+    \caption{Messaggio processo completato con successo}
+    \label{fig:progress completed}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/invalidInput.png}
+    \caption{Messaggio di errore}
+    \label{fig:Invalid input}
+\end{figure}
+
+
+
