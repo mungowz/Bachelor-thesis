@@ -1,171 +1,576 @@
-\chapter{Tecnologie e piattaforme}\label{cap:2}
-In questo capitolo verranno trattate le tecnologie utilizzate, a partire dai linguaggi, i tools utilizzate e le piattaforme hardware di lavoro. È stato fondamentale l’utilizzo di macchine in remoto per eseguire le operazioni di training del modello. In questo caso le macchine messe a disposizione dall’Università Parthenope e dal CNR sono state fondamentali in quanto hanno garantito stabilità ed efficienza.
+\chapter{Applicazione realizzata}
+Il progetto di tesi proposto ha come focus principale la realizzazione del docking tra i ligandi contenuti in specifici pesticidi e i recettori dell'apis mellifera e l'estrazione dei legami che si vengono a formare. 
 
-\section{Linguaggi e tools}\label{sec:2.1}
-La scelta del linguaggio di programmazione è stata importante in quanto ci sono tantissimi linguaggi con librerie adatte allo scopo, solo pochi ricevono costante supporto e sono anche utilizzati nel mondo del lavoro.
+\section{Installazione}
+L'applicazione viene scaricata dalla \href{https://github.com/mungowz/Computational-Docking/tree/development}{repository di github} mediante il comando:
 
-\subsection{Python}\label{sec:2.1.1}
-\textbf{Python} è un linguaggio di programmazione dinamico orientato agli oggetti utilizzabile per molti tipi  di sviluppo software. Offre un forte supporto all'integrazione con altri linguaggi e programmi, è fornito di una estesa libreria standard e può essere imparato in pochi giorni. Python inoltre è fornito delle librerie di bioinformatica adatte allo scopo del software realizzato. Di seguito le principali utilizzate:
+\begin{verbatim}
+    git clone https://github.com/mungowz/Computational-Docking.git    
+\end{verbatim}
 
-\begin{itemize}
-    \item \textbf{pubchempy}, per le ricerche chimiche per nome, sottostruttura e somiglianza, standardizzazione chimica, conversione tra formati di file chimici, rappresentazione e recupero delle proprietà chimiche
-    \item \textbf{prody}, per l'analisi della dinamica strutturale delle proteine
-    \item \textbf{pandas}, per la manipolazione ed analisi dei dati
-    \item \textbf{Tkinter/customTkinter}, per la realizzazione dell'interfaccia grafica
-    \item \textbf{MolKit}, pacchetto che fornisce classi per leggere le molecole in diversi formati di file (PDB, Mol2...) e costruire una struttura gerarchica ad albero che riproduce la struttura interna della molecola
-    \item \textbf{Matplotlib}, per la creazione di visualizzazioni statiche, animate e interattive
-    \item \textbf{customTkinter}, per la realizzazione dell'interfaccia grafica
-    \item \textbf{numpy}, per la gestione delle strutture dati
-    \item \textbf{os}, per la gestione dei files
-\end{itemize} 
-
-La versione di Python utilizzata è la \textbf{2.7} in quanto maggiormente compatibile con le librerie e i pacchetti utilizzati.
-
-\subsection{ADFRsuite}\label{sec:2.1.2}
-\textbf{AutoDockFR} (o \textbf{ADFR} in breve) è un programma per il \textbf{docking tra proteine e ligandi} sviluppato nel laboratorio Sanner dello Scripps Research sotto l'egida di \textit{AutoDock}.\newline
-Utilizza:
+Verrà quindi installata nella directory corrente la repository contenente il progetto, all'interno di questa si trovano gli script utilizzati dall'applicazione e le directory ed i file di input di default, tra cui:
 
 \begin{itemize}
-    \item la funzione di scoring di \textit{AutoDock4}, implementata in una libreria C++ ed inglobata in Python
-    \item un proprio algoritmo genetico in grado di evolvere e ottimizzare più soluzioni simultaneamente, di gestire un gran numero di legami ruotabili e di terminare le iterazioni al momento della convergenza, cioè potenzialmente senza esaurire il numero assegnato di valutazioni della funzione energia
-    \item una rappresentazione generica di flessibilità molecolare, chiamata \textit{Albero di Flessibilità}, che consente di incorporare una varietà di movimenti molecolari sia nel ligando che nel recettore.
+    \item Il file di input dei ligandi, ovvero \textit{ligands\_list.txt}
+    \item La directory contenente la lista di default dei ligandi, ovvero \textit{/data/files/}
+    \item La directory di default che conterrà i file \textit{.xlsx} di output prodotti, ovvero \textit{/output/excel\_files}
+    \item La directory di default che conterrà i file \textit{.sdf} prodotti, ovvero \textit{/data/ligands/sdf/}
+    \item Le directory di default che conterranno i file \textit{.pdb} prodotti, ovvero \textit{/data/ligands/pdb/} per i ligandi e \textit{/data/proteins/pdb/} per i recettori
+    \item Le directory di default che conterranno i file \textit{.pdbqt prodotti}, ovvero \textit{/data/ligands/pdbqt/} per i ligandi e \textit{/data/proteins/pdbqt/} per i recettori.
 \end{itemize}
 
-Pur supportando le modalità di docking disponibili in \textit{AutoDock4} e \textit{Vina}, è stato progettato specificamente per includere la \textbf{flessibilità del recettore} e supporta anche il \textbf{docking covalente}. Il suo algoritmo genetico personalizzato consente il docking di ligandi con più legami ruotabili rispetto ad \textit{AutoDock4}.\newline
-Viene distribuito come parte della suite del software \textit{ADFR}, che fornisce strumenti aggiuntivi per facilitare il docking automatizzato.\newline
-\textit{ADFR} implementa diverse caratteristiche che aiutano a semplificare la procedura di docking e a supportare la gestione e la riproducibilità degli esperimenti di docking attraverso la prova dei dati. Vengono utilizzati file autodocumentati per memorizzare: 
+Sarà necessario inoltre installare alcune dipendenze esterne ed interne per far funzionare l'applicazione, la lista delle dipendenze e la procedura di installazione è specificata nel file \textit{README} della repository di github.
 
+\section{Modalità di utilizzo}
+Il software realizzato può essere utilizzato in due modalità: mediante script python da terminale o mediante interfaccia grafica realizzata seguendo il paradigma \textit{model-view-controller}.\newline
+Non sarà necessario effettuare ulteriori installazione per usufruire di entrambe le modalità ma bisognerà semplicemente scaricare la repository e seguire le istruzioni del \textit{README}.\newline
+Per eseguire l'applicazione da riga di comando devono essere eseguiti separatamente nell'ordine i seguenti script:
 \begin{itemize}
-    \item la rappresentazione del sito di binding (cioè \textbf{i file .trg target})
-    \item i risultati del docking (file \textbf{.dro Docking Results Object})
-    \item I metadati memorizzati in questi file non solo supportano la riproducibilità, ma riducono anche i rischi di errori dell'operatore.
+    \item \textbf{prepare\_ligands.py}
+    \item \textbf{prepare\_receptors.py}
+    \item \textbf{performDocking.sh}
 \end{itemize}
 
-ADFR legge i \textbf{ligandi} preparati per il docking con AutoDock, cioè nel formato PDBQT e organizza la flessibilità del ligando in base ai legami ruotabili. Un file PDBQT può essere generato da un file \textit{.pdb} di un ligando utilizzando il comando \textit{prepar\_ligand}.  Il \textbf{recettore} è specificato come file target, cioè un singolo file che descrive il recettore. I file target possono essere calcolati per un recettore nel formato PDBQT dal comando utilizzando il programma \textit{\textbf{agfr}} o l'interfaccia grafica \textit{\textbf{agfrgui}}. Un file PDBQT può essere generato da un file pdb di un recettore utilizzando il comando \textit{prepare\_receptor} della suite \textit{ADFR}. \newline
-\textit{ADFR} è implementato nei moderni linguaggi di programmazione orientati agli oggetti e si basa su componenti software riutilizzabili. I componenti critici per le prestazioni sono implementati in C e C++ (ad esempio ADFRcc), mentre altri sono implementati in Python (ADFR, AutoSite, MolKit2, prody). \textit{ADFR} è rilasciato sotto la licenza open source LGPL v2.\newline 
-In particolare per l'applicazione trattata sono stati utilizzati i due script: \textbf{prepare\_ligand4} e \textbf{prepare\_receptors4}, rispettivamente per la preparazione dei ligandi e dei recettori e per effettuare la loro conversione dal formato \textit{.pdb} al formato \textit{.pdbqt} necessario per la procedura di docking.
+La GUI usufruirà di versione modificate degli script lanciati da riga di comando il che garantisce le stesse funzionalità in entrambe le modalità di utilizzo.\newline
+Per avviare la GUI deve essere digitato nel terminale il comando:
 
-\subsection{MGLTools}\label{sec:2.1.3}
-La suite software \textbf{MGLTools} è stata sviluppata nel laboratorio Sanner presso il Center for Computational Structural Biology (CCRB) precedentemente noto come Molecular Graphics Laboratory (MGL) dello Scripps Research Institute per la visualizzazione e l'analisi delle strutture molecolari. MGLTools comprende:
+\begin{verbatim}
+    python app.py    
+\end{verbatim}
 
-\begin{itemize}
-    \item \textbf{Python Molecular Viewer (PMV)}, un visualizzatore molecolare di uso generale
-    \item \textbf{AutoDockTools (ADT)}, un insieme di comandi PMV sviluppati specificamente per supportare gli utenti di AutoDock
-    \item \textbf{Vision}, un ambiente di programmazione visuale.
-\end{itemize}
-
-Questi strumenti software sono altamente integrati e basati su componenti software riutilizzabili implementati in Python e C++ (con binding Python). Il kit di strumenti grafici sottostante è Tk (Tkinter).L'ultima versione di MGLtools è la 1.5.7 che fornisce:
+Avviando la GUI si aprirà la home page con le seguenti opzioni:
 
 \begin{itemize}
-    \item un widget della dashboard ridisegnato
-    \item un widget per la visualizzazione delle sequenze
-    \item ottimizzazioni delle prestazioni
-    \item nuovi comandi per i calcoli di sovrapposizione e RMSD
+    \item Opzione \textbf{Preparation}: si accede alla sezione relativa alla preparazione degli input
+    \item Opzione \textbf{Docking}: sarà possibile effettuare il docking.
 \end{itemize}
 
-\subsection{Open Babel}\label{sec:2.1.4}
-\textbf{Open Babel} è un tool per applicazioni di chimica progettato per interpretare i molteplici formati dei dati chimici e per cercare, convertire, analizzare o archiviare dati da modellistica molecolare, chimica, materiali a stato solido, biochimica o aree correlate.\newline
-La versione di OpenBabel 2.3 converte fino a 110 formati di file chimici.\newline
-I database sono ampiamente utilizzati per memorizzare le informazioni chimiche soprattutto nell'industria farmaceutica. Un requisito fondamentale di un database di questo tipo è la capacità di indicizzare le strutture strutture chimiche in modo che possano essere recuperate rapidamente, data una quary di ricerca. Open Babel offre questa funzionalità utilizzando un'indicizzazione basata sul percorso. Questa indicizzazione, FP2 in Open Babel, identifica tutte le sottostrutture lineari e ad anello della molecola di lunghezza da 1 a 7 (escluse le sottostrutture a 1 atomo C e N) e le mappa in una stringa di bit di lunghezza su una stringa di bit di lunghezza 1024 utilizzando una funzione di hash. Se una molecola interrogata è una sottostruttura di una molecola di destinazione, tutti i bit molecola di destinazione, allora tutti i bit impostati nella molecola di query saranno impostati anche nella molecola di destinazione. Le indicizzazioni
-di due molecole possono anche essere utilizzate per calcolare la somiglianza strutturale utilizzando il coefficiente di Tanimoto, il numero di bit in comune diviso per tutti i bit dell'insieme.
-Chiaramente, la ricerca iterativa dello stesso insieme di molecole comporterà l'uso ripetuto dello stesso insieme di indicizzazioni. Per evitare la necessità di ricalcolare le indicizzazioni per un particolare file multi-molecola (come un file SDF), Open Babel fornisce un formato fastindex che memorizza esclusivamente un'indicizzazione insieme a un indice nel file originale. Questo indice porta a un rapido aumento della velocità di ricerca di corrispondenze a a fronte di una quary: insiemi di dati con diversi milioni di molecole sono facilmente consultabili in modo interattivo. In questo in questo modo, un file multi-molecola può essere utilizzato come un'alternativa efficace a un sistema di database chimico\cite{o2011open}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/homePage.png}
+    \caption{Sezione \textbf{Home Page} della GUI}
+    \label{fig:Home Page}
+\end{figure}
 
-\section{Database}\label{sec:2.2}
-\textbf{PubChem} è il più grande database al mondo di informazioni chimiche liberamente accessibili, attraverso il quale è possibile cercare le sostanze chimiche per nome, formula molecolare, struttura e altri identificatori. Inoltre è possibile trovare proprietà chimiche e fisiche, attività biologiche, informazioni sulla sicurezza e sulla tossicità, brevetti, citazioni bibliografiche e altro ancora. L'interfaccia tra l'applicazione ed il database è realizzata mediante la libreria di Python \textbf{pubchempy}.\newline
-PubChem è un database di molecole chimiche, gestito dal centro nazionale per l'Informazione biotecnologica statunitense (NCBI), parte della biblioteca nazionale di medicina (NLM) dell'istituto nazionale della sanità americano (NIH). L'accesso al database PubChem può essere eseguito liberamente attraverso un sito web e possono essere scaricati dati riguardanti milioni di strutture di composti e dati descrittivi tramite il protocollo FTP.PubChem possiede descrizioni di molecole con meno di 1000 atomi e 1000 legami. \newline 
-PubChem gestisce i dati in tre database interconnessi: \textbf{Substance, Compound e BioAssay}. Il database Substance archivia le descrizioni delle sostanze chimiche fornite dai depositanti. Il database Compound archivia le strutture chimiche uniche estratte dal database Substance attraverso la standardizzazione delle strutture. Il database BioAssay contiene la descrizione e i risultati degli esperimenti di analisi biologica.
+\section{Dati in input}
+I dati in input all'applicazione trattata sono: ligandi e proteine. La lista dei ligandi è fornita in input tramite foglio calcolo (\textit{.xlsx}, \textit{.xls}) o mediante file di testo (\textit{.txt}), 
+in entrambi i casi ogni riga corrisponde al nome di un ligando. Essendo l'applicazione incentrata sullo studio degli effetti dei ligandi dei pesticidi sull'apis mellifera, 
+come dati di esempio sono state utilizzati i ligandi le cui molecole costituiscono i pesticidi maggiormente diffusi sul mercato, per un totale di 297 ligandi. La lista è disponibile nell'appendice \ref{tab:Tabella dei Ligandi}.\newline
+I recettori vengono selezionati mediante una \textbf{web view} aperta sulla pagina di ricerca del sito di \href{https://www.rcsb.org/search}{PubChem}, quivi l'utente digiterà la propria query e 
+dopo aver selezionato il  tasto \textbf{research} gli verranno mostrati tutti i composti organici relativi alla query digitata, tramite il tasto \textbf{Get Query} l'utente andrà a 
+scaricare tutti i file  dei composti organici in formato \textit{.pdb}. Nel caso di esempio sono state scelte tutte le proteine dei recettori dell'Apis Mellifera come mostrato nelle foto: 
+\ref{fig:queryRecettori} e  \ref{fig:fileRecettori}, per un totale di 60 file \textit{.pdb} contenenti le strutture di determinate proteine. La lista delle proteine scaricate è disponibile nell'appendice: \ref{Tabella dei Recettori}.
 
-\section{Autodock}\label{sec:2.3}
-\textbf{AutoDock} è un programma di docking che utilizza un algoritmo genetico, il \textit{Lamarckian Genetic Algorithm}, per il calcolo della pose migliore che interagisce con il sito attivo della proteina. Dopo aver calcolato inizialmente una popolazione di possibili soluzioni, l’algoritmo ne selezionerà una parte in base alle funzioni di scoring e darà origine a una nuova popolazione di soluzioni figlie, da cui avrà inizio un secondo ciclo di generazione e così via. In questo modo il “genotipo”, ovvero la stringa binaria a cui corrisponde ciascun ligando, verrà influenzato da fattori esterni, esattamente come nell’ipotesi lamarckiana.\newline
-Le popolazioni di soluzioni sono ottenute tramite operatori genetici (mutazioni, crossover e migrazioni) che imitano quelli biologici. I gradi di libertà sono codificati in geni o stringhe binarie, e a geni e cromosomi è assegnato un valore basato sulla fitness della scoring function. Le operazioni di mutazione causano cambiamenti nel valore di un gene, mentre il crossover muove un set di geni da un cromosoma “genitore” ad un altro; la migrazione invece muove singoli geni da una sottopopolazione ad un’altra.\newline
-L’interazione tra ligando e recettore è valutata in due fasi, calcolando la variazione di energia intramolecolare del passaggio dalla forma libera a quella legata e la variazione di energia libera intermolecolare implicata nello stesso passaggio.\newline
-Per effettuare il docking è necessario per prima cosa preparare le coordinate di ligando e recettore. La preparazione delle coordinate è la fase più importante nella procedura, poiché in esse sono inclusi parametri fondamentali come: idrogeni polari, atom – type e cariche parziali. Le coordinate del ligando originale e della macromolecola sono trattate separatamente ed i loro file sono in un formato particolare, il PDBQT.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{immagini/queryRecettori.png}
+    \caption{Query dei recettori}
+    \label{fig:queryRecettori}
+\end{figure}
 
-\section{Autodock Vina}\label{sec:2.4}
-\textbf{AutoDock Vina} è  un nuovo programma per il docking molecolare e lo screening virtuale. Vina rappresenta la nuova versione di AutoDock, ed infatti presenta molte similitudini con il suo predecessore ma, allo stesso tempo, anche molte differenze. Una differenza importante consiste nella velocità di calcolo, dato che Vina è molto poco dispendioso sotto questo punto di vista; altra differenza fondamentale è rappresentata dal fatto che al momento del calcolo della griglia, Vina calcola internamente ed automaticamente le “grid maps” impiegate in AutoDock. Questo costituisce un grande vantaggio in termini di facilità e velocità di esecuzione. Inoltre, le funzioni di scoring e gli algoritmi utilizzati in questo tipo di analisi risultano essere completamente diversi rispetto al suo predecessore, cosa che porta a considerare Vina quasi come un software a sé stante. Vina migliora al tempo stesso in modo significativo l'accuratezza delle previsioni delle modalità di legame. Un'ulteriore miglioramento è ottenuta grazie al parallelismo, che utilizza il multithreading su macchine multicore. AutoDock Vina calcola automaticamente le mappe della griglia e raggruppa i risultati in modo trasparente per l'utente. Autodock vina all'interno del software prende in input i ligandi ed i recettori in formato \textit{.pdbqt}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{immagini/fileRecettori.png}
+    \caption{Proteine dei recettori dell'apis mellifera}
+    \label{fig:fileRecettori}
+\end{figure}
 
-\subsection{Funzione di scoring}\label{sec:2.4.1}
-La funzione di scoring di AutoDock Vina (qui indicata come Vina) può essere rappresentata attraverso la seguente formula:
+\section{Preparazione dei ligandi e dei recettori}
+Il primo step propedeutico per il docking è la preparazione dei ligandi e dei recettori, questa
+fase viene esplicitamente eseguita dal software realizzato. L'intera fase è svolta: per i ligandi dallo script python \textbf{prepare\_ligands.py} mentre, per i recettori dallo script python \textbf{prepare\_receptors.py}. Se l'applicazione viene utilizzata mediante GUI la preparazione dei ligandi e dei recettori può essere effettuata mediante la sezione \textbf{Preparation} della pagina principale come mostrato in figura \ref{fig:preparation}.
 
-\begin{equation}
-    c = \sum_{i<j}f_{t_it_j}(r_{ij})
-\end{equation}
+\begin{itemize}
+    \item Selezionando l'opzione \textbf{Ligands} si accede alla sezione relativa alla preparazione dei ligandi
+    \item Selezionando l'opzione \textbf{Receptors} si accede alla sezione relativa alla preparazione dei recettori
+    \item Selezionando l'opzione \textbf{Back} si ritorna alla pagina principale.
+\end{itemize}
 
-dove la sommatoria è su tutte le coppie di atomi che possono muoversi l'uno rispetto all'altro, escludendo normalmente le interazioni 1-4, ovvero gli atomi separati da tre legami covalenti consecutivi. Ad ogni atomo $i$ viene assegnato un tipo $t_i$ e un insieme simmetrico di funzioni di interazione $f_{t_it_j}$ della distanza interatomica $r_{ij}$ da definire.\newline
-Questo valore può essere visto come una somma di contributi intermolecolari e intramolecolari:
 
-\begin{equation}
-    c = c_{inter} + c_{intra}
-\end{equation}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/preparation.png}
+    \caption{Sezione \textbf{Preparation} della GUI}
+    \label{fig:preparation}
+\end{figure}
 
-L'algoritmo di ottimizzazione, descritto in seguito, cerca di trovare il minimo globale di $c$ e di altre conformazioni a basso punteggio, che poi classifica.\newline 
-L'energia libera di legame prevista viene calcolata a partire dalla parte intermolecolare della conformazione con il punteggio più basso, designata come:
+\subsection{Preparazione dei ligandi tramite script} \label{Preparazione dei ligandi script}
+Lo script python \textbf{prepare\_ligands.py}, che esegue tale fase, viene eseguito da terminale mediante il comando:
 
-\begin{equation}
-    s_1 = g(c_1 - c_{intra1}) = g(c_{inter1})
-\end{equation}
+\begin{verbatim}
+    python prepare_ligands.py
+\end{verbatim}
 
-dove la funzione $g$ può essere una funzione arbitraria strettamente crescente possibilmente non lineare.\newline Nell'output le altre conformazioni a basso punteggio vengono formalmente restituite dai valori di $s$, ma per preservare il ranking, si utilizza $c_{intra}$ come migliore modalità di legame:
+Questo script può ricevere diversi argomenti in input:
 
-\begin{equation}
-    s_i = g(c_i - c_{intra1})
-\end{equation}
+\begin{itemize}
+    \item $[-v] | [--verbose]$: serve per attivare il verbose e se non viene specificata tale opzione viene lasciata di default inattivo
+    \item $[-e] | [--input-file]$: specifica un nuovo file di input (\textit{.xlsx}, \textit{.xls}) o (\textit{.txt}) da cui prendere i nomi dei ligandi, se non viene specificata tale opzione verrà scelto il file di default scaricato insieme al software
+    \item $[-E] | [--excel-folder]$: specifica la directory dei file \textit{.xlsx} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-s] | [--sdf-folder]$: specifica la directory dei file \textit{.sdf} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-P] | [--pdb-folder]$: specifica la directory dei file \textit{.pdb} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-p] | [--pdbqt-folder]$: specifica la directory dei file \textit{.pdbqt} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-k] | [--keep-ligands]$: specificando questa opzione viene scelto di non cancellare i file dei ligandi precedentemente scaricati, se non viene specificata tale opzione i file verranno cancellati
+    \item $[-h] | [--help]$: stampa la spiegazione degli input per lo script.
+\end{itemize}
 
-Per ragioni di modularità, gran parte del programma non fa riferimento ad alcuna forma funzionale delle interazioni $f_{t_it_j}$ o $g$. Essenzialmente, queste funzioni vengono passate come parametro per il resto del codice. Inoltre, il programma è stato progettato in modo tale da poter utilizzare schemi di tipizzazione degli atomi come la tipizzazione degli atomi di AutoDock4 o SYBIL.\newline
+Lo script quando eseguito andrà ad inizializzare i vari percorsi, e nel caso siano stati inseriti in input verrà controllata l'esistenza e la validità degli stessi. Nel caso non siano presenti le directory contenenti i file \textit{.sdf}, \textit{.pdb} e .\textit{pdbqt}, queste verranno create automaticamente dall'applicazione a meno di input inseriti dall'utente e saranno cancellati i file precedentemente scaricati a meno di input contrario.\newline
+Lo script richiama la funzione \textbf{selectLigands} la quale si occupa di scaricare da \textbf{Pubchem}
+i file \textit{.sdf} corrispondenti alla lista dei ligandi in input. La funzione prende in input: 
+
+\begin{itemize}
+    \item \textit{input\_path}, il path del file di input
+    \item \textit{sdf\_folder}, il path della directory di output per i file \textit{.sdf}
+    \item \textit{excel\_folder}, il path della directory di output per i file \textit{.xlsx}
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+In output ci vengono dati i file \textit{.sdf} corrispondenti ai ligandi in input, dove il nome di ogni file è preceduto dal suffisso \textit{ligand\_}, e un file \textit{.xlsx} contenente i risultati dell'operazione di download nominato \textit{ligands\_sdf\_output.xls}.
+
+\begin{verbatim}
+    selectLigands(input_path, sdf_folder, excel_folder, verbose)
+\end{verbatim}
+
+L'interfaccia con il database avviene tramite il pacchetto \textbf{PubChemPy}, in particolare la funzione \textbf{pubchempy.get\_compounds} permette di ricercare nel database il record relativo allo specifico ligando il cui nome, a cui viene precedentemente aggiunto il suffisso \textit{ligand\_}, gli viene fornito in input. Questa prende in input:
+
+\begin{itemize}
+    \item \textit{identifier}, il composto da ricercare nel database
+    \item \textit{namespace}, il parametro in base al quale ricercare il composto, nel nostro caso il parametro scelto è il nome indicato dalla stringa \textit{"name"}
+    \item \textit{record\_type} ovvero il tipo di record relativo al composto in questione da scaricare, 
+    nel nostro caso il parametro scelto è la stringa \textit{"3d"} che indica la struttura 3D del ligando.
+\end{itemize}
+
+In output verrà fornito il record della struttura 3D del ligando in questione.
+
+\begin{verbatim}
+    pubchempy.get_compounds(identifier, "name", record_type="3d")
+\end{verbatim}
+
+La funzione che effettivamente si occupa di scaricare la struttura 3D del ligando in formato \textit{.sdf}, richiamata da \textbf{selectLigands} è \textbf{pubchempy.download}, prende in input:
+
+\begin{itemize}
+    \item \textit{outformat}, il formato in cui deve essere scaricato il file,  nel nostro caso il parametro scelto è il formato \textit{.sdf} indicato dalla stringa \textit{"SDF"}
+    \item \textit{path}, il path della directory in cui vengono scaricati i file \textit{.sdf}
+    \item \textit{identifier}, il composto da scaricare nel database
+    \item \textit{namespace}, il parametro in base al quale ricercare il composto, nel nostro caso il parametro scelto è il nome indicato dalla stringa \textit{"name"}
+    \item \textit{record\_type} ovvero il tipo di record relativo al composto in questione da scaricare, 
+    nel nostro caso il parametro scelto è la stringa \textit{"3d"} che indica la struttura 3D del ligando.
+\end{itemize}
+
+L'output di tale funzione sarà il file \textit{.sdf} del ligando in questione.
+
+\begin{verbatim}
+    pubchempy.download("SDF", path, identifier, "name", record_type="3d")
+\end{verbatim}
+
+I nomi di alcuni file potrebbero non essere presenti nel database oppure, a causa di spazi presenti nel loro nome, non essere riconosciuti. Nel primo caso i ligandi vengono semplicemente scartati nel secondo caso gli spazi vengono sostituiti da underscore (\_), seguendo quindi la nomenclatura del database, e viene effettuata nuovamente la ricerca di questi nel database. Se anche stavolta la ricerca non ha successo il ligando in questione viene definitivamente scartato.\newline
+Oltre ai file \textit{.sdf} la \textbf{selectLigands} produrrà anche un file \textit{.xlsx} contenente il riepigolo dei risultati ottenuti dalla funzione, ovvero:
+
+\begin{itemize}
+    \item file scaricati
+    \item file scaricati con il nome modificato 
+    \item ligandi non trovati all'interno del database.
+\end{itemize}
+
+Nel caso di esempio, dei 297 ligandi in input, 289 sono stati trovati e scaricati con successo, i restanti 8 sono stati scartati: \ref{tab:Ligandi scartati}.
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|l|}
-        \hline
-        \textbf{Pesi} & \textbf{Termini}\\
-        \hline
-        $-0.0356$ & $gauss_1$\\
-        $-0.00516$ & $gauss_2$\\
-        $0.840$ & $repulsion$\\
-        $-0.0351$ & $hydrophobic$\\
-        $-0.587$ & $hydrogen bonding$\\
-        $0.0585$ & $N_{rot}$\\
-        \hline
+    \hline
+    Sodium 4-nitrophenolate & Silthiofa \\ \hline
+    Sodium 2-methoxy-5-nitrophenolate & Potassium bicarbonate \\ \hline
+    (E,E)-7,9-Dodecadien-1-yl acetate & Dodine \\ \hline
+    Sodium 2-nitrophenolate & Ziram \\ \hline
     \end{tabular}
-    \caption{Funzione di scoring pesi e termini}
-    \label{tab:Tabella Pesi e Termini}
+    \caption{Ligandi non scaricati}
+    \label{tab:Ligandi scartati}
 \end{table}
 
-La particolare implementazione della funzione di scoring che verrà presentata è stata ispirata principalmente da X-score e come tale è stato messo a punto utilizzando PDBbind. Tuttavia, alcuni termini sono diversi da X-score e, nel mettere a punto la funzione di scoring, si è andati oltre la regressione lineare. Inoltre, va notato che Vina classifica le conformazioni secondo l'eq. (2.2) o, equivalentemente, eq. (2.4), mentre X-score conta solo i contributi intermolecolari.
-Per quanto ne sappiamo, X-score non è stato implementato in un programma di docking, ignorare i vincoli interni potrebbe portare l'algoritmo di ottimizzazione a ricercare strutture corrotte all'interno.\newline
-La derivazione della nostra funzione di scoring combina alcuni vantaggi tra quelli potenzialmente conosciuti e le funzioni di scoring empiriche: estrae informazioni empiriche da entrambe le preferenze conformazionali del sia dei complessi recettore-ligando sia dalle misure sperimentali affini.\newline 
-Lo schema di tipizzazione degli atomi segue quello di X-score. Gli atomi di idrogeno non sono considerati esplicitamente, se non per la tipizzazione degli atomi, e sono omessi dall'eq. (2.1).\newline
-Le funzioni di interazione $f_{t_it_j}$ sono definite rispetto alla distanza di superficie  $d_{ij} = r_{ij} - R_{ti} - Rtj$:
+Dopo aver scaricato i file \textit{.sdf} questi devono essere convertiti in formato \textit{.pdb}, per fare ciò lo script richiama la funzione \textbf{sdf2pdb}, la quale prende in input:
 
-\begin{equation}
-    f_{t_it_j}(r_{ij}) \equiv h_{t_it_j}(d_{ij})
-\end{equation}
+\begin{itemize}
+    \item \textit{sdf\_folder}, la directory con i file \textit{.sdf} in input
+    \item \textit{pdb\_folder}, la directory con i file \textit{.pdb} in output
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
 
-dove $R_t$ è il raggio di van der Waals dell'atomo di tipo $t$.\newline
-Nella nostra funzione di scoring, $h_{t_it_j}$ è una somma ponderata di interazioni steriche (i primi tre termini nella tabella 2.1), identica per tutte le coppie di atomi, interazione idrofobiche tra atomi idrofobici e, dove possibile, legami a idrogeno. I pesi sono mostrati nella tabella 2.1. I termini sterici sono i seguenti:
+La funzione restituisce in output i file \textit{.pdb} corrispondenti a tutti i file \textit{.sdf} dati in input.
 
-\begin{equation}
-    gauss_1(d)=e^{-(d/0.5\mathring{A})^2}
-\end{equation}
+\begin{verbatim}
+    sdf2pdb(sdf_folder, pdb_folder, verbose)
+\end{verbatim}
 
-\begin{equation}
-    gauss_2(d)=e^{-((d/0.5\mathring{A})/2\mathring{A})^2}
-\end{equation}
+La funzione usufruisce del programma \textbf{Open babel} in particolare esegue la conversione da \textit{.sdf} a \textit{.pdb} richiamando la sua versione da terminale tramite il comando \textbf{obabel}:
 
-\begin{equation}
-    repulsion(d) = \begin{cases}
-                        d^2, se & d < 0\\
-                        0, se & d \geq 0
-                    \end{cases}
-\end{equation}
+\begin{verbatim}
+    obabel sdf_file_path -O pdb_path
+\end{verbatim}
 
-Il termine idrofobico è uguale a $1$, quando $d < 0,5\mathring{A}$; $0$, quando $d > 1,5\mathring{A}$, ed è interpolato linearmente tra questi valori. Il termine di legame a idrogeno è uguale a $1$, quando $d < -0,7\mathring{A}$; $0$, quando $d < 0,5\mathring{A}$, e viene interpolato linearmente tra questi valori. Seguendo Xscore, trattiamo formalmente i metalli come donatori di legami a idrogeno. In questa in questa implementazione, tutte le funzioni di interazione $ f_{t_it_j}$ sono tagliate a $r_{ij} = 8\mathring{A}$.\newline
-La Figura 1 mostra i termini sterici ponderati da soli o combinati con i termini idrofobici o H
-con le interazioni idrofobiche o di legame H\cite{trott2010autodock}.
+Nell'istruzione sopra \textit{sdf\_file\_path} indica la directory con i file \textit{.sdf} in input, la directory con i file \textit{.pdb} in output, \textit{pdb\_path}, viene specificata tramite lo switch \textit{-O}. Tramite tale istruzione è possibile effettuare la conversione di un singolo file, la conversione di tutti i \textit{.sdf} avviene ciclando su tutti i file nella directory corrispondente.\newline
+L'ultimo step nella preparazione dei ligandi è effettuato dalla funzione \textbf{prepareLigands}, questa funzione prende in input:
+
+\begin{itemize}
+    \item \textit{pdb\_folder}, la directory con i file \textit{.pdb} in input
+    \item \textit{pdbqt\_folder}, la directory con i file \textit{.pdbqt} in output
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+La funzione restituisce la conversione in file \textit{.pdbqt} dei corrispondenti i file \textit{.pdb} dati in input.
+
+\begin{verbatim}
+    prepareLigands(pdb_folder, pdbqt_folder, verbose)
+\end{verbatim}
+
+\textbf{prepareLigands} usufruisce dello script \textbf{prepare\_ligand4} offerto dalla suite \textbf{ADFR} tramite il quale effettua la corretta conversione da \textit{.pdb} a \textit{.pdbqt}. Lo script viene richiamato tramite riga di comando dalla funzione mediante il comando \textbf{prepare\_ligand}:
+
+\begin{verbatim}
+    prepare_ligand -l pdb_file_path -v -o pdbqt_path
+\end{verbatim}
+
+Nell'istruzione sopra, \textit{pdb\_file\_path} indica la directory con i file \textit{.pdb} in input ed è specificata tramite lo switch \textit{-l}, lo switch \textit{-v} indica che è attivato il verbose e la directory con i file \textit{.pdbqt} in output, \textit{pdbqt\_path}, viene specificata tramite lo switch \textit{-o}. Tramite tale istruzione è possibile effettuare la conversione di un singolo file, la conversione di tutti i \textit{.pdb} avviene ciclando su tutti i file nella directory corrispondente.
+
+\subsection{Preparazione dei ligandi tramite GUI}
+La preparazione dei ligandi tramite GUI avviene selezionando il tasto \textbf{Ligands} nella sezione \textbf{Preparation} del software. All'inteno della pagina relativa alla preparazione dei ligandi premendo il tasto \textbf{Execute} è possibile effettuare i procedimenti precedentemente spiegati nella sezione relativa all'esecuzione tramite script (\ref{Preparazione dei ligandi script}). Premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Preparation} relativa alla preparazione degli input.
+Come si osserva nella figura \ref{fig:ligands} all'interno di tale sezione sono presenti delle \textbf{entry} dove è possibile specificare diversi input tra cui:
+
+\begin{itemize}
+    \item un file di input (\textit{.xlsx}, \textit{.xls}) o (\textit{.txt}) da cui prendere i nomi dei ligandi
+    \item la directory dei file \textit{.xlsx} di output
+    \item la directory dei file \textit{.sdf} di output
+    \item la directory dei file \textit{.pdb} di output
+    \item la directory dei file \textit{.pdbqt} di output.
+\end{itemize}
+
+Se lasciate vuote queste entry verrano impostate le configurazioni di default. E' presente anche un \textbf{checkbox} il quale se selezionato permette di mantenere i file precedentemente scaricati che altrimenti verrebbero cancellati.\newline
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/funzioneScoringPesata.png}
-    \caption{Funzione di scoring pesata}
-    \label{fig:Funzione di scoring pesata}
+    \includegraphics[scale=0.6]{immagini/ligands.png}
+    \caption{Sezione \textbf{Ligands} della GUI}
+    \label{fig:ligands}
 \end{figure}
+
+La GUI per la preparazione dei ligandi richiama versioni modificate delle funzioni e dello script \textbf{prepare\_ligands.py} discussi nella precedente sezioni, le modifiche apportate semplicemente adattano le procedure e gli script all'interfaccia grafica senza eliminare alcuna funzionalità precedentemente illustrata per la versione da riga di comando.\newline
+Durante l'esecuzione vengono mostrate diverse  \textbf{progress bar} (figura: \ref{fig:sdf progress bar}, \ref{fig:pdb progress bar} e \ref{fig:pdbqt progress bar}) in modo tale che sia restituito un feedback all'utente relativo al progresso della preparazione dei ligandi. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed ligands}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:Invalid input ligands}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/sdfProgressBar.png}
+    \caption{\textbf{Progress bar} dei file \textit{.sdf}}
+    \label{fig:sdf progress bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/pdbProgressBar.png}
+    \caption{\textbf{Progress bar} dei file \textit{.pdb}}
+    \label{fig:pdb progress bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/pdbqtProgressBar.png}
+    \caption{\textbf{Progress bar} dei file \textit{.pdbqt}}
+    \label{fig:pdbqt progress bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/progressCompletedLigands.png}
+    \caption{Messaggio processo completato con successo}
+    \label{fig:progress completed ligands}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/invalidInputLigands.png}
+    \caption{Messaggio di errore}
+    \label{fig:Invalid input ligands}
+\end{figure}
+
+\subsection{Preparazione dei recettori tramite script} \label{Preparazione dei recettori script}
+o script python \textbf{prepare\_receptors.py}, che esegue tale fase, viene eseguito da terminale mediante il comando:
+
+\begin{verbatim}
+    python prepare_receptors.py
+\end{verbatim}
+
+Questo script può ricevere diversi argomenti in input:
+
+\begin{itemize}
+    \item $[-v] | [--verbose]$: serve per attivare il verbose e se non viene specificata tale opzione viene lasciata di default inattivo
+    \item $[-E] | [--excel-folder]$: specifica la directory dei file \textit{.xlsx} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-P] | [--pdb-folder]$: specifica la directory dei file \textit{.pdb} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-p] | [--pdbqt-folder]$: specifica la directory dei file \textit{.pdbqt} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-k] | [--keep-pdb-files]$: specificando questa opzione viene scelto di non cancellare i file delle proteine precedentemente scaricati, se non viene specificata tale opzione i file verranno cancellati
+    \item $[-m] | [--margin]$: specificando questa opzione viene fornita in input la dimensione in \textit{angstrom} del margine della \textit{grid box} per le proteine se non viene specificata tale opzione viene impostato il valore di default ovvero 3
+    \item $[-h] | [--help]$: stampa la spiegazione degli input per lo script.
+\end{itemize}
+
+Lo script quando eseguito andrà ad inizializzare i vari percorsi, e nel caso siano stati inseriti in input verrà controllata l'esistenza e la validità degli stessi. Nel caso non siano presenti le directory contenenti i file \textit{.txt}, \textit{.pdb} e .\textit{pdbqt}, queste verranno create automaticamente dall'applicazione a meno di input inseriti dall'utente e saranno cancellati i file precedentemente scaricati a meno di input contrario.\newline
+Lo script richiama la funzione \textbf{selectReceptors} la quale si occupa di scaricare da \textbf{Pubchem} i file \textit{.pdb} corrispondenti alle proteine scelte. La funzione prende in input: 
+
+\begin{itemize}
+    \item \textit{pdb\_folder}, il path della directory di output per i file \textit{.pdb}
+    \item \textit{excel\_folder}, il path della directory di output per i file \textit{.xlsx}
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+In output ci vengono dati i file \textit{.pdb} corrispondenti ai recettori scelti in input e un file \textit{.xlsx} contenente i risultati dell'operazione di download nominato \textit{info\_proteins.xls}.
+
+\begin{verbatim}
+    selectReceptors(pdb_folder, excel_folder, verbose)
+\end{verbatim}
+
+All'interno di questa \textbf{selectReceptors} viene richiamata la funzione \textbf{RestApiSelection} la quale prende in input l'\textit{URL} di \href{https://www.rcsb.org/search}{PubChem}:
+\begin{verbatim}
+    RestApiSelection(URL)
+\end{verbatim}
+
+Questa funzione apre una \textbf{web view} sul sito di \href{https://www.rcsb.org/search}{PubChem} come mostrato nella figura \ref{fig:queryRecettori}, l'utente potrà digitare la propria query e scaricare i composti scelti selezionando il tasto in alto \textbf{Get Query}.\newline
+La \textbf{web view} restituisce l'\textbf{URL} della pagina del database contenente i composti selezionati dalla query, il \textit{JSON} di tale pagina viene estratto e convertito nella struttura dati \textit{dizionario} di python tramite la funzione \textbf{loads} della libreria \textbf{json}.
+
+\begin{verbatim}
+    dictionary = json.loads(data)
+\end{verbatim}
+
+Nel \textit{dizionario} restituito dalla funzione sarà contenuto l'elenco dei composti selezionati tramite la query.\newline
+Il software rieseguirà direttamente la query tramite la funzione \textbf{get} contenuta nella libreria \textbf{requests}. Questa funzione permette di inviare una richiesta di tipo \textit{HTTP/1.1} prendendo in input \textbf{URL} della query al quale viene aggiunto l'elenco di composti da scegliere in formato \textit{JSON}, ciò eseguito convertendo il \textit{dizionario} precedentemente ottenuto in \textbf{JSON}
+mediante la funzione \textbf{dump} della libreria \textbf{json}:
+
+\begin{verbatim}
+    dictionary = json.dump(dictionary)
+\end{verbatim}
+
+La funzione \textbf{get} restituisce la lista di proteine da scaricare:
+
+\begin{verbatim}
+    requests.get(f"https://search.rcsb.org/rcsbsearch/v2/query?json={dictionary}")
+\end{verbatim}
+
+La funzione \textbf{selectReceptors} richiama successivamente la funzione \textbf{downloadPdbs} che prende in input:
+
+\begin{itemize}
+    \item \textit{pdb\_list}, la lista di proteine precedentemente ottenuta
+    \item \textit{outputh\_path}, il path della directory di output per i file \textit{.pdb}
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+La funzione ritorna in output i file \textit{.pdb} delle proteine contenute nella lista in input:
+
+\begin{verbatim}
+    downloadPdbs(pdbs_list, output_path, verbose)
+\end{verbatim}
+
+La funzione \textbf{downloadPdbs} richiama la funzione \textbf{fetchPDB} del pacchetto \textbf{ProDy}, questa prende in input:
+
+\begin{itemize}
+    \item \textit{protein\_code}, la proteina da scaricare
+    \item \textit{folder}, il path della directory di output per i file \textit{.pdb}, nel nostro caso sarà impostato ad \textit{out\_path}
+    \item \textit{compressed}, il flag per decidere se il file scaricato dovrà essere compresso oppure no, nel nostro caso il flag sarà impostato a \textit{False} per indicare che i file scaricati debbano essere già decompressi.
+\end{itemize}
+
+Tramite tale istruzione è possibile interfacciarsi con \textbf{PubChem} e scaricare di un singolo file \textit{.pdb} mediante richiesta \textit{FTP}, il download di tutte le proteine della lista avviene ciclando su tutti gli elementi di essa:
+
+\begin{verbatim}
+    fetchPDB(protein_code, folder=output_path, compressed=False)
+\end{verbatim}
+
+Dopo aver effettuato il download di tutte i file \textit{.pdb} le informazioni relative al download ed ai file scaricati vengono salvati in un file \textit{.xlsx} chiamato \textit{info\_proteins.xlsx} salvato nella directory \textit{/output/}.\newline
+Lo script \textbf{prepare\_receptors.py} una volta terminata la funzione \textbf{selectReceptors} richiama \textbf{splitRepeatedResidues} che prende in input:
+
+\begin{itemize}
+    \item \textit{pdb\_folder}, il path della directory di output per i file \textit{.pdb}
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+Questa funzione si occupa di rimuovere i residui ripetuti memorizzati nel file \textit{.pdb} sotto la dicitura \textit{alternative location} o \textit{alt\_loc}:
+
+\begin{verbatim}
+    splitRepeatedResidues(pdb_folder, verbose, output_folder=None)    
+\end{verbatim}
+
+Per accedere agli attributi dei file \textit{.pdb} utilizziamo la funzione \textbf{read\_pdb} del pacchetto \textbf{PandasPdb}, questa prende in input il nome del file \textit{.pdb}:
+
+\begin{verbatim}
+    PandasPdb.read_pdb(pdb_file)
+\end{verbatim}
+
+In particolare gli attributi \textit{A} e \textit{B} sono quelli ripetuti e i \textit{B} saranno quelli eliminati nella colonna \textit{alt\_loc}.\newline
+Successivamente viene richiamata dallo script la funzione \textbf{deleteHeteroatomsChains}, la quale prende in input:
+
+\begin{itemize}
+    \item \textit{pdb\_folder}, il path della directory di output per i file \textit{.pdb}
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+Questa funzione si occupa di rimuovere le catene di eteroatomi contenute nel file \textit{.pdb}, queste sono evidenziate nel file tramite un loro attributo ovvero la keyword \textit{HETATM}, una volta rimosse, le catene vengono salvate. 
+
+\begin{verbatim}
+    deleteHeteroatomsChains(pdb_folder, verbose)
+\end{verbatim}
+
+L'estrazione degli attributi dai file \textit{.pdb} avviene anche in questo caso tramite la funzione \textbf{read\_pdb} precedentemente descritta.\newline
+\textbf{prepare\_receptors.py} richiama successivamente la funzione \textbf{splitChains} che prende in input: 
+
+\begin{itemize}
+    \item \textit{pdb\_folder}, il path della directory di output per i file \textit{.pdb}
+    \item \textit{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+Questa funzione si occupa di dividere le catene di residui che formano la struttura della proteina mantenendo soltanto le catene distinte, cioè quelle catene che hanno solo una sequenza aminoacidica distinta e non ripetuta da altre catene. 
+
+\begin{verbatim}
+    splitChains(pdb_folder, verbose)    
+\end{verbatim}
+
+Tramite la funzione \textbf{parsePDB} della libreria \textbf{prody} viene ricostruita la struttura proteica attraverso oggetti come: la lista delle molecole, la lista degli atomi e dei residui, questa viene rappresentata da un oggetto della classe \textbf{AtomGroup} restituito dalla funzione \textbf{parsePDB}.
+
+\begin{verbatim}
+    atoms = parsePDB(protein_file)
+\end{verbatim}
+
+La ricostruzione della struttura proteica avviene tramite la vista gerarchica della struttura, ciò viene implementata tramite il metodo \textbf{getHierView} della classe \textbf{AtomGroup}:
+
+\begin{verbatim}
+    atoms.getHierVieW()
+\end{verbatim}
+
+Vengono quindi esaminate tutte le sequenze, sempre tramite la funzione \textbf{parsePDB}, e scelte solo le sequenze distinte, infine vengono salvate in un file tutte le catene distinte come se fossero delle proteine attraverso la funzione \textbf{writePDB} di \textbf{prody}, questa funzione prende in input:
+
+\begin{itemize}
+    \item \textit{filename}, il nome del file
+    \item \textit{new\_atoms}, il composto da salvare
+\end{itemize}
+
+Questi file prenderanno il nome della proteina principale al quale viene aggiunto un underscore (\textit{\_}) seguito dal nome della catena distinta salvata nel file.
+
+\begin{verbatim}
+    writePDB(filename, new_atoms)
+\end{verbatim}
+
+Lo step successivo nella preparazione dei recettori è effettuato dalla funzione \textbf{prepareReceptors}, questa funzione prende in input:
+
+\begin{itemize}
+    \item \textit{pdb\_folder}, la directory con i file \textit{.pdb} in input
+    \item \textit{pdbqt\_folder}, la directory con i file \textit{.pdbqt} in output
+    \item \textit{verbose}, il flag relativo al verbose
+    \item \textit{charges\_to\_add}, la carica da aggiungere alle proteine.
+\end{itemize}
+
+La funzione restituisce la conversione in file \textit{.pdbqt} dei corrispondenti i file \textit{.pdb} dati in input.
+
+\begin{verbatim}
+    prepareReceptors(pdb_folder, pdbqt_folder, verbose)
+\end{verbatim}
+
+\textbf{prepareReceptors} utilizza lo script \textbf{prepare\_receptors4} offerto dalla suite \textbf{ADFR}. In realtà viene utilizzata una versione modificata di tale script: \textbf{replacePrepareReceptor4.sh}. Questa versione modificata tramite bash scripting sostituisce la carica di Gasteiger con la carica in input ovvero \textit{charges\_to\_add} che nel nostro caso sono cariche di Kollman come specificate dalla stringa \textit{"Kollman"}. Tramite questo script si effettua la corretta conversione da \textit{.pdb} a \textit{.pdbqt}. Lo script viene richiamato tramite riga di comando dalla funzione mediante il comando \textbf{prepare\_receptor}:
+
+\begin{verbatim}
+    prepare_receptor 
+    -r 
+    pdb_file_path 
+    -A 
+    checkhydrogens 
+    -C 
+    charges_to_add 
+    -e 
+    -o 
+    pdbqt_folder
+\end{verbatim}
+
+Nell'istruzione sopra:
+
+\begin{itemize}
+    \item \textit{pdb\_file\_path} indica la directory con i file \textit{.pdb} in input ed è specificata tramite lo switch \textit{-r}
+    \item \textit{checkydrogens} indica l'opzione tramite la quale vengono controllati gli atomi di idrogeno specificata lo switch \textit{-A}    
+    \item \textit{charges\_to\_add} indica la carica usata in input impostata tramite lo switch \textit{-C} 
+    \item \textit{pdbqt\_folder} indica la directory con i file \textit{.pdbqt} in output specificata tramite lo switch \textit{-o}
+\end{itemize}
+
+Tramite tale istruzione è possibile effettuare la conversione di un singolo file, mentre la conversione di tutti i \textit{.pdb} avviene ciclando su tutti i file nella directory corrispondente.\newline
+L'ultima fase nella preparazione dei ligandi consiste nella creazione delle \textit{grid box}, mediante la funzione \textbf{createGridboxes} richiamata dallo script \textbf{prepare\_receptors.py}, la funzione prende in input:
+
+\begin{itemize}
+    \item \textbf{pdb\_folder}, la directory contenente i file \textit{.pdb} 
+    \item \textbf{gridbox\_outputh\_folder}, la directory di output per le \textit{grid box}
+    \item \textbf{margin}, la dimensione in \textit{angstrom} del margine della \textit{grid box}
+    \item \textbf{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+Per ogni proteina ottenuta deve essere creata una \textit{grid box}, questa definisce lo spazio conformazionale dove si colloca la proteina, è definita da:
+
+\begin{itemize}
+    \item Un centro
+    \item Le dimensioni
+    \item L'esaustività, la quale sarà utilizzata da qualsiasi software da \textbf{AutoDock Vina} per la ricerca delle pose possibili del ligando.
+\end{itemize}
+
+Una \textit{grid box} definisce la regione delle proteine dove il docking viene effettuato. Qualsiasi altra regione al di fuori dalla \textit{grid box} non verrà presa in considerazione durante il processo di docking.\newline
+Le \textit{grid box} sono un input richiesto da \textbf{AutoDock Vina} ma non da altri software per il docking.\newline
+
+\begin{verbatim}
+    createGridboxes(pdb_folder, gridbox_output_folder, margin, verbose)
+\end{verbatim}
+
+Per ogni proteina vengono estratti gli attributi contenuti nel proprio file e viene richiamata da \textbf{createGridboxes} la funzione \textbf{createGridbox}, questa prende in input: 
+
+\begin{itemize}    
+    \item \textbf{ppdb}, l'insieme di attributi del file \textit{.pdb} ottenuti come oggetto della classe \textbf{AtomGroup} restituito dalla funzione \textbf{parsePDB}
+    \item \textbf{protein\_path}, il file \textit{.pdb} corrispondente ad una singola proteina
+    \item \textbf{gridbox\_outputh\_folder}, la directory di output per le \textit{grid box}
+    \item \textbf{margin}, la dimensione in \textit{angstrom} del margine della \textit{grid box}
+    \item \textbf{verbose}, il flag relativo al verbose.
+\end{itemize}
+
+La funzione \textbf{createGridbox} costruisce una \textit{grid box} per una singola proteina utilizzando gli attributi del file \textit{.pdb} rispettando i parametri precedentemente definiti per una \textit{grid box}.
+
+\subsection{Preparazione dei reccettori tramite GUI}
+La preparazione dei recettori tramite GUI avviene selezionando il tasto \textbf{Receptors} nella sezione \textbf{Preparation} del software. All'inteno della pagina relativa alla preparazione dei recettori premendo il tasto \textbf{Execute} è possibile effettuare i procedimenti precedentemente spiegati nella sezione relativa all'esecuzione tramite script (\ref{Preparazione dei recettori script}). Premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Preparation} relativa alla preparazione degli input.
+Come si osserva nella figura \ref{fig:receptors} all'interno di tale sezione sono presenti delle \textbf{entry} dove è possibile specificare diversi input tra cui:
+
+\begin{itemize}
+    \item un file di input (\textit{.xlsx}, \textit{.xls}) o (\textit{.txt}) da cui prendere i nomi dei ligandi
+    \item la directory dei file \textit{.xlsx} di output
+    \item la directory delle \textit{grid box} di output \textit{.txt}
+    \item la directory dei file \textit{.pdb} di output
+    \item la directory dei file \textit{.pdbqt} di output
+    \item il valore del margine delle \textit{grid box}
+    \item la carica da aggiungere.
+\end{itemize}
+
+Se lasciate vuote queste entry verrano impostate le configurazioni di default. E' presente anche un \textbf{checkbox} il quale se selezionato permette di mantenere i file precedentemente scaricati che altrimenti verrebbero cancellati.\newline
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/receptors.png}
+    \caption{Sezione \textbf{Receptors} della GUI}
+    \label{fig:receptors}
+\end{figure}
+
+La GUI per la preparazione dei recettori richiama versioni modificate delle funzioni e dello script \textbf{prepare\_receptors.py} discussi nella precedente sezioni, le modifiche apportate semplicemente adattano le procedure e gli script all'interfaccia grafica senza eliminare alcuna funzionalità precedentemente illustrata per la versione da riga di comando.\newline
+Durante l'esecuzione viene mostrata una \textbf{progress bar} (figura: \ref{fig:protein progress bar}) in modo tale che sia restituito un feedback all'utente relativo al progresso della preparazione dei ligandi. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed proteins}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:Invalid input proteins}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/proteinsProgressBar.png}
+    \caption{\textbf{Progress bar} delle proteine}
+    \label{fig:protein progress bar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/progressCompletedReceptors.png}
+    \caption{Messaggio processo completato con successo}
+    \label{fig:progress completed proteins}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/invalidInputReceptors.png}
+    \caption{Messaggio di errore}
+    \label{fig:Invalid input proteins}
+\end{figure}
+
+\section{Docking}
+
