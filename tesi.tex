@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper,oneside,openright]{book}
 \usepackage[italian]{babel}                
-\usepackage[OT1]{fontenc}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{float}
@@ -13,12 +13,27 @@
 \usepackage{longtable}
 \usepackage{appendix}
 \usepackage{url}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage[nottoc]{tocbibind}
+
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\large\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+
+\renewcommand{\familydefault}{\rmdefault}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \setcounter{secnumdepth}{3}
 
 \setcounter{tocdepth}{3}
-
-\renewcommand*\familydefault{\sfdefault}
 
 \setlength{\parindent}{0pt}
 
@@ -41,9 +56,67 @@
   {}{}
 \makeatother
 
-\title{Tesi.tex}
-\author{Alfredo Mungari}
-\date{23/11/2022}
+\hypersetup{%
+    pdfpagemode={UseOutlines},
+    bookmarksopen,
+    pdfstartview={FitH},
+    colorlinks,
+    linkcolor={black}, %COLORE DEI RIFERIMENTI AL TESTO
+    citecolor={blue}, %COLORE DEI RIFERIMENTI ALLE CITAZIONI
+    urlcolor={blue} %COLORI DEGLI URL
+}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\textbf\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\makeatletter
+\newcommand\listofcodes{%
+ \if@openright\cleardoublepage\else\clearpage\fi
+ % change the meaning of \chapter in a group
+ \begingroup\def\chapter##1{\@schapter}
+ \phantomsection % for the hyperlink
+ \addcontentsline{toc}{chapter}{Elenco dei listati}
+ \lstlistoflistings
+ \endgroup
+} 
+\makeatother
+
+\addto\captionsitalian{%
+  \renewcommand{\lstlistlistingname}{Elenco dei listati}%
+  \renewcommand{\lstlistingname}{Listato}%
+}
+
+\addto\captionsitalian{%
+  \renewcommand{\lstlistlistingname}{Elenco dei listati}%
+  \renewcommand{\lstlistingname}{Listato}%
+}
+
+\frenchspacing
+
+\pdfinfo{%
+    /Title (Analisi delle interazioni molecolari e sviluppo di un software per l'automatizzazione del docking molecolare)
+    /Author(Alfredo Mungari)
+    /Subject(Preparazione dei ligandi e dei recettori, docking ed estrazione dei legami)
+    /Keywords(Universit\'a degli Studi di Napoli ``Parthenope'' - Scuola interdipartimentale delle Scienze, dell'Ingegneria e della Salute - Dipartimento di Scienze e Tecnologie - Corso di laurea in Informatica)
+}
 
 \begin{document}
 
@@ -112,7 +185,8 @@
     \vfill \eject
 
     \pagestyle{plain}
-    \pagenumbering{arabic}
+    
+    \pagenumbering{Roman}
 
     \tableofcontents
 
@@ -120,12 +194,18 @@
 
     \listoftables
 
+    \listofcodes
+
+    \newpage
+
     \input{tesina/capitolo1.tex}
     \input{tesina/capitolo2.tex}
     \input{tesina/capitolo3.tex}
     \input{tesina/capitolo4.tex}
+    \input{tesina/capitolo5.tex}
     \input{tesina/appendice.tex}
 
-    \printbibliography
+    \nocite{*}
+    \printbibliography[heading=bibintoc]
 
 \end{document}
