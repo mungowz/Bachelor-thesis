@@ -1,27 +1,45 @@
 \chapter{Tecnologie e piattaforme}
-In questo capitolo verranno trattate le tecnologie utilizzate, a partire dai linguaggi, i tools utilizzate e le piattaforme hardware di lavoro. È stato fondamentale l’utilizzo di macchine in remoto per eseguire le operazioni di training del modello. In questo caso le macchine messe a disposizione dall’Università Parthenope e dal CNR sono state fondamentali in quanto hanno garantito stabilità ed efficienza.
+In questo capitolo saranno trattate le tecnologie utilizzate, a partire dai linguaggi, i tools impiegati e le piattaforme hardware di lavoro. È stato fondamentale l’utilizzo di macchine in remoto per eseguire le operazioni di training del modello. In questo caso le macchine messe a disposizione dall’Università Parthenope e dal CNR sono state fondamentali in quanto hanno garantito stabilità ed efficienza.
 
 \section{Linguaggi e tools}
-La scelta del linguaggio di programmazione è stata importante in quanto ci sono tantissimi linguaggi con librerie adatte allo scopo, solo pochi ricevono costante supporto e sono anche utilizzati nel mondo del lavoro.
+La scelta del linguaggio di programmazione è stata importante in quanto ci sono tantissimi linguaggi con librerie adatte allo scopo, solo pochi ricevono costante supporto e sono anche utilizzati nel mondo del lavoro.\newline
+Il linguaggio scelto per lo sviluppo di \textbf{Computational Docking} è il \textbf{Python}.
 
 \subsection{Python}
-\textbf{Python} è un linguaggio di programmazione dinamico orientato agli oggetti utilizzabile per molti tipi  di sviluppo software. Offre un forte supporto all'integrazione con altri linguaggi e programmi, è fornito di una estesa libreria standard e può essere imparato in pochi giorni. Python inoltre è fornito delle librerie di bioinformatica adatte allo scopo del software realizzato. Di seguito le principali utilizzate:
+\textbf{Python} è un linguaggio informatico facile da imparare che si sta affermando tra gli scienziati, probabilmente perché è semplice da usare e, sufficientemente potente per raggiungere la maggior parte degli obiettivi di programmazione. Con \textbf{Python} si può iniziare a programmare in modo molto rapido. Riviste come Computing in Science and Engineering, Briefings in Bioinformatics e PLOS Computational Biology hanno pubblicato articoli introduttivi sull'impiego del \textbf{Python} per lo sviluppo di software di bioInformatica. Gli scienziati utilizzano Python per la visualizzazione molecolare, l'annotazione genomica, la manipolazione dei dati e innumerevoli altre applicazioni. Nel caso particolare delle scienze della vita, lo sviluppo di \textbf{Python} è stato molto importante.\cite{bassi2016python}\newline
+Il linguaggio di programmazione \textbf{Python} è dinamico ed orientato agli oggetti, inoltre è utilizzabile per molti tipi  di sviluppo software. Offre un forte supporto all'integrazione con altri linguaggi e programmi, è fornito di una estesa libreria standard e può essere imparato in pochi giorni.\newline
+\textbf{Python} è dotato delle librerie di bioinformatica adatte allo scopo del software realizzato (\textbf{Computational Docking}). Di seguito le principali utilizzate:
 
 \begin{itemize}
-    \item \textbf{PubChemPy}, per le ricerche chimiche per nome, sottostruttura e somiglianza, standardizzazione chimica, conversione tra formati di file chimici, rappresentazione e recupero delle proprietà chimiche
-    \item \textbf{ProDy}, per l'analisi della dinamica strutturale delle proteine
-    \item \textbf{pandas}, per la manipolazione ed analisi dei dati
-    \item \textbf{Tkinter/customTkinter}, per la realizzazione dell'interfaccia grafica
+    \item \textbf{PubChemPy}, libreria utilizzata nelle ricerche chimiche per nome, sottostruttura e somiglianza, standardizzazione chimica, conversione tra formati di file chimici, rappresentazione e recupero delle proprietà chimiche
+    \item \textbf{ProDy}, libreria utilizzata per l'analisi della dinamica strutturale delle proteine
+    \item \textbf{Pandas}, libreria utilizzata per la manipolazione ed analisi dei dati
+    \item \textbf{Tkinter/customTkinter}, libreria utilizzata per la realizzazione dell'interfaccia grafica
     \item \textbf{MolKit}, pacchetto che fornisce classi per leggere le molecole in diversi formati di file (PDB, Mol2...) e costruire una struttura gerarchica ad albero che riproduce la struttura interna della molecola
-    \item \textbf{Matplotlib}, per la creazione di visualizzazioni statiche, animate e interattive
-    \item \textbf{NumPy}, per la gestione delle strutture dati
-    \item \textbf{os}, per la gestione dei files
+    \item \textbf{Matplotlib}, libreria utilizzata per la creazione di visualizzazioni statiche, animate e interattive
+    \item \textbf{NumPy}, libreria utilizzata per la gestione delle strutture dati
+    \item \textbf{Os}, libreria utilizzata per la gestione dei files
 \end{itemize} 
 
 La versione di Python utilizzata è la \textbf{2.7} in quanto maggiormente compatibile con le librerie e i pacchetti utilizzati.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.1]{immagini/capitolo2/pythonLogo.png}
+    \caption{Logo di Python}
+    \label{fig:python logo}
+\end{figure}
+
 \subsubsection{PubChemPy}
-\textbf{PubChemPy} si basa interamente sul database \textbf{PubChem} e sui toolkit chimici forniti tramite il servizio web PUG REST. Questo servizio fornisce un'interfaccia ai programmi per svolgere automaticamente le operazioni che altrimenti si potrebbero eseguire manualmente tramite il sito web di \textbf{PubChem}. È importante ricordare questo aspetto quando si utilizza \textbf{PubChemPy}: Ogni richiesta effettuata viene trasmessa ai server di \textbf{PubChem}, viene valutata e quindi viene inviata una risposta. Ci sono alcuni aspetti negativi: È meno adatto per lavori riservati, richiede una connessione costante a Internet e alcune operazioni saranno più lente rispetto a quelle eseguite localmente sul proprio computer. D'altra parte, questo significa che abbiamo a disposizione le vaste risorse del database \textbf{PubChem} e dei toolkit chimici. Di conseguenza, è possibile eseguire in pochi secondi complesse ricerche di somiglianza e di sottostruttura su un database contenente decine di milioni di composti, senza bisogno dello spazio di memoria o della potenza di calcolo del proprio computer locale \cite{PubChempyDocumentation}.
+La libreria \textbf{PubChemPy} si basa interamente sul database \textbf{PubChem} e sui toolkit chimici forniti tramite il servizio web PUG REST. Questo servizio fornisce un'interfaccia ai programmi per svolgere automaticamente le operazioni che altrimenti si potrebbero eseguire manualmente tramite il sito web di \textbf{PubChem}. È importante ricordare questo aspetto quando si utilizza \textbf{PubChemPy}: ogni richiesta effettuata viene trasmessa ai server di \textbf{PubChem}, dove viene valutata e quindi viene inviata una risposta. Ci sono alcuni aspetti negativi in questo processo: 
+
+\begin{itemize}
+    \item è meno adatto per lavori riservati
+    \item richiede una connessione costante a Internet
+    \item alcune operazioni saranno più lente rispetto a quelle eseguite localmente sul proprio computer.
+\end{itemize}
+
+D'altra parte, questo significa che si hanno a disposizione le vaste risorse del database \textbf{PubChem} e dei toolkit chimici. Di conseguenza, è possibile eseguire in pochi secondi complesse ricerche di somiglianza e di sottostruttura su un database contenente decine di milioni di composti, senza bisogno dello spazio di memoria o della potenza di calcolo del proprio computer locale \cite{PubChempyDocumentation}.
 
 \subsubsection{ProDy}
 \textbf{ProDy} è un pacchetto python per l'analisi della dinamica delle proteine basata sulla struttura. \textbf{ProDy} consente di caratterizzare quantitativamente le variazioni strutturali in insiemi eterogenei di strutture risolte sperimentalmente per un dato sistema biomolecolare e di confrontare queste variazioni con le dinamiche di equilibrio previste teoricamente. Gli insiemi di dati comprendono insiemi strutturali per una determinata famiglia o sottofamiglia di proteine, i loro mutanti e omologhi di sequenza, in presenza/assenza dei loro substrati, ligandi o inibitori. Numerose funzioni ausiliarie consentono l'analisi comparativa dei dati sperimentali e teorici e la visualizzazione dei principali cambiamenti nelle conformazioni accessibili nei diversi stati funzionali. L'interfaccia di programmazione delle applicazioni (API) di \textbf{ProDy} è stata progettata in modo che gli utenti possano facilmente estendere il software e implementare nuovi metodi\cite{10.1093/bioinformatics/btr168}.
@@ -30,7 +48,7 @@ La versione di Python utilizzata è la \textbf{2.7} in quanto maggiormente compa
 \textbf{Pandas} è un pacchetto \textbf{Python} che fornisce strutture di dati veloci e flessibili, progettate per rendere facile e intuitivo il lavoro con i dati "relazionali" o "strutturati". \textbf{Pandas} è la pietra miliare per l'analisi pratica ad alto livello dei dati del mondo reale in \textbf{Python}. Inoltre, ha l'obiettivo più ampio di diventare il più potente e flessibile strumento open source di analisi e manipolazione dei dati disponibile in qualsiasi linguaggio\cite{reback2020pandas}. 
 
 \subsubsection{Tkinter}
-\textbf{Tkinter} fornisce alle applicazioni \textbf{Python} un'interfaccia utente facile da programmare. Tkinter supporta una collezione di widget Tk che supportano la maggior parte delle applicazioni. \textbf{Tkinter} è l'interfaccia Python a Tk, il toolkit GUI per Tcl/Tk. Tcl/Tk è la struttura di scripting e grafica sviluppato da John Ousterhout, originariamente all'Università della California a Berkeley e successivamente presso Sun Microsystems. Attualmente, Tcl/Tk è sviluppato e supportato dalla Scriptics Corporation, fondata da Ousterhout. Tcl/Tk gode di un notevole seguito di sviluppatori in diversi campi in diversi campi, prevalentemente su sistemi UNIX, ma più recentemente su sistemi Win32 e MacOS.\newline
+La libreria \textbf{Tkinter} fornisce alle applicazioni \textbf{Python} un'interfaccia utente facile da programmare. Tkinter supporta una collezione di widget Tk che supportano la maggior parte delle applicazioni. \textbf{Tkinter} è l'interfaccia Python a Tk. Il toolkit GUI per Tcl/Tk. Tcl/Tk è la struttura di scripting e grafica sviluppato da John Ousterhout, originariamente all'Università della California a Berkeley e successivamente presso Sun Microsystems. Attualmente, Tcl/Tk è sviluppato e supportato dalla Scriptics Corporation, fondata da Ousterhout. Tcl/Tk gode di un notevole seguito di sviluppatori in diversi campi in diversi campi, prevalentemente su sistemi UNIX, ma più recentemente su sistemi Win32 e MacOS.\newline
 Tcl/Tk è stato inizialmente progettato per essere eseguito sotto il sistema X Window e i suoi widget e le sue finestre sono stati realizzati in modo da assomigliare a Motif. Anche il comportamento dei controlli e dei collegamenti è stato progettato per imitare Motif. Nelle versioni recenti di Tcl/Tk (in particolare, la release 8.0 e successive), i widget assomigliano ai widget nativi dell'architettura implementata. In effetti, molti dei widget sono widget nativi e la tendenza ad aggiungerne altri probabilmente continuerà. Come le estensioni di \textbf{Python}, Tcl/Tk è implementato come un pacchetto di librerie C con moduli che supportano script interpretati o applicazioni. L'interfaccia \textbf{Tkinter} è implementata come un modulo \textbf{Python}\cite{grayson2000python}.
 
 \subsubsection{Matplotlib}
@@ -41,7 +59,7 @@ Nel mondo \textbf{Python}, gli array \textbf{NumPy} sono la rappresentazione sta
 
 \subsection{ADFRsuite}
 \textbf{AutoDockFR} (o \textbf{ADFR} in breve) è un programma per il \textbf{docking tra proteine e ligandi} sviluppato nel laboratorio Sanner dello Scripps Research sotto l'egida di \textit{AutoDock}.\newline
-Utilizza:
+ADFR utilizza:
 
 \begin{itemize}
     \item la funzione di scoring di \textit{AutoDock4}, implementata in una libreria C++ ed inglobata in Python
@@ -59,7 +77,8 @@ Viene distribuito come parte della suite del software \textit{ADFR}, che fornisc
     \item I metadati memorizzati in questi file non solo supportano la riproducibilità, ma riducono anche i rischi di errori dell'operatore.
 \end{itemize}
 
-ADFR legge i \textbf{ligandi} preparati per il docking con AutoDock, cioè nel formato PDBQT e organizza la flessibilità del ligando in base ai legami ruotabili. Un file PDBQT può essere generato da un file \textit{.pdb} di un ligando utilizzando il comando \textit{prepar\_ligand}.  Il \textbf{recettore} è specificato come file target, cioè un singolo file che descrive il recettore. I file target possono essere calcolati per un recettore nel formato PDBQT dal comando utilizzando il programma \textit{\textbf{agfr}} o l'interfaccia grafica \textit{\textbf{agfrgui}}. Un file PDBQT può essere generato da un file pdb di un recettore utilizzando il comando \textit{prepare\_receptor} della suite \textit{ADFR}. \newline
+ADFR legge i \textbf{ligandi} preparati per il docking con AutoDock, cioè nel formato PDBQT e organizza la flessibilità del ligando in base ai legami ruotabili. Un file PDBQT può essere generato da un file \textit{.pdb} di un ligando utilizzando il comando \textit{prepar\_ligand}.\newline 
+Il \textbf{recettore} è specificato come file target, cioè un singolo file che descrive il recettore. I file target possono essere calcolati per un recettore nel formato PDBQT dal comando utilizzando il programma \textit{\textbf{agfr}} o l'interfaccia grafica \textit{\textbf{agfrgui}}. Un file PDBQT può essere generato da un file pdb di un recettore utilizzando il comando \textit{prepare\_receptor} della suite \textit{ADFR}. \newline
 \textit{ADFR} è implementato nei moderni linguaggi di programmazione orientati agli oggetti e si basa su componenti software riutilizzabili. I componenti critici per le prestazioni sono implementati in C e C++ (ad esempio ADFRcc), mentre altri sono implementati in Python (ADFR, AutoSite, MolKit2, ProDy). \textit{ADFR} è rilasciato sotto la licenza open source LGPL v2.\newline 
 In particolare per l'applicazione trattata sono stati utilizzati i due script: \textbf{prepare\_ligand4} e \textbf{prepare\_receptors4}, rispettivamente per la preparazione dei ligandi e dei recettori e per effettuare la loro conversione dal formato \textit{.pdb} al formato \textit{.pdbqt} necessario per la procedura di docking.
 
@@ -72,7 +91,7 @@ La suite software \textbf{MGLTools} è stata sviluppata nel laboratorio Sanner p
     \item \textbf{Vision}, un ambiente di programmazione visuale.
 \end{itemize}
 
-Questi strumenti software sono altamente integrati e basati su componenti software riutilizzabili implementati in Python e C++ (con binding Python). Il kit di strumenti grafici sottostante è Tk (Tkinter).L'ultima versione di MGLtools è la 1.5.7 che fornisce:
+Questi strumenti software sono altamente integrati e basati su componenti software riutilizzabili implementati in Python e C++ (con binding Python). Il kit di strumenti grafici sottostante è Tk (Tkinter). L'ultima versione di MGLtools è la 1.5.7 che fornisce:
 
 \begin{itemize}
     \item un widget della dashboard ridisegnato
@@ -84,23 +103,71 @@ Questi strumenti software sono altamente integrati e basati su componenti softwa
 \subsection{Open Babel}
 \textbf{Open Babel} è un tool per applicazioni di chimica progettato per interpretare i molteplici formati dei dati chimici e per cercare, convertire, analizzare o archiviare dati da modellistica molecolare, chimica, materiali a stato solido, biochimica o aree correlate.\newline
 La versione di OpenBabel 2.3 converte fino a 110 formati di file chimici.\newline
-I database sono ampiamente utilizzati per memorizzare le informazioni chimiche soprattutto nell'industria farmaceutica. Un requisito fondamentale di un database di questo tipo è la capacità di indicizzare le strutture strutture chimiche in modo che possano essere recuperate rapidamente, data una quary di ricerca. Open Babel offre questa funzionalità utilizzando un'indicizzazione basata sul percorso. Questa indicizzazione, FP2 in Open Babel, identifica tutte le sottostrutture lineari e ad anello della molecola di lunghezza da 1 a 7 (escluse le sottostrutture a 1 atomo C e N) e le mappa in una stringa di bit di lunghezza su una stringa di bit di lunghezza 1024 utilizzando una funzione di hash. Se una molecola interrogata è una sottostruttura di una molecola di destinazione, tutti i bit molecola di destinazione, allora tutti i bit impostati nella molecola di query saranno impostati anche nella molecola di destinazione. Le indicizzazioni
-di due molecole possono anche essere utilizzate per calcolare la somiglianza strutturale utilizzando il coefficiente di Tanimoto, il numero di bit in comune diviso per tutti i bit dell'insieme.
-Chiaramente, la ricerca iterativa dello stesso insieme di molecole comporterà l'uso ripetuto dello stesso insieme di indicizzazioni. Per evitare la necessità di ricalcolare le indicizzazioni per un particolare file multi-molecola (come un file SDF), Open Babel fornisce un formato fastindex che memorizza esclusivamente un'indicizzazione insieme a un indice nel file originale. Questo indice porta a un rapido aumento della velocità di ricerca di corrispondenze a a fronte di una quary: insiemi di dati con diversi milioni di molecole sono facilmente consultabili in modo interattivo. In questo in questo modo, un file multi-molecola può essere utilizzato come un'alternativa efficace a un sistema di database chimico\cite{o2011open}.
+I database sono ampiamente utilizzati per memorizzare le informazioni chimiche soprattutto nell'industria farmaceutica. Un requisito fondamentale di un database di questo tipo è la capacità di indicizzare le strutture strutture chimiche in modo che possano essere recuperate rapidamente, data una query di ricerca. Open Babel offre questa funzionalità utilizzando un'indicizzazione basata sul percorso. Questa indicizzazione, FP2 in Open Babel, identifica tutte le sottostrutture lineari e ad anello della molecola di lunghezza da 1 a 7 (escluse le sottostrutture a 1 atomo C e N) e le mappa in una stringa di bit di lunghezza su una stringa di bit di lunghezza 1024 utilizzando una funzione di hash. Se una molecola interrogata è una sottostruttura di una molecola di destinazione, allora tutti i bit impostati nella molecola di query saranno impostati anche nella molecola di destinazione. Le indicizzazioni
+di due molecole possono anche essere utilizzate per calcolare la somiglianza strutturale utilizzando il coefficiente di Tanimoto, il numero di bit in comune diviso per tutti i bit dell'insieme.\newline
+Chiaramente, la ricerca iterativa dello stesso insieme di molecole comporterà l'uso ripetuto dello stesso insieme di indicizzazioni. Per evitare la necessità di ricalcolare le indicizzazioni per un particolare file multi-molecola (come un file SDF), Open Babel fornisce un formato fastindex che memorizza esclusivamente un'indicizzazione insieme a un indice nel file originale. Questo indice porta a un rapido aumento della velocità di ricerca di corrispondenze a a fronte di una query: insiemi di dati con diversi milioni di molecole sono facilmente consultabili in modo interattivo. In questo modo un file multi-molecola può essere utilizzato come un'alternativa efficace a un sistema di database chimico\cite{o2011open}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/capitolo2/openBabelLogo.png}
+    \caption{Logo di Open Babel}
+    \label{fig:open babel logo}
+\end{figure}
 
 \section{Database}
+I dati da cui attinge \textbf{Computational Docking} provengono da due database: 
+
+\begin{itemize}
+    \item \textbf{PubChem} per i ligandi
+    \item \textbf{RCSB} per le proteine.
+\end{itemize}
+
+\subsection{RCSB}
+Il Research Collaboratory for Structural Bioinformatics Protein Data Bank (\href{https://www.rcsb.org/search}{RCSB}), è il centro dati statunitense per l'archivio di file PDB di uso globale, rendendo i dati PDB liberamente disponibili a tutti gli utenti, dai biologi strutturali a quelli computazionali e non solo\cite{10.1093/nar/gkw1000}.\newline
+I depositanti di dati PDB comprendono biologi strutturali che utilizzano la cristallografia macromolecolare, la spettroscopia di risonanza magnetica nucleare e la microscopia elettronica 3D. I consumatori di dati PDB sono ricercatori, educatori e studenti che studiano biologia fondamentale, biomedicina, biotecnologia ed energia. La recente riorganizzazione delle attività del PDB dell'RCSB in quattro servizi integrati e interdipendenti è descritta in dettaglio, insieme agli strumenti e alle risorse aggiunti negli ultimi due anni ai portali web del PDB dell'RCSB a sostegno di una "visione strutturale della biologia"\cite{10.1093/nar/gky1004}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/capitolo2/RCBSLogo.png}
+    \caption{Logo di RCSB}
+    \label{fig:RCSB Logo}
+\end{figure}
+
+\subsection{Pubchem}
 \textbf{PubChem} è il più grande database al mondo di informazioni chimiche liberamente accessibili, attraverso il quale è possibile cercare le sostanze chimiche per nome, formula molecolare, struttura e altri identificatori. Inoltre è possibile trovare proprietà chimiche e fisiche, attività biologiche, informazioni sulla sicurezza e sulla tossicità, brevetti, citazioni bibliografiche e altro ancora. L'interfaccia tra l'applicazione ed il database è realizzata mediante la libreria di Python \textbf{PubChemPy}.\newline
-PubChem è un database di molecole chimiche, gestito dal centro nazionale per l'Informazione biotecnologica statunitense (NCBI), parte della biblioteca nazionale di medicina (NLM) dell'istituto nazionale della sanità americano (NIH). L'accesso al database PubChem può essere eseguito liberamente attraverso un sito web e possono essere scaricati dati riguardanti milioni di strutture di composti e dati descrittivi tramite il protocollo FTP.PubChem possiede descrizioni di molecole con meno di 1000 atomi e 1000 legami. \newline 
-PubChem gestisce i dati in tre database interconnessi: \textbf{Substance, Compound e BioAssay}. Il database Substance archivia le descrizioni delle sostanze chimiche fornite dai depositanti. Il database Compound archivia le strutture chimiche uniche estratte dal database Substance attraverso la standardizzazione delle strutture. Il database BioAssay contiene la descrizione e i risultati degli esperimenti di analisi biologica.
+PubChem è un database di molecole chimiche, gestito dal centro nazionale per l'Informazione biotecnologica statunitense (NCBI), parte della biblioteca nazionale di medicina (NLM) dell'istituto nazionale della sanità americano (NIH). L'accesso al database PubChem può essere eseguito liberamente attraverso un sito web e possono essere scaricati dati riguardanti milioni di strutture di composti e dati descrittivi tramite il protocollo FTP. PubChem possiede descrizioni di molecole con meno di 1000 atomi e 1000 legami. \newline 
+PubChem gestisce i dati in tre database interconnessi: \textbf{Substance, Compound e BioAssay}. Il database Substance archivia le descrizioni delle sostanze chimiche fornite dai depositanti. \newline
+Il database Compound archivia le strutture chimiche uniche estratte dal database Substance attraverso la standardizzazione delle strutture. \newline
+Il database BioAssay contiene la descrizione e i risultati degli esperimenti di analisi biologica.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{immagini/capitolo2/pubChemLogo.png}
+    \caption{Logo di PubChem}
+    \label{fig:pubChem Logo}
+\end{figure}
 
 \section{Autodock}
 \textbf{AutoDock} è un programma di docking che utilizza un algoritmo genetico, il \textit{Lamarckian Genetic Algorithm}, per il calcolo della pose migliore che interagisce con il sito attivo della proteina. Dopo aver calcolato inizialmente una popolazione di possibili soluzioni, l’algoritmo ne selezionerà una parte in base alle funzioni di scoring e darà origine a una nuova popolazione di soluzioni figlie, da cui avrà inizio un secondo ciclo di generazione e così via. In questo modo il “genotipo”, ovvero la stringa binaria a cui corrisponde ciascun ligando, verrà influenzato da fattori esterni, esattamente come nell’ipotesi lamarckiana.\newline
-Le popolazioni di soluzioni sono ottenute tramite operatori genetici (mutazioni, crossover e migrazioni) che imitano quelli biologici. I gradi di libertà sono codificati in geni o stringhe binarie, e a geni e cromosomi è assegnato un valore basato sulla fitness della scoring function. Le operazioni di mutazione causano cambiamenti nel valore di un gene, mentre il crossover muove un set di geni da un cromosoma “genitore” ad un altro; la migrazione invece muove singoli geni da una sottopopolazione ad un’altra.\newline
 L’interazione tra ligando e recettore è valutata in due fasi, calcolando la variazione di energia intramolecolare del passaggio dalla forma libera a quella legata e la variazione di energia libera intermolecolare implicata nello stesso passaggio.\newline
-Per effettuare il docking è necessario per prima cosa preparare le coordinate di ligando e recettore. La preparazione delle coordinate è la fase più importante nella procedura, poiché in esse sono inclusi parametri fondamentali come: idrogeni polari, atom – type e cariche parziali. Le coordinate del ligando originale e della macromolecola sono trattate separatamente ed i loro file sono in un formato particolare, il PDBQT.
+Per effettuare il docking è necessario per prima cosa preparare le coordinate di ligando e recettore. La preparazione delle coordinate è la fase più importante nella procedura, poiché in esse sono inclusi parametri fondamentali come: idrogeni polari, atom–type e cariche parziali. Le coordinate del ligando originale e della macromolecola sono trattate separatamente ed i loro file sono in un formato particolare, il PDBQT.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{immagini/capitolo2/autodockLogo.png}
+    \caption{Logo di Autodock}
+    \label{fig:autodock logo}
+\end{figure}
 
 \section{Autodock Vina}
-\textbf{AutoDock Vina} è  un nuovo programma per il docking molecolare e lo screening virtuale. Vina rappresenta la nuova versione di AutoDock, ed infatti presenta molte similitudini con il suo predecessore ma, allo stesso tempo, anche molte differenze. Una differenza importante consiste nella velocità di calcolo, dato che Vina è molto poco dispendioso sotto questo punto di vista; altra differenza fondamentale è rappresentata dal fatto che al momento del calcolo della griglia, Vina calcola internamente ed automaticamente le “grid maps” impiegate in AutoDock. Questo costituisce un grande vantaggio in termini di facilità e velocità di esecuzione. Inoltre, le funzioni di scoring e gli algoritmi utilizzati in questo tipo di analisi risultano essere completamente diversi rispetto al suo predecessore, cosa che porta a considerare Vina quasi come un software a sé stante. Vina migliora al tempo stesso in modo significativo l'accuratezza delle previsioni delle modalità di legame. Un'ulteriore miglioramento è ottenuta grazie al parallelismo, che utilizza il multithreading su macchine multicore. AutoDock Vina calcola automaticamente le mappe della griglia e raggruppa i risultati in modo trasparente per l'utente. Autodock vina all'interno del software prende in input i ligandi ed i recettori in formato \textit{.pdbqt}\cite{huey2012using}.
+\textbf{AutoDock Vina} è un nuovo programma per il docking molecolare e lo screening virtuale. Vina rappresenta la nuova versione di AutoDock, infatti presenta molte similitudini con il suo predecessore ma, allo stesso tempo, anche molte differenze. Una differenza importante consiste nella velocità di calcolo, dato che Vina è molto poco dispendioso sotto questo punto di vista; altra differenza fondamentale è rappresentata dal fatto che al momento del calcolo della griglia, Vina calcola internamente ed automaticamente le “grid maps” impiegate in AutoDock. Questo costituisce un grande vantaggio in termini di facilità e velocità di esecuzione. Inoltre, le funzioni di scoring e gli algoritmi utilizzati in questo tipo di analisi risultano essere completamente diversi rispetto al suo predecessore, cosa che porta a considerare Vina quasi come un software a sé stante. Vina migliora al tempo stesso in modo significativo l'accuratezza delle previsioni delle modalità di legame. Un'ulteriore miglioramento è ottenuta grazie al parallelismo, che utilizza il multithreading su macchine multicore. AutoDock Vina calcola automaticamente le mappe della griglia e raggruppa i risultati in modo trasparente per l'utente. Autodock vina all'interno del software prende in input i ligandi ed i recettori in formato \textit{.pdbqt}\cite{huey2012using}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.1]{immagini/capitolo2/autoDockVinaLogo.png}
+    \caption{Logo di Autodock Vina}
+    \label{fig:autodock Vina logo}
+\end{figure}
 
 \subsection{Funzione di scoring}
 La funzione di scoring prende come input una posa e restituisce un valore che rappresenta la bontà della posa, intesa in termini energetici favorevoli. La maggior parte delle funzioni di scoring sono basate sui campi di forza delle interazioni molecolari che valutano l’energia di ogni posa: un buon valore (che varia a seconda della funzione usata) indica una posa stabile. Un approccio alternativo è derivare un potenziale statistico per le interazioni sulla base di un database di complessi proteina-ligando, come la Protein Data Bank e valutare il punteggio della posa secondo questi potenziali. Funzioni di scoring basate su questi presupposti riescono a modellare correttamente dei ligandi altamente affini con la proteina sebbene il rischio di ottenere dei falsi positivi in questa fase è molto alto. Un modo per eliminare questi falsi positivi è quello di valutare le migliore pose con ulteriori funzioni
@@ -131,7 +198,8 @@ dove la funzione $g$ può essere una funzione arbitraria strettamente crescente 
     s_i = g(c_i - c_{intra1})
 \end{equation}
 
-Per ragioni di modularità, gran parte del programma non fa riferimento ad alcuna forma funzionale delle interazioni $f_{t_it_j}$ o $g$. Essenzialmente, queste funzioni vengono passate come parametro per il resto del codice. Inoltre, il programma è stato progettato in modo tale da poter utilizzare schemi di tipizzazione degli atomi come la tipizzazione degli atomi di AutoDock4 o SYBIL.\newline
+Per ragioni di modularità, gran parte del programma non fa riferimento ad alcuna forma funzionale delle interazioni $f_{t_it_j}$ o $g$. Essenzialmente, queste funzioni vengono passate come parametro per il resto del codice.\newline
+Inoltre, il programma è stato progettato in modo tale da poter utilizzare schemi di tipizzazione degli atomi come la tipizzazione degli atomi di AutoDock4 o SYBIL.\newline
 
 \begin{table}[H]
     \centering
@@ -185,8 +253,8 @@ con le interazioni idrofobiche o di legame H\cite{trott2010autodock}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/funzioneScoringPesata.png}
+    \includegraphics{immagini/capitolo2/funzioneScoringPesata.png}
     \caption{Funzione di scoring pesata}
-    \label{fig:Funzione di scoring pesata}
+    \label{fig:funzione di scoring pesata}
 \end{figure}
 

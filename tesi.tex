@@ -17,6 +17,9 @@
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage[nottoc]{tocbibind}
+\usepackage{fancyhdr}
+\usepackage{changepage}
+\usepackage{enumitem}
 
 \titleformat*{\section}{\LARGE\bfseries}
 \titleformat*{\subsection}{\Large\bfseries}
@@ -62,8 +65,8 @@
     pdfstartview={FitH},
     colorlinks,
     linkcolor={black}, %COLORE DEI RIFERIMENTI AL TESTO
-    citecolor={blue}, %COLORE DEI RIFERIMENTI ALLE CITAZIONI
-    urlcolor={blue} %COLORI DEGLI URL
+    citecolor={black}, %COLORE DEI RIFERIMENTI ALLE CITAZIONI
+    urlcolor={black} %COLORI DEGLI URL
 }
 
 \lstdefinestyle{mystyle}{
@@ -137,7 +140,7 @@
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.30]{immagini/logoParthenope.png}
-        \label{fig:logoParthenope}
+        \label{fig:parthenope logo}
     \end{figure}
 
     \vskip 0.5cm
@@ -183,10 +186,10 @@
     \hrule
     \vskip 0.5 cm \Large \centerline {Anno Accademico 2021-2022}
     \vfill \eject
-
-    \pagestyle{plain}
     
     \pagenumbering{Roman}
+
+    \input{tesina/abstract.tex}
 
     \tableofcontents
 
@@ -198,6 +201,13 @@
 
     \newpage
 
+    \pagestyle{fancy}
+    \lhead[\leftmark]{}
+    \rhead[]{\leftmark}
+    \setlength\headheight{20pt}
+
+    \pagenumbering{arabic}
+    
     \input{tesina/capitolo1.tex}
     \input{tesina/capitolo2.tex}
     \input{tesina/capitolo3.tex}

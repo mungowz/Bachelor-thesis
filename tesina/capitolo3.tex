@@ -1,5 +1,5 @@
 \chapter{Applicazione realizzata}
-Il progetto di tesi proposto ha come focus principale la realizzazione del docking tra i ligandi contenuti in specifici pesticidi e i recettori dell'apis mellifera e l'estrazione dei legami che si vengono a formare. 
+L'applicazione realizzata, \textbf{Computational Docking}, effettua il docking tra i ligandi contenuti in specifici pesticidi e i recettori dell'Apis mellifera, infine effettua l'estrazione dei legami che si vengono a formare. 
 
 \section{Installazione}
 L'applicazione viene scaricata dalla \href{https://github.com/mungowz/Computational-Docking.git}{repository di github} mediante il comando:
@@ -19,26 +19,33 @@ Verrà quindi installata nella directory corrente la repository contenente il pr
     \item Le directory di default che conterranno i file \textit{.pdbqt prodotti}, ovvero \textit{/data/ligands/pdbqt/} per i ligandi e \textit{/data/proteins/pdbqt/} per i recettori.
 \end{itemize}
 
-Sarà necessario inoltre installare alcune dipendenze esterne (software esterni) ed interne (librerie e pacchetti di python) per far funzionare l'applicazione, la lista delle dipendenze e la procedura di installazione è specificata nel file \textit{README} della repository di github.
+Sarà necessario installare alcune dipendenze esterne (software esterni) ed interne (librerie e pacchetti di python) per far funzionare l'applicazione, la lista delle dipendenze e la procedura di installazione è specificata nel file \textit{README} della repository di github.
 
 \section{Modalità di utilizzo}
-Il software realizzato può essere utilizzato in due modalità: mediante script python da terminale o mediante interfaccia grafica realizzata seguendo il paradigma \textit{model-view-controller}.\newline
-Non sarà necessario effettuare ulteriori installazione per usufruire di entrambe le modalità ma bisognerà semplicemente scaricare la repository e seguire le istruzioni del \textit{README}.\newline
+\textbf{Computational Docking} può essere utilizzato in due modalità:
+
+\begin{enumerate}[label=\arabic{*}., ref=(\arabic{*})]
+    \item Mediante script python da terminale
+    \item Mediante interfaccia grafica realizzata seguendo il paradigma \textit{model-view-controller}.
+\end{enumerate}
+
+Non sarà necessario effettuare ulteriori installazioni per usufruire di entrambe le modalità ma bisognerà semplicemente scaricare la repository e seguire le istruzioni del \textit{README}.\newline
 Per eseguire l'applicazione da riga di comando devono essere eseguiti separatamente nell'ordine i seguenti script:
+
 \begin{itemize}
     \item \textbf{prepare\_ligands.py}
     \item \textbf{prepare\_receptors.py}
     \item \textbf{performDocking.sh}
 \end{itemize}
 
-La GUI usufruirà degli stessi lanciati da riga di comando il che garantisce le stesse funzionalità in entrambe le modalità di utilizzo e seguendo i dettami della \textbf{OOP} secondo i quali bisogna riutilizzare codice funzionante anzichè modificarlo o scriverne di nuovo.\newline
+La GUI usufruirà degli stessi script eseguiti da riga di comando, garantendo così le stesse funzionalità in entrambe le modalità di utilizzo e seguendo i dettami della \textbf{OOP} secondo i quali bisogna riutilizzare codice funzionante anzichè modificarlo o scriverlo ex-novo.\newline
 Per avviare la GUI deve essere digitato nel terminale il comando:
 
 \begin{lstlisting}[language=bash, label=lst:code2, caption={Comando per avviare la GUI}]
 python app.py    
 \end{lstlisting}
 
-Avviando la GUI si aprirà la home page con le seguenti opzioni:
+Avviata la GUI si aprirà la home page con le seguenti opzioni:
 
 \begin{itemize}
     \item Opzione \textbf{Preparation}: si accede alla sezione relativa alla preparazione degli input
@@ -49,44 +56,49 @@ Avviando la GUI si aprirà la home page con le seguenti opzioni:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{immagini/homePage.png}
-    \caption{Sezione \textbf{Home Page} della GUI}
-    \label{fig:Home Page}
+    \includegraphics[scale=0.6]{immagini/capitolo3/homePage.png}
+    \caption{Sezione Home Page della GUI}
+    \label{fig:home page}
 \end{figure}
 
 \section{Dati in input}
-I dati in input all'applicazione trattata sono: ligandi e proteine. La lista dei ligandi è fornita in input tramite foglio calcolo (\textit{.xlsx}, \textit{.xls}) o mediante file di testo (\textit{.txt}), 
-in entrambi i casi ogni riga corrisponde al nome di un ligando. Essendo l'applicazione incentrata sullo studio degli effetti dei ligandi dei pesticidi sull'apis mellifera, 
-come dati di esempio sono state utilizzati i ligandi le cui molecole costituiscono i pesticidi maggiormente diffusi sul mercato, per un totale di 297 ligandi. La lista è disponibile nell'appendice \ref{tab:Tabella dei Ligandi}.\newline
-I recettori vengono selezionati mediante una \textbf{web view} aperta sulla pagina di ricerca del sito di \href{https://www.rcsb.org/search}{PubChem}, quivi l'utente digiterà la propria query e 
-dopo aver selezionato il  tasto \textbf{research} gli verranno mostrati tutti i composti organici relativi alla query digitata, tramite il tasto \textbf{Get Query} l'utente andrà a 
-scaricare tutti i file  dei composti organici in formato \textit{.pdb}. Nel caso di esempio sono state scelte tutte le proteine dei recettori dell'Apis Mellifera come mostrato nelle foto: 
-\ref{fig:queryRecettori} e  \ref{fig:fileRecettori}, per un totale di 60 file \textit{.pdb} contenenti le strutture di determinate proteine. La lista delle proteine scaricate è disponibile nell'appendice: \ref{Tabella dei Recettori}. L'applicazione usata tramite GUI dispone della sezione \textbf{Help} (\ref{fig:help}) contenente le informazioni relative alle impostazioni di default e al formato dei dati in input.
+I dati in input all'applicazione trattata sono: ligandi e proteine.\newline
+La lista dei ligandi è fornita in input tramite foglio calcolo (\textit{.xlsx}, \textit{.xls}) o mediante file di testo (\textit{.txt}), 
+in entrambi i casi ogni riga corrisponde al nome di un ligando. Essendo l'applicazione incentrata sullo studio degli effetti dei ligandi dei pesticidi sull'Apis mellifera, come dati di esempio sono state utilizzati i ligandi le cui molecole costituiscono i pesticidi maggiormente diffusi sul mercato, per un totale di 297 ligandi. La lista è disponibile nell'appendice \ref{tab:Tabella dei Ligandi}.\newline
+I recettori vengono selezionati mediante una \textbf{WebView} aperta sulla pagina di ricerca del sito del database \href{https://www.rcsb.org/search}{RCSB}, da qui l'utente digiterà la propria query e, dopo aver selezionato il  tasto \textbf{research} gli verranno mostrati tutti i composti organici relativi alla query digitata, tramite il tasto \textbf{Get Query} l'utente andrà a scaricare tutti i file  dei composti organici in formato \textit{.pdb}.\newline
+Nel caso di esempio sono state scelte tutte le proteine dei recettori dell'Apis Mellifera come mostrato nelle foto: \ref{fig:query recettori} e  \ref{fig:file recettori}, per un totale di 60 file \textit{.pdb} contenenti le strutture di determinate proteine. La lista delle proteine scaricate è disponibile nell'appendice: \ref{Tabella dei Recettori}. L'applicazione usata tramite GUI dispone della sezione \textbf{Help} (\ref{fig:help}) contenente le informazioni relative alle impostazioni di default e al formato dei dati in input.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.4]{immagini/queryRecettori.png}
+    \includegraphics[scale=0.57]{immagini/capitolo3/queryRecettori.png}
     \caption{Query dei recettori}
-    \label{fig:queryRecettori}
+    \label{fig:query recettori}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.4]{immagini/fileRecettori.png}
+    \includegraphics[scale=0.4]{immagini/capitolo3/fileRecettori.png}
     \caption{Proteine dei recettori dell'apis mellifera}
-    \label{fig:fileRecettori}
+    \label{fig:file recettori}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{immagini/help.png}
-    \caption{Sezione \textbf{Help} della GUI}
+    \includegraphics[scale=0.6]{immagini/capitolo3/help.png}
+    \caption{Sezione Help della GUI}
     \label{fig:help}
 \end{figure}
 
-\section{Preparazione dei ligandi e dei recettori}
+\section{Preparazione dei ligandi e recettori}
 Il primo step propedeutico per il docking è la preparazione dei ligandi e dei recettori, questa
-fase viene esplicitamente eseguita dal software realizzato. L'intera fase è svolta: per i ligandi dallo script python \textbf{prepare\_ligands.py} mentre, per i recettori dallo script python \textbf{prepare\_receptors.py}. Se l'applicazione viene utilizzata mediante GUI la preparazione dei ligandi e dei recettori può essere effettuata mediante la sezione \textbf{Preparation} della pagina principale come mostrato in figura \ref{fig:preparation}.
+fase viene esplicitamente eseguita dal software realizzato. L'intera fase è svolta:
+
+\begin{itemize}
+    \item per i ligandi dallo script python \textbf{prepare\_ligands.py}
+    \item per i recettori dallo script python \textbf{prepare\_receptors.py}.
+\end{itemize}
+
+Se l'applicazione viene utilizzata mediante GUI la preparazione dei ligandi e dei recettori può essere effettuata mediante la sezione \textbf{Preparation} della pagina principale come mostrato in figura \ref{fig:preparation}.
 
 \begin{itemize}
     \item Selezionando l'opzione \textbf{Ligands} si accede alla sezione relativa alla preparazione dei ligandi
@@ -97,8 +109,8 @@ fase viene esplicitamente eseguita dal software realizzato. L'intera fase è svo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{immagini/preparation.png}
-    \caption{Sezione \textbf{Preparation} della GUI}
+    \includegraphics[scale=0.6]{immagini/capitolo3/preparation.png}
+    \caption{Sezione Preparation della GUI}
     \label{fig:preparation}
 \end{figure}
 
@@ -112,17 +124,17 @@ python prepare_ligands.py
 Questo script può ricevere diversi argomenti in input:
 
 \begin{itemize}
-    \item $[-v] | [--verbose]$: serve per attivare il verbose e se non viene specificata tale opzione viene lasciata di default inattivo
-    \item $[-e] | [--input-file]$: specifica un nuovo file di input (\textit{.xlsx}, \textit{.xls}) o (\textit{.txt}) da cui prendere i nomi dei ligandi, se non viene specificata tale opzione verrà scelto il file di default scaricato insieme al software
-    \item $[-E] | [--excel-folder]$: specifica la directory dei file \textit{.xlsx} di output, se non viene specificata tale opzione verrà scelta la directory di default
-    \item $[-s] | [--sdf-folder]$: specifica la directory dei file \textit{.sdf} di output, se non viene specificata tale opzione verrà scelta la directory di default
-    \item $[-P] | [--pdb-folder]$: specifica la directory dei file \textit{.pdb} di output, se non viene specificata tale opzione verrà scelta la directory di default
-    \item $[-p] | [--pdbqt-folder]$: specifica la directory dei file \textit{.pdbqt} di output, se non viene specificata tale opzione verrà scelta la directory di default
-    \item $[-k] | [--keep-ligands]$: specificando questa opzione viene scelto di non cancellare i file dei ligandi precedentemente scaricati, se non viene specificata tale opzione i file verranno cancellati
-    \item $[-h] | [--help]$: stampa la spiegazione degli input per lo script.
+    \item $[-v]$: serve per attivare il verbose e se non viene specificata tale opzione viene lasciata di default inattivo
+    \item $[-e]$: specifica un nuovo file di input (\textit{.xlsx}, \textit{.xls}) o (\textit{.txt}) da cui prendere i nomi dei ligandi, se non viene specificata tale opzione verrà scelto il file di default scaricato insieme al software
+    \item $[-E]$: specifica la directory dei file \textit{.xlsx} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-s]$: specifica la directory dei file \textit{.sdf} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-P]$: specifica la directory dei file \textit{.pdb} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-p]$: specifica la directory dei file \textit{.pdbqt} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-k]$: specificando questa opzione viene scelto di non cancellare i file dei ligandi precedentemente scaricati, se non viene specificata tale opzione i file verranno cancellati
+    \item $[-h]$: stampa la spiegazione degli input per lo script.
 \end{itemize}
 
-Lo script quando eseguito andrà ad inizializzare i vari percorsi, e nel caso siano stati inseriti in input verrà controllata l'esistenza e la validità degli stessi. Nel caso non siano presenti le directory contenenti i file \textit{.sdf}, \textit{.pdb} e .\textit{pdbqt}, queste verranno create automaticamente dall'applicazione a meno di input inseriti dall'utente e saranno cancellati i file precedentemente scaricati a meno di input contrario.\newline
+Lo script quando eseguito andrà ad inizializzare i vari percorsi, nel caso siano stati inseriti percorsi diversi da quelli di default verrà controllata l'esistenza e la validità degli stessi. Nel caso non siano presenti le directory contenenti i file \textit{.sdf}, \textit{.pdb} e \textit{.pdbqt}, queste verranno create automaticamente dall'applicazione, inoltre verranno cancellati i file precedentemente scaricati a meno di input diversi.\newline
 Lo script richiama la funzione \textbf{selectLigands} la quale si occupa di scaricare da \textbf{Pubchem}
 i file \textit{.sdf} corrispondenti alla lista dei ligandi in input. La funzione prende in input: 
 
@@ -133,13 +145,13 @@ i file \textit{.sdf} corrispondenti alla lista dei ligandi in input. La funzione
     \item \textit{verbose}, il flag relativo al verbose.
 \end{itemize}
 
-In output ci vengono dati i file \textit{.sdf} corrispondenti ai ligandi in input, dove il nome di ogni file è preceduto dal suffisso \textit{ligand\_}, e un file \textit{.xlsx} contenente i risultati dell'operazione di download nominato \textit{ligands\_sdf\_output.xls}.
+In output sono restituiti i file \textit{.sdf} corrispondenti ai ligandi in input, dove il nome di ogni file è preceduto dal suffisso \textit{ligand\_}, e un file \textit{.xlsx} contenente i risultati dell'operazione di download nominato \textit{ligands\_sdf\_output.xls}.
 
 \begin{lstlisting}[language=Python, label=lst:code4, caption={funzione selectLigands}]
 selectLigands(input_path, sdf_folder, excel_folder, verbose)
 \end{lstlisting}
 
-L'interfaccia con il database avviene tramite il pacchetto \textbf{PubChemPy}, in particolare la funzione \textbf{pubchempy.get\_compounds} permette di ricercare nel database il record relativo allo specifico ligando il cui nome, a cui viene precedentemente aggiunto il suffisso \textit{ligand\_}, gli viene fornito in input. Questa prende in input:
+L'interfaccia con il database avviene tramite il pacchetto \textbf{PubChemPy}, in particolare la funzione \textbf{pubchempy.get\_compounds} permette di ricercare nel database il record relativo allo specifico ligando il cui nome, a cui viene precedentemente aggiunto il suffisso \textit{ligand\_}, viene fornito in input. La funzione prende in input:
 
 \begin{itemize}
     \item \textit{identifier}, il composto da ricercare nel database
@@ -148,16 +160,16 @@ L'interfaccia con il database avviene tramite il pacchetto \textbf{PubChemPy}, i
     nel nostro caso il parametro scelto è la stringa \textit{"3d"} che indica la struttura 3D del ligando.
 \end{itemize}
 
-In output verrà fornito il record della struttura 3D del ligando in questione.
+In output sarà prodotto il record della struttura 3D del ligando in questione.
 
 \begin{lstlisting}[language=Python, label=lst:code5, caption={funzione pubchempy.get\_compounds}]
 pubchempy.get_compounds(identifier, "name", record_type="3d")
 \end{lstlisting}
 
-La funzione che effettivamente si occupa di scaricare la struttura 3D del ligando in formato \textit{.sdf}, richiamata da \textbf{selectLigands} è \textbf{pubchempy.download}, prende in input:
+La funzione che si occupa di scaricare la struttura 3D del ligando in formato \textit{.sdf}, richiamata da \textbf{selectLigands} è: \textbf{pubchempy.download}, la quale prende in input:
 
 \begin{itemize}
-    \item \textit{outformat}, il formato in cui deve essere scaricato il file,  nel nostro caso il parametro scelto è il formato \textit{.sdf} indicato dalla stringa \textit{"SDF"}
+    \item \textit{outformat}, il formato del file di output, nel nostro caso il parametro scelto è il formato \textit{.sdf} indicato dalla stringa \textit{"SDF"}
     \item \textit{path}, il path della directory in cui vengono scaricati i file \textit{.sdf}
     \item \textit{identifier}, il composto da scaricare nel database
     \item \textit{namespace}, il parametro in base al quale ricercare il composto, nel nostro caso il parametro scelto è il nome indicato dalla stringa \textit{"name"}
@@ -209,14 +221,14 @@ La funzione restituisce in output i file \textit{.pdb} corrispondenti a tutti i 
 sdf2pdb(sdf_folder, pdb_folder, verbose)
 \end{lstlisting}
 
-La funzione usufruisce del programma \textbf{Open babel} in particolare esegue la conversione da \textit{.sdf} a \textit{.pdb} richiamando la sua versione da terminale tramite il comando \textbf{obabel}:
+La funzione usufruisce del programma \textbf{Open babel} che esegue la conversione da \textit{.sdf} a \textit{.pdb} richiamando la sua versione da terminale tramite il comando \textbf{obabel}:
 
-\begin{lstlisting}[language=Bash, label=lst:code8, caption={Comando per la conversione da \textit{.sdf} a \textit{.pdb}}]
+\begin{lstlisting}[language=Bash, label=lst:code8, caption={Comando per la conversione da .sdf a .pdb}]
 obabel sdf_file_path -O pdb_path
 \end{lstlisting}
 
-Nell'istruzione sopra \textit{sdf\_file\_path} indica la directory con i file \textit{.sdf} in input, la directory con i file \textit{.pdb} in output, \textit{pdb\_path}, viene specificata tramite lo switch \textit{-O}. Tramite tale istruzione è possibile effettuare la conversione di un singolo file, la conversione di tutti i \textit{.sdf} avviene ciclando su tutti i file nella directory corrispondente.\newline
-L'ultimo step nella preparazione dei ligandi è effettuato dalla funzione \textbf{prepareLigands}, questa funzione prende in input:
+Nell'istruzione sopra. \textit{sdf\_file\_path} indica la directory con i file \textit{.sdf} in input, la directory con i file \textit{.pdb} in output, \textit{pdb\_path}, viene specificata tramite lo switch \textit{-O}. Tramite tale istruzione è possibile effettuare la conversione di un singolo file, la conversione di tutti i \textit{.sdf} avviene ciclando su tutti i file nella directory corrispondente.\newline
+L'ultimo step nella preparazione dei ligandi che è effettuato dalla funzione \textbf{prepareLigands}, la quale prende in input:
 
 \begin{itemize}
     \item \textit{pdb\_folder}, la directory con i file \textit{.pdb} in input
@@ -224,22 +236,23 @@ L'ultimo step nella preparazione dei ligandi è effettuato dalla funzione \textb
     \item \textit{verbose}, il flag relativo al verbose.
 \end{itemize}
 
-La funzione restituisce la conversione in file \textit{.pdbqt} dei corrispondenti i file \textit{.pdb} dati in input.
+La funzione restituisce in output la conversione in file \textit{.pdbqt} dei corrispondenti i file \textit{.pdb} dati in input.
 
 \begin{lstlisting}[language=Python, label=lst:code9,  caption={funzione prepareLigands}]
 prepareLigands(pdb_folder, pdbqt_folder, verbose)
 \end{lstlisting}
 
-\textbf{prepareLigands} usufruisce dello script \textbf{prepare\_ligand4} offerto dalla suite \textbf{ADFR} tramite il quale effettua la corretta conversione da \textit{.pdb} a \textit{.pdbqt}. Lo script viene richiamato tramite riga di comando dalla funzione mediante il comando \textbf{prepare\_ligand}:
+La funzione \textbf{prepareLigands} utilizza lo script \textbf{prepare\_ligand4} della suite \textbf{ADFR} tramite il quale effettua la corretta conversione da \textit{.pdb} a \textit{.pdbqt}. Lo script viene richiamato da riga di comando dalla funzione mediante il comando \textbf{prepare\_ligand}:
 
-\begin{lstlisting}[language=Bash, label=lst:code10, caption={Comando per la conversione da \textit{.pdb} a \textit{.pdbqt}}]
+\begin{lstlisting}[language=Bash, label=lst:code10, caption={Comando per la conversione da .pdb a .pdbqt}]
 prepare_ligand -l pdb_file_path -v -o pdbqt_path
 \end{lstlisting}
 
 Nell'istruzione sopra, \textit{pdb\_file\_path} indica la directory con i file \textit{.pdb} in input ed è specificata tramite lo switch \textit{-l}, lo switch \textit{-v} indica che è attivato il verbose e la directory con i file \textit{.pdbqt} in output, \textit{pdbqt\_path}, viene specificata tramite lo switch \textit{-o}. Tramite tale istruzione è possibile effettuare la conversione di un singolo file, la conversione di tutti i \textit{.pdb} avviene ciclando su tutti i file nella directory corrispondente.
 
 \subsection{Preparazione dei ligandi tramite GUI}
-La preparazione dei ligandi tramite GUI avviene selezionando il tasto \textbf{Ligands} nella sezione \textbf{Preparation} del software. All'interno della pagina relativa alla preparazione dei ligandi premendo il tasto \textbf{Execute} è possibile effettuare i procedimenti precedentemente spiegati nella sezione relativa all'esecuzione tramite script (\ref{Preparazione dei ligandi script}). Premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Preparation} relativa alla preparazione degli input.
+La preparazione dei ligandi tramite GUI avviene selezionando il tasto \textbf{Ligands} nella sezione \textbf{Preparation} del software. All'interno della pagina relativa alla preparazione dei ligandi, premendo il tasto \textbf{Execute} è possibile effettuare i procedimenti spiegati nella sezione relativa all'esecuzione tramite script (\ref{Preparazione dei ligandi script}).\newline
+Premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Preparation} relativa alla preparazione degli input.
 Come si osserva nella figura \ref{fig:ligands} all'interno di tale sezione sono presenti delle \textbf{entry} dove è possibile specificare diversi input tra cui:
 
 \begin{itemize}
@@ -250,45 +263,57 @@ Come si osserva nella figura \ref{fig:ligands} all'interno di tale sezione sono 
     \item la directory dei file \textit{.pdbqt} di output.
 \end{itemize}
 
-Se queste entry non sono valorizzate, verrano impostate le configurazioni di default. E' presente anche un \textbf{checkbox} il quale se selezionato permette di mantenere i file precedentemente scaricati che altrimenti verrebbero cancellati.\newline
-Per andare a selezionare direttamente nel file system del PC i file e le directory richieste sono stati implementati rispettivamente i tasti \textbf{Browse files} e \textbf{Browse folders}, come è visibile in figura \ref{fig:ligands} e \ref{fig:browse folders ligands}.
+Se queste entry non sono valorizzate, verrano impostate le configurazioni di default. E' presente anche un \textbf{checkbox} il quale, se selezionato, permette di mantenere i file precedentemente scaricati che altrimenti verrebbero cancellati.\newline
+Per andare a selezionare direttamente nel file system del PC i file e le directory richieste, sono stati implementati rispettivamente i tasti \textbf{Browse files} e \textbf{Browse folders}, come è visibile nelle figure \ref{fig:ligands}, \ref{fig:browse files ligands} e \ref{fig:browse folders ligands}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{immagini/ligands.png}
-    \caption{Sezione \textbf{Ligands} della GUI}
+    \includegraphics[scale=0.6]{immagini/capitolo3/ligands.png}
+    \caption{Sezione Ligands della GUI}
     \label{fig:ligands}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/browseFoldersLigands.png}
-    \caption{\textbf{Browse folders}}
+    \includegraphics{immagini/capitolo3/browseFilesLigands.png}
+    \caption{Browse files}
+    \label{fig:browse files ligands}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/capitolo3/browseFoldersLigands.png}
+    \caption{Browse folders}
     \label{fig:browse folders ligands}
 \end{figure}
 
-La GUI per la preparazione dei ligandi richiama lo script \textbf{prepare\_ligands.py} discusso nella precedente sezioni, adattando l'interfaccia grafica ad esso senza eliminare alcuna funzionalità precedentemente illustrata per la versione da riga di comando e rispettando i dettami dell'\textbf{OOP}.\newline
-Durante l'esecuzione viene mostrato un \textbf{pannello} (\ref{fig:ligands Execute}) in cui vengono descritte: le operazioni che si stanno effettuando, eventuali errori ed avvisi per l'utente, in modo tale che sia restituito un feedback all'utente relativo al progresso della preparazione dei ligandi. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed ligands}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:Invalid input ligands}).
+La GUI per la preparazione dei ligandi richiama lo script \textbf{prepare\_ligands.py} discusso nella precedente sezione, adattando l'interfaccia grafica allo script senza eliminare alcuna funzionalità, precedentemente illustrata, per la versione da riga di comando e rispettando i dettami dell'\textbf{OOP}.\newline
+Durante l'esecuzione viene mostrato un \textbf{pannello} (\ref{fig:ligands execution}) in cui vengono descritte:
+\begin{itemize}
+    \item le operazioni che si stanno effettuando
+    \item eventuali errori ed avvisi per l'utente, in modo tale che sia restituito un feedback all'utente relativo al progresso della preparazione dei ligandi.
+\end{itemize}
+Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed ligands}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:invalid input ligands}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{immagini/ligandsExecute.png}
-    \caption{\textbf{Pannello} dell'esecuzione dei ligandi}
-    \label{fig:ligands Execute}
+    \includegraphics[scale=0.8]{immagini/capitolo3/ligandsExecution.png}
+    \caption{Pannello dell'esecuzione dei ligandi}
+    \label{fig:ligands execution}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/progressCompletedLigands.png}
+    \includegraphics{immagini/capitolo3/progressCompletedLigands.png}
     \caption{Messaggio processo completato con successo}
     \label{fig:progress completed ligands}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/invalidInputLigands.png}
+    \includegraphics{immagini/capitolo3/invalidInputLigands.png}
     \caption{Messaggio di errore}
-    \label{fig:Invalid input ligands}
+    \label{fig:invalid input ligands}
 \end{figure}
 
 \subsection{Preparazione dei recettori tramite script} \label{Preparazione dei recettori script}
@@ -301,17 +326,16 @@ python prepare_receptors.py
 Questo script può ricevere diversi argomenti in input:
 
 \begin{itemize}
-    \item $[-v] | [--verbose]$: serve per attivare il verbose e se non viene specificata tale opzione viene lasciata di default inattivo
-    \item $[-E] | [--excel-folder]$: specifica la directory dei file \textit{.xlsx} di output, se non viene specificata tale opzione verrà scelta la directory di default
-    \item $[-P] | [--pdb-folder]$: specifica la directory dei file \textit{.pdb} di output, se non viene specificata tale opzione verrà scelta la directory di default
-    \item $[-p] | [--pdbqt-folder]$: specifica la directory dei file \textit{.pdbqt} di output, se non viene specificata tale opzione verrà scelta la directory di default
-    \item $[-k] | [--keep-pdb-files]$: specificando questa opzione viene scelto di non cancellare i file delle proteine precedentemente scaricati, se non viene specificata tale opzione i file verranno cancellati
-    \item $[-m] | [--margin]$: specificando questa opzione viene fornita in input la dimensione in \textit{angstrom} del margine della \textit{grid box} per le proteine se non viene specificata tale opzione viene impostato il valore di default ovvero 3
-    \item $[-h] | [--help]$: stampa la spiegazione degli input per lo script.
+    \item $[-v]$: serve per attivare il verbose e se non viene specificata tale opzione viene lasciata di default inattivo
+    \item $[-E]$: specifica la directory dei file \textit{.xlsx} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-P]$: specifica la directory dei file \textit{.pdb} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-p]$: specifica la directory dei file \textit{.pdbqt} di output, se non viene specificata tale opzione verrà scelta la directory di default
+    \item $[-k]$: specificando questa opzione viene scelto di non cancellare i file delle proteine precedentemente scaricati, se non viene specificata tale opzione i file verranno cancellati
+    \item $[-m]$: specificando questa opzione viene fornita in input la dimensione in \textit{angstrom} del margine della \textit{grid box} per le proteine se non viene specificata tale opzione viene impostato il valore di default ovvero 3
+    \item $[-h]$: stampa la spiegazione degli input per lo script.
 \end{itemize}
-
-Lo script quando eseguito andrà ad inizializzare i vari percorsi, e nel caso siano stati inseriti in input verrà controllata l'esistenza e la validità degli stessi. Nel caso non siano presenti le directory contenenti i file \textit{.txt}, \textit{.pdb} e .\textit{pdbqt}, queste verranno create automaticamente dall'applicazione a meno di input inseriti dall'utente e saranno cancellati i file precedentemente scaricati a meno di input contrario.\newline
-Lo script richiama la funzione \textbf{selectReceptors} la quale si occupa di scaricare da \textbf{Pubchem} i file \textit{.pdb} corrispondenti alle proteine scelte. La funzione prende in input: 
+Lo script quando eseguito andrà ad inizializzare i vari percorsi, nel caso siano stati inseriti percorsi diversi da quelli di default verrà controllata l'esistenza e la validità degli stessi. Nel caso non siano presenti le directory contenenti i file \textit{.txt}, \textit{.pdb} e \textit{.pdbqt}, queste verranno create automaticamente dall'applicazione, inoltre verranno cancellati i file precedentemente scaricati a meno di input diversi.\newline
+Lo script richiama la funzione \textbf{selectReceptors} la quale si occupa di scaricare da \textbf{RCSB} i file \textit{.pdb} corrispondenti alle proteine scelte. La funzione prende in input: 
 
 \begin{itemize}
     \item \textit{pdb\_folder}, il path della directory di output per i file \textit{.pdb}
@@ -319,19 +343,19 @@ Lo script richiama la funzione \textbf{selectReceptors} la quale si occupa di sc
     \item \textit{verbose}, il flag relativo al verbose.
 \end{itemize}
 
-In output ci vengono dati i file \textit{.pdb} corrispondenti ai recettori scelti in input e un file \textit{.xlsx} contenente i risultati dell'operazione di download nominato \textit{info\_proteins.xls}.
+In output sono restituiti i file \textit{.pdb} corrispondenti ai recettori scelti in input e un file \textit{.xlsx} contenente i risultati dell'operazione di download nominato \textit{info\_proteins.xls}.
 
 \begin{lstlisting}[language=Python, label=lst:code12, caption={funzione selectReceptors}]
 selectReceptors(pdb_folder, excel_folder, verbose)
 \end{lstlisting}
 
-All'interno di questa \textbf{selectReceptors} viene richiamata la funzione \textbf{RestApiSelection} la quale prende in input l'\textit{URL} di \href{https://www.rcsb.org/search}{PubChem}:
+All'interno di questa \textbf{selectReceptors} viene richiamata la funzione \textbf{RestApiSelection} la quale prende in input l'\textit{URL} di \href{https://www.rcsb.org/search}{RCSB}:
 
 \begin{lstlisting}[language=Python, label=lst:code13, caption={funzione RestApiSelection}]
 RestApiSelection(URL)
 \end{lstlisting}
 
-Questa funzione apre una \textbf{web view} sul sito di \href{https://www.rcsb.org/search}{PubChem} come mostrato nella figura \ref{fig:queryRecettori}, l'utente potrà digitare la propria query e scaricare i composti scelti selezionando il tasto in alto \textbf{Get Query}.\newline
+Questa funzione apre una \textbf{WebView} sul sito di \href{https://www.rcsb.org/search}{RCSB} come mostrato nella figura \ref{fig:query recettori}, l'utente potrà digitare la propria query e scaricare i composti scelti selezionando il tasto in alto \textbf{Get Query}.\newline
 La \textbf{web view} restituisce l'\textbf{URL} della pagina del database contenente i composti selezionati dalla query, il \textit{JSON} di tale pagina viene estratto e convertito nella struttura dati \textit{dizionario} di python tramite la funzione \textbf{loads} della libreria \textbf{json}.
 
 \begin{lstlisting}[language=Python, label=lst:code14, caption={funzione json.loads}]
@@ -339,7 +363,7 @@ dictionary = json.loads(data)
 \end{lstlisting}
 
 Nel \textit{dizionario} restituito dalla funzione sarà contenuto l'elenco dei composti selezionati tramite la query.\newline
-Il software rieseguirà direttamente la query tramite la funzione \textbf{get} contenuta nella libreria \textbf{requests}. Questa funzione permette di inviare una richiesta di tipo \textit{HTTP/1.1} prendendo in input \textbf{URL} della query al quale viene aggiunto l'elenco di composti da scegliere in formato \textit{JSON}, ciò eseguito convertendo il \textit{dizionario} precedentemente ottenuto in \textbf{JSON}
+Il software rieseguirà direttamente la query tramite la funzione \textbf{get} contenuta nella libreria \textbf{requests}. Questa funzione permette di inviare una richiesta di tipo \textit{HTTP/1.1} prendendo in input \textbf{URL} della query, al quale viene aggiunto l'elenco di composti da scegliere in formato \textit{JSON}, ciò eseguito convertendo il \textit{dizionario} precedentemente ottenuto in \textbf{JSON}
 mediante la funzione \textbf{dump} della libreria \textbf{json}:
 
 \begin{lstlisting}[language=Python, label=lst:code15, caption={funzione json.dump}]
@@ -360,13 +384,13 @@ La funzione \textbf{selectReceptors} richiama successivamente la funzione \textb
     \item \textit{verbose}, il flag relativo al verbose.
 \end{itemize}
 
-La funzione ritorna in output i file \textit{.pdb} delle proteine contenute nella lista in input:
+La funzione restituisce in output i file \textit{.pdb} delle proteine contenute nella lista in input:
 
 \begin{lstlisting}[language=Python, label=lst:code17, caption={funzione downloadPdbs}]
 downloadPdbs(pdbs_list, output_path, verbose)
 \end{lstlisting}
 
-La funzione \textbf{downloadPdbs} richiama la funzione \textbf{fetchPDB} del pacchetto \textbf{ProDy}, questa prende in input:
+La funzione \textbf{downloadPdbs} richiama la funzione \textbf{fetchPDB} del pacchetto \textbf{ProDy}, che prende in input:
 
 \begin{itemize}
     \item \textit{protein\_code}, la proteina da scaricare
@@ -374,14 +398,14 @@ La funzione \textbf{downloadPdbs} richiama la funzione \textbf{fetchPDB} del pac
     \item \textit{compressed}, il flag per decidere se il file scaricato dovrà essere compresso oppure no, nel nostro caso il flag sarà impostato a \textit{False} per indicare che i file scaricati debbano essere già decompressi.
 \end{itemize}
 
-Tramite tale istruzione è possibile interfacciarsi con \textbf{PubChem} e scaricare di un singolo file \textit{.pdb} mediante richiesta \textit{FTP}, il download di tutte le proteine della lista avviene ciclando su tutti gli elementi di essa:
+Tramite tale istruzione è possibile interfacciarsi con \textbf{RCSB} e scaricare un singolo file \textit{.pdb} mediante richiesta \textit{FTP}, il download di tutte le proteine della lista avviene ciclando su tutti gli elementi di essa:
 
 \begin{lstlisting}[language=Python, label=lst:code18, caption={funzione fetchPDB}]
 fetchPDB(protein_code, folder=output_path, compressed=False)
 \end{lstlisting}
 
 Dopo aver effettuato il download di tutte i file \textit{.pdb} le informazioni relative al download ed ai file scaricati vengono salvati in un file \textit{.xlsx} chiamato \textit{info\_proteins.xlsx} che viene salvato nella directory \textit{/output/}.\newline
-Lo script \textbf{prepare\_receptors.py} una volta terminata la funzione \textbf{selectReceptors} richiama \textbf{splitRepeatedResidues} che prende in input:
+Lo script \textbf{prepare\_receptors.py} una volta terminata la funzione \textbf{selectReceptors} richiama la funzione \textbf{splitRepeatedResidues} che prende in input:
 
 \begin{itemize}
     \item \textit{pdb\_folder}, il path della directory di output per i file \textit{.pdb}
@@ -394,13 +418,13 @@ Questa funzione si occupa di rimuovere i residui ripetuti memorizzati nel file \
 splitRepeatedResidues(pdb_folder, verbose, output_folder=None)    
 \end{lstlisting}
 
-Per accedere agli attributi dei file \textit{.pdb} utilizziamo la funzione \textbf{read\_pdb} del pacchetto \textbf{PandasPdb}, questa prende in input il nome del file \textit{.pdb}:
+Per accedere agli attributi dei file \textit{.pdb} utilizziamo la funzione \textbf{read\_pdb} del pacchetto \textbf{PandasPdb}, che prende in input il nome del file \textit{.pdb}:
 
 \begin{lstlisting}[language=Python, label=lst:code20, caption={funzione PandasPdb.read\_pdb}]
 PandasPdb.read_pdb(pdb_file)
 \end{lstlisting}
 
-In particolare gli attributi \textit{A} e \textit{B} sono quelli ripetuti e i \textit{B} saranno quelli eliminati nella colonna \textit{alt\_loc}.\newline
+Gli attributi ripetuti sono denominati \textit{A} e \textit{B}, di cui i \textit{B} saranno eliminati.\newline
 Successivamente viene richiamata dallo script la funzione \textbf{deleteHeteroatomsChains}, la quale prende in input:
 
 \begin{itemize}
@@ -422,13 +446,19 @@ Lo script \textbf{prepare\_receptors.py} richiama successivamente la funzione \t
     \item \textit{verbose}, il flag relativo al verbose.
 \end{itemize}
 
-Questa funzione si occupa di dividere le catene di residui che formano la struttura della proteina mantenendo soltanto le catene distinte, cioè quelle catene che hanno solo una sequenza aminoacidica distinta e non ripetuta da altre catene. 
+Questa funzione si occupa di dividere le catene di residui che formano la struttura della proteina mantenendo soltanto le catene distinte, cioè quelle catene che hanno solo una sequenza amminoacidica distinta e non ripetuta da altre catene. 
 
 \begin{lstlisting}[language=Python, label=lst:code22, caption={funzione splitChains}]
 splitChains(pdb_folder, verbose)    
 \end{lstlisting}
 
-Tramite la funzione \textbf{parsePDB} della libreria \textbf{prody} viene ricostruita la struttura proteica attraverso oggetti come: la lista delle molecole, la lista degli atomi e dei residui, questa viene rappresentata da un oggetto della classe \textbf{AtomGroup} restituito dalla funzione \textbf{parsePDB}.
+Tramite la funzione \textbf{parsePDB} della libreria \textbf{prody} viene ricostruita la struttura proteica attraverso i seguenti oggetti:
+
+\begin{itemize}
+    \item la lista delle molecole
+    \item la lista degli atomi e dei residui, che viene rappresentata da un oggetto della classe \textbf{AtomGroup} restituito dalla funzione \textbf{parsePDB}.
+\end{itemize}
+, 
 
 \begin{lstlisting}[language=Python, label=lst:code23, caption={funzione parsePDB}]
 atoms = parsePDB(protein_file)
@@ -437,10 +467,10 @@ atoms = parsePDB(protein_file)
 La ricostruzione della struttura proteica avviene tramite la vista gerarchica della struttura, ciò viene implementata tramite il metodo \textbf{getHierView} della classe \textbf{AtomGroup}:
 
 \begin{lstlisting}[language=Python, label=lst:code24, caption={atoms.getHierVieW}]
-atoms.getHierVieW()
+atoms.getHierView()
 \end{lstlisting}
 
-Vengono quindi esaminate tutte le sequenze, sempre tramite la funzione \textbf{parsePDB}, e scelte solo le sequenze distinte, infine vengono salvate in un file tutte le catene distinte come se fossero delle proteine attraverso la funzione \textbf{writePDB} di \textbf{prody}, questa funzione prende in input:
+Vengono quindi esaminate tutte le sequenze, sempre tramite la funzione \textbf{parsePDB}, e vengono scelte solo le sequenze distinte, infine vengono salvate in un file tutte le catene distinte come se fossero delle proteine attraverso la funzione \textbf{writePDB} di \textbf{prody}, che prende in input:
 
 \begin{itemize}
     \item \textit{filename}, il nome del file
@@ -468,9 +498,9 @@ La funzione restituisce la conversione in file \textit{.pdbqt} dei corrispondent
 prepareReceptors(pdb_folder, pdbqt_folder, verbose)
 \end{lstlisting}
 
-La funzione \textbf{prepareReceptors} utilizza lo script \textbf{prepare\_receptors4} offerto dalla suite \textbf{ADFR}. In realtà viene utilizzata una versione modificata di tale script: \textbf{replacePrepareReceptor4.sh}. Questa versione modificata tramite bash scripting sostituisce la carica di Gasteiger con la carica in input ovvero \textit{charges\_to\_add} che nel nostro caso sono cariche di Kollman come specificate dalla stringa \textit{"Kollman"}. Tramite questo script si effettua la corretta conversione da \textit{.pdb} a \textit{.pdbqt}. Lo script viene richiamato tramite riga di comando dalla funzione mediante il comando \textbf{prepare\_receptor}:
+La funzione \textbf{prepareReceptors} utilizza lo script \textbf{prepare\_receptors4} della suite \textbf{ADFR}. In realtà viene utilizzata una versione modificata di tale script: \textbf{replacePrepareReceptor4.sh}. Questa versione modificata tramite bash scripting sostituisce la carica di Gasteiger con la carica in input ovvero \textit{charges\_to\_add} che nel nostro caso sono cariche di Kollman come specificate dalla stringa \textit{"Kollman"}. Tramite questo script si effettua la corretta conversione da \textit{.pdb} a \textit{.pdbqt}. Lo script viene richiamato da riga di comando dalla funzione mediante il comando \textbf{prepare\_receptor}:
 
-\begin{lstlisting}[language=bash, label=lst:code27, caption={comando per convertire file da \textit{.pdb} a \textit{.pdbqt}}]
+\begin{lstlisting}[language=bash, label=lst:code27, caption={comando per convertire file da .pdb a .pdbqt}]
 prepare_receptor -r pdb_file_path -A checkhydrogens -C charges_to_add -e -o pdbqt_folder
 \end{lstlisting}
 
@@ -493,7 +523,7 @@ L'ultima fase nella preparazione dei ligandi consiste nella creazione delle \tex
     \item \textbf{verbose}, il flag relativo al verbose.
 \end{itemize}
 
-Per ogni proteina ottenuta deve essere creata una \textit{grid box}, questa definisce lo spazio conformazionale dove si colloca la proteina, è definita da:
+Per ogni proteina ottenuta deve essere creata una \textit{grid box}, che definisce lo spazio conformazionale dove si colloca la proteina, è definita da:
 
 \begin{itemize}
     \item Un centro
@@ -521,7 +551,7 @@ Per ogni proteina vengono estratti gli attributi contenuti nel proprio file e vi
 La funzione \textbf{createGridbox} costruisce una \textit{grid box} per una singola proteina utilizzando gli attributi del file \textit{.pdb} rispettando i parametri precedentemente definiti per una \textit{grid box}.
 
 \subsection{Preparazione dei recettori tramite GUI}
-La preparazione dei recettori tramite GUI avviene selezionando il tasto \textbf{Receptors} nella sezione \textbf{Preparation} del software. All'interno della pagina relativa alla preparazione dei recettori premendo il tasto \textbf{Execute} è possibile effettuare i procedimenti precedentemente spiegati nella sezione relativa all'esecuzione tramite script (\ref{Preparazione dei recettori script}). Premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Preparation} relativa alla preparazione degli input.
+La preparazione dei recettori tramite GUI avviene selezionando il tasto \textbf{Receptors} nella sezione \textbf{Preparation} del software. All'interno della pagina relativa alla preparazione dei recettori premendo il tasto \textbf{Execute} è possibile effettuare i procedimenti spiegati nella sezione relativa all'esecuzione tramite script (\ref{Preparazione dei recettori script}). Premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Preparation} relativa alla preparazione degli input.
 Come si osserva nella figura \ref{fig:receptors} all'interno di tale sezione sono presenti delle \textbf{entry} dove è possibile specificare diversi input tra cui:
 
 \begin{itemize}
@@ -532,76 +562,82 @@ Come si osserva nella figura \ref{fig:receptors} all'interno di tale sezione son
 \end{itemize}
 
 Se lasciate vuote queste entry verrano impostate le configurazioni di default. E' presente anche un \textbf{checkbox} il quale se selezionato permette di mantenere i file precedentemente scaricati che altrimenti verrebbero cancellati.\newline
-Per andare a selezionare direttamente nel file system del PC i file e le directory richieste sono stati implementati rispettivamente i tasti \textbf{Browse files} e \textbf{Browse folders}, come è visibile in figura \ref{fig:ligands}, \ref{fig:browse files receptors} e \ref{fig:browse folders receptors}.
+Per andare a selezionare direttamente nel file system del PC le directory richieste sono stati implementati i tasti \textbf{Browse folders}, come è visibile nelle figure \ref{fig:ligands} e \ref{fig:browse folders receptors}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{immagini/receptors.png}
-    \caption{Sezione \textbf{Receptors} della GUI}
+    \includegraphics[scale=0.6]{immagini/capitolo3/receptors.png}
+    \caption{Sezione Receptors della GUI}
     \label{fig:receptors}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/browseFilesReceptors.png}
-    \caption{\textbf{Browse files}}
-    \label{fig:browse files receptors}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics{immagini/browseFoldersReceptors.png}
-    \caption{\textbf{Browse folders}}
+    \includegraphics{immagini/capitolo3/browseFoldersReceptors.png}
+    \caption{Browse folders}
     \label{fig:browse folders receptors}
 \end{figure}
 
-La GUI per la preparazione dei ligandi richiama lo script \textbf{prepare\_ligands.py} discusso nella precedente sezioni, adattando l'interfaccia grafica ad esso senza eliminare alcuna funzionalità precedentemente illustrata per la versione da riga di comando e rispettando i dettami dell'\textbf{OOP}.\newline
-Durante l'esecuzione viene mostrato un \textbf{pannello} (\ref{fig:receptors execute}) in cui vengono descritte: le operazioni che si stanno effettuando, eventuali errori ed avvisi per l'utente, in modo tale che sia restituito un feedback all'utente relativo al progresso della preparazione dei ligandi. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed proteins}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:Invalid input proteins}).
+La GUI per la preparazione dei recettori richiama lo script \textbf{prepare\_receptors.py} discusso nella precedente sezione, adattando l'interfaccia grafica senza eliminare alcuna funzionalità della versione da riga di comando e rispettando i dettami dell'\textbf{OOP}.\newline
+Durante l'esecuzione viene mostrato un \textbf{pannello} (\ref{fig:receptors execution}) in cui vengono descritti:
+
+\begin{itemize}
+    \item le operazioni che si stanno effettuando
+    \item eventuali errori
+    \item avvisi per l'utente.  
+\end{itemize}
+
+Tutto ciò per restituire un feedback all'utente relativo al progresso della preparazione dei recettori. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed proteins}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:invalid input proteins}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{immagini/receptorsExecution.png}
-    \caption{\textbf{Pannello} dell'esecuzione dei recettori}
-    \label{fig:receptors execute}
+    \includegraphics[scale=0.8]{immagini/capitolo3/receptorsExecution.png}
+    \caption{Pannello dell'esecuzione dei recettori}
+    \label{fig:receptors execution}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/progressCompletedReceptors.png}
+    \includegraphics{immagini/capitolo3/progressCompletedReceptors.png}
     \caption{Messaggio processo completato con successo}
     \label{fig:progress completed proteins}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/invalidInputReceptors.png}
+    \includegraphics{immagini/capitolo3/invalidInputReceptors.png}
     \caption{Messaggio di errore}
-    \label{fig:Invalid input proteins}
+    \label{fig:invalid input proteins}
 \end{figure}
 
-\section{Docking tramite script}
+\section{Docking}
+Il docking può essere considerato come l'operazione principale eseguita da \textbf{Computational Docking}. Il software scelto per eseguire il docking come detto in precedenza è \textbf{AutoDock Vina}, in particolare è stata scelta la versione 1.1.2 perchè dotata della capacità di produrre i file di log.\newline
+La procedura del docking prende in input i dati ricavati dalla fase di preparazione precedentemente descritta. Risulta chiaro quindi come sia necessaria la corretta esecuzione della preparazione dei ligandi e delle proteine affinchè il docking vada a buon fine.
+
+\subsection{Docking tramite script}
 Dopo aver ottenuto i ligandi ed i recettori può essere effettuato il \textbf{Docking}, questo avviene mediante lo script bash \textbf{performDocking.sh}, il comando per eseguire lo script è:
 
 \begin{lstlisting}[language=bash, label=lst:code29, caption={Comando per eseguire performDocking}]
 ./performDocking.sh -s vina
 \end{lstlisting}
 
-Lo script quando viene lanciato prende in input il parametro opzionale $-h$, che mostra il prompt con le istruzioni per l'uso dello script.\newline
+Lo script quando viene eseguito prende in input il parametro opzionale $-h$, che mostra il prompt con le istruzioni per l'uso dello script.\newline
 Lo script prende in input la cartella dove sono presenti:
 
 \begin{itemize}
-    \item Le proteine in formato \textit{.pdbqt}
-    \item I ligandi in formato \textit{.pdbqt}
-    \item Le gridbox in formato \textit{.txt}
+    \item le proteine in formato \textit{.pdbqt}
+    \item i ligandi in formato \textit{.pdbqt}
+    \item le gridbox in formato \textit{.txt}
 \end{itemize}
 
-Successivamente creerà la cartella \textit{/output/docking} dove verranno salvati i risultati del docking, per ogni coppia proteina-ligando verrà eseguito il seguente comando:
+Successivamente verrà creata la cartella \textit{/output/docking} dove saranno salvati i risultati del docking e, per ogni coppia proteina-ligando verrà eseguito il seguente comando:
 
 \begin{lstlisting}[language=bash, label=lst:code30, caption={Comando per eseguire il docking con Autodock Vina}]
 vina --config gridbox_file.txt --receptor receptor_file.pdbqt --ligand ligand_file.pdbqt --out "{percorso_directory_software_installato}/output/docking/vina/cartella_nome_recettore/cartella_nome_ligando/out.pdbqt" --log "{percorso_directory_software_installato}/output/docking/vina/cartella_nome_recettore/cartella_nome_ligando/log.txt"
 \end{lstlisting}
 
 Nell'istruzione sopra:
+
 \begin{itemize}
     \item \textit{Vina} è il commando per eseguire il docking con \textbf{AutoDock Vina}
     \item \textit{gridbox\_file.txt} è la gridbox in input relativa al recettore \textit{receptor\_file.pdbqt}, la gridbox è specificata dallo switch \textit{$--$config}
@@ -611,14 +647,14 @@ Nell'istruzione sopra:
     \item \textit{log di output}, specificato dallo switch \textit{$--$log}.
 \end{itemize}
 
-Questo comando è in grado di eseguire il docking per una sola coppia proteina-ligando, per effettuare il docking su tutte le coppie deve essere eseguito tale comando per tutte le proteine su ogni ligando. Tale istruzione creerà una cartella per ogni proteina il cui nome corrisponde a quello della proteina (\textit{cartella\_nome\_recettore}), all'interno di tale cartella verranno create tante cartelle quanti sono i ligandi con cui vengono studiate le pose, il nome delle sottocartelle è quello dei rispettivi ligandi (\textit{cartella\_nome\_ligando}). All'interno di ogni sottocartella sono contenuti due file:
+Questo comando è in grado di eseguire il docking per una sola coppia proteina-ligando. Per effettuare il docking su tutte le coppie deve essere eseguito tale comando per tutte le proteine su ogni ligando. Tale istruzione creerà una cartella per ogni proteina il cui nome corrisponde a quello della proteina (\textit{cartella\_nome\_recettore}), all'interno di tale cartella verranno create tante cartelle quanti sono i ligandi con cui vengono studiate le pose, il nome delle sottocartelle è quello dei rispettivi ligandi (\textit{cartella\_nome\_ligando}). All'interno di ogni sottocartella sono contenuti due file:
 
 \begin{itemize}
     \item Un file \textit{.pdbqt} nominato out.pdbqt, il corrispondente output per la coppia proteina-ligando
     \item Un file \textit{.txt} nominato \textit{log.txt}, contenente le informazioni relative alla posa ottenuta. 
 \end{itemize}
 
-Se si considera la proteina \textbf{1fcu} ed il ligando \textbf{bentazone} entrambi utilizzati nel caso di esempio, verrà creata una cartella nominata \textbf{1cfu} contenente una sottocartella nominata \textbf{bentazone} contenente a sua volta un file \textit{log.txt} e \textit{out.pdbqt}.
+Se si considera la proteina \textbf{1fcu} ed il ligando \textbf{bentazone}, entrambi utilizzati nel caso di esempio, verrà creata una cartella nominata \textbf{1cfu} contenente una sottocartella nominata \textbf{bentazone} contenente a sua volta un file \textit{log.txt} e \textit{out.pdbqt}.
 
 All'interno del file di log è possibile ricavare le seguenti informazioni:
 
@@ -669,11 +705,11 @@ mode |   affinity | dist from best mode
    9         -5.7     28.294     29.592
 Writing output ... done.
 \end{verbatim}
-\caption{File di log del docking per la coppia proteina-ligando \textbf{1fcu-bentazone}}
+\caption{File di log del docking per la coppia proteina-ligando 1fcu-bentazone}
 \label{fig:file di log}
 \end{figure}
 
-\section{Docking tramite GUI}
+\subsection{Docking tramite GUI}
 Il docking tramite GUI avviene selezionando il tasto \textbf{Docking} nella sezione \textbf{Home page} del software. All'inteno della pagina relativa al docking premendo il tasto \textbf{Execute} è possibile effettuare il docking, premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Home Page}.
 Come si osserva nella figura \ref{fig:docking} all'interno di tale sezione sono presenti delle \textbf{entry} dove è possibile specificare diversi input tra cui:
 
@@ -685,42 +721,138 @@ Come si osserva nella figura \ref{fig:docking} all'interno di tale sezione sono 
 \end{itemize}
 
 Se lasciate vuote queste entry verrano impostate le configurazioni di default. E' presente anche un \textbf{checkbox} il quale se selezionato permette di mantenere i file precedentemente scaricati che altrimenti verrebbero cancellati.\newline
-Per andare a selezionare direttamente nel file system del PC i file e le directory richieste sono stati implementati rispettivamente i tasti \textbf{Browse files} e \textbf{Browse folders}, come è visibile in figura \ref{fig:docking} e \ref{fig:browse folder docking}.
+Per andare a selezionare direttamente nel file system del PC le directory richieste sono stati implementati rispettivamente i tasti \textbf{Browse folders}, come è visibile nelle figure \ref{fig:docking} e \ref{fig:browse folder docking}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{immagini/docking.png}
-    \caption{Sezione \textbf{Receptors} della GUI}
+    \includegraphics[scale=0.6]{immagini/capitolo3/docking.png}
+    \caption{Sezione Docking della GUI}
     \label{fig:docking}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/browseFoldersDocking.png}
-    \caption{\textbf{Browse files}}
+    \includegraphics{immagini/capitolo3/browseFoldersDocking.png}
+    \caption{Browse folder}
     \label{fig:browse folder docking}
 \end{figure}
 
-La GUI per il \textbf{docking} richiama lo script \textbf{performDocking.sh} discusso nella precedente sezioni, adattando l'interfaccia grafica ad esso senza eliminare alcuna funzionalità precedentemente illustrata per la versione da riga di comando e rispettando i dettami dell'\textbf{OOP}.\newline
-Durante l'esecuzione viene mostrato un \textbf{pannello} (\ref{fig:docking execution}) in cui vengono descritte: le operazioni che si stanno effettuando, eventuali errori ed avvisi per l'utente, in modo tale che sia restituito un feedback all'utente relativo al progresso della preparazione dei ligandi. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed docking}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:Invalid input docking}).
+La GUI per il \textbf{docking} richiama lo script \textbf{performDocking.sh} discusso nella precedente sezione, adattando l'interfaccia grafica ad esso senza eliminare alcuna funzionalità precedentemente illustrata per la versione da riga di comando e rispettando i dettami dell'\textbf{OOP}.\newline
+Durante l'esecuzione viene mostrato un \textbf{pannello} (\ref{fig:docking execution}) in cui vengono descritti: 
+
+\begin{itemize}
+    \item le operazioni che si stanno effettuando
+    \item eventuali errori
+    \item avvisi per l'utente.  
+\end{itemize}
+
+Tutto questo per restituire un feedback all'utente relativo al progresso del docking. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed docking}) ed in caso di input non valido sarà restituito un messaggio di errore (figura: \ref{fig:invalid input docking}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{immagini/dockingExecute.png}
-    \caption{\textbf{Pannello} dell'esecuzione del \textbf{docking}}
+    \includegraphics[scale=0.8]{immagini/capitolo3/dockingExecution.png}
+    \caption{Pannello dell'esecuzione del docking}
     \label{fig:docking execution}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/progressCompletedDocking.png}
+    \includegraphics{immagini/capitolo3/progressCompletedDocking.png}
     \caption{Messaggio processo completato con successo}
     \label{fig:progress completed docking}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics{immagini/invalidInputDocking.png}
+    \includegraphics{immagini/capitolo3/invalidInputDocking.png}
     \caption{Messaggio di errore}
-    \label{fig:Invalid input docking}
+    \label{fig:invalid input docking}
+\end{figure}
+
+\section{Analisi}
+Il processo di analisi consiste nell'analizzare l'output del docking per andare a determinare le interazioni (legami) presenti nelle pose ottenute. Le interazioni ricercate dal software sono:
+
+\begin{itemize}
+    \item I close-contacts
+    \item Legami ad idrogeno
+\end{itemize}
+
+
+\subsection{Analisi tramite script}
+L'analisi si divide in un primo step fondamentale che consiste nella rilevazione legami presenti all'interno delle pose risultanti dal docking, per implementare ciò è stato preso spunto dalla funzionalità messa a disposizione da \textbf{AutodockTools}. A seguito di un'ispezione fatta sul suo codice sorgente si è determinato che non è possibile richiamare le funzioni capaci di identificare i legami delle pose, per cui il loro codice sorgente è stato importato ed adattato al software trattato, lo script contenente queste funzioni e che si occupa della rilevazione delle interazioni è lo script python \textbf{detect\_interactions.py}.\newline
+Il comando da digitare per eseguire l'analisi è:
+
+\begin{lstlisting}[language=bash, label=lst:code31, caption={Comando per eseguire l'analisi}]
+python3 detect_interactions.py
+\end{lstlisting}
+
+Lo script prende in input ciascun risultato del docking e restituisce: 
+
+\begin{itemize}
+    \item Un dizionario contenente le interazioni per ogni coppia-proteina ligando
+    \item Il dizionario delle proteine dove per ciascun residuo e per ciascuna proteina coinvolti nelle interazioni, vengono memorizzati il numero di close-contacts ed il numero di legami ad idrogeno, questo dizionario è il risultato della fusione di tutti i dizionari delle coppie proteina-ligando
+    \item Un dizionario contenente l'informazione relativa ai ligandi coinvolti nel calcolo dei residui, nello specifico viene salvato il tipo di ligando ed il tipo di interazione che si viene a formare nella coppia proteina-ligando. 
+\end{itemize}
+
+Il dizionario delle proteine e dei ligandi vengono serializzati e memorizzati come file binari.\newline
+Le informazioni contenute in questi file vengono mostrate tramite heatmap e grafici a barre, questi vengono costruite tramite le funzioni di \textbf{numpy}.\newline
+Le heatmap contengono sull'asse delle ascisse i ligandi e sull'asse delle ordinate i residui, ciascuna entry ligando-residuo può assumere tre stati:
+
+\begin{itemize}
+    \item Nessun legame, in viola
+    \item Close-contact, in azzurro
+    \item Legame ad idrogeno, in giallo 
+\end{itemize}
+
+Per mostrare l'heatmap di una singola proteina, salviamo solo il dizionario di una singola proteina anzichè il dizionario completo.\newline
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{immagini/capitolo3/heatmap.jpg}
+    \caption{Heatmap relativa al residuo 1cfu}
+    \label{fig:heatmap}
+\end{figure}
+
+I grafici a barre presentano sull'asse delle ascisse i residui e sull'asse delle ordinate il numero di legami e per ciascun residuo viene creata una barra stacked rappresentante il numero di close-contacts in blu ed il numero di legami ad idrogeno in giallo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{immagini/capitolo3/interactions.jpg}
+    \caption{Grafico a barre relativo al residuo 1cfu}
+    \label{fig:interactions}
+\end{figure}
+
+\section{Analisi tramite GUI}
+l'Analisi tramite GUI avviene selezionando il tasto \textbf{Analysis} nella sezione \textbf{Home page} del software. All'inteno della pagina relativa all'analisi premendo il tasto \textbf{Execute} è possibile effettuare l'analisi, premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Home Page}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/capitolo3/analysis.png}
+    \caption{Sezione Analysis della GUI}
+    \label{fig:analisys}
+\end{figure}
+
+La GUI per l' \textbf{analisi} richiama lo script \textbf{detetct\_interactions.py} discusso nella precedente sezione, adattando l'interfaccia grafica ad esso senza eliminare alcuna funzionalità precedentemente illustrata per la versione da riga di comando e rispettando i dettami dell'\textbf{OOP}.\newline
+Durante l'esecuzione viene mostrato un \textbf{pannello} (\ref{fig:analysis execution}) in cui vengono descritti: 
+
+\begin{itemize} 
+    \item le operazioni che si stanno effettuando
+    \item eventuali errori
+    \item avvisi per l'utente.  
+\end{itemize}
+
+Tutto questo per restituire un feedback all'utente relativo al progresso del analisi. Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \ref{fig:progress completed analysis}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{immagini/capitolo3/analysisExecution.png}
+    \caption{Pannello dell'esecuzione del analisi}
+    \label{fig:analysis execution}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{immagini/capitolo3/progressCompletedAnalysis.png}
+    \caption{Messaggio processo completato con successo}
+    \label{fig:progress completed analysis}
 \end{figure}
