@@ -36,6 +36,7 @@ Per eseguire l'applicazione da riga di comando devono essere eseguiti separatame
     \item \textbf{prepare\_ligands.py}
     \item \textbf{prepare\_receptors.py}
     \item \textbf{performDocking.sh}
+    \item \textbf{detect\_interactions.py}
 \end{itemize}
 
 La GUI usufruirà degli stessi script eseguiti da riga di comando, garantendo così le stesse funzionalità in entrambe le modalità di utilizzo e seguendo i dettami della \textbf{OOP} secondo i quali bisogna riutilizzare codice funzionante anzichè modificarlo o scriverlo ex-novo.\newline
@@ -61,12 +62,27 @@ Avviata la GUI si aprirà la home page con le seguenti opzioni:
     \label{fig:home page}
 \end{figure}
 
+Attraverso il menù a tendina in basso a sinistra sarà possibile scegliere il tema dell'applicazione tra:
+
+\begin{itemize}
+    \item Tema chiaro
+    \item Tema scuro
+    \item Tema del sistema.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{immagini/capitolo3/darkGUI.png}
+    \caption{Tema scuro della GUI}
+    \label{fig:dark GUI}
+\end{figure}
+
 \section{Dati in input}
 I dati in input all'applicazione trattata sono: ligandi e proteine.\newline
 La lista dei ligandi è fornita in input tramite foglio calcolo (\textit{.xlsx}, \textit{.xls}) o mediante file di testo (\textit{.txt}), 
 in entrambi i casi ogni riga corrisponde al nome di un ligando. Essendo l'applicazione incentrata sullo studio degli effetti dei ligandi dei pesticidi sull'Apis mellifera, come dati di esempio sono state utilizzati i ligandi le cui molecole costituiscono i pesticidi maggiormente diffusi sul mercato, per un totale di 297 ligandi. La lista è disponibile nell'appendice \ref{tab:Tabella dei Ligandi}.\newline
-I recettori vengono selezionati mediante una \textbf{WebView} aperta sulla pagina di ricerca del sito del database \href{https://www.rcsb.org/search}{RCSB}, da qui l'utente digiterà la propria query e, dopo aver selezionato il  tasto \textbf{research} gli verranno mostrati tutti i composti organici relativi alla query digitata, tramite il tasto \textbf{Get Query} l'utente andrà a scaricare tutti i file  dei composti organici in formato \textit{.pdb}.\newline
-Nel caso di esempio sono state scelte tutte le proteine dei recettori dell'Apis Mellifera come mostrato nelle foto: \ref{fig:query recettori} e  \ref{fig:file recettori}, per un totale di 60 file \textit{.pdb} contenenti le strutture di determinate proteine. La lista delle proteine scaricate è disponibile nell'appendice: \ref{Tabella dei Recettori}. L'applicazione usata tramite GUI dispone della sezione \textbf{Help} (\ref{fig:help}) contenente le informazioni relative alle impostazioni di default e al formato dei dati in input.
+I recettori vengono selezionati mediante una \textbf{WebView} aperta sulla pagina di ricerca del sito del database \href{https://www.rcsb.org/search}{RCSB}, da qui l'utente digiterà la propria query e, dopo aver selezionato il  tasto \textbf{search} gli verranno mostrati tutti i composti organici relativi alla query digitata, tramite il tasto \textbf{Get Query} l'utente andrà a scaricare tutti i file  dei composti organici in formato \textit{.pdb}.\newline
+Nel caso di esempio sono state scelte le proteine dei recettori dell'Apis Mellifera secondo la query mostrata nelle foto: \ref{fig:query recettori} e \ref{fig:file recettori}, per un totale di 11 file \textit{.pdb} contenenti le strutture di determinate proteine. La lista delle proteine scaricate è disponibile nell'appendice: \ref{Tabella dei Recettori}. L'applicazione usata tramite GUI dispone della sezione \textbf{Help} (\ref{fig:help}) contenente le informazioni relative alle impostazioni di default e al formato dei dati in input.
 
 \begin{figure}[H]
     \centering
@@ -151,7 +167,7 @@ In output sono restituiti i file \textit{.sdf} corrispondenti ai ligandi in inpu
 selectLigands(input_path, sdf_folder, excel_folder, verbose)
 \end{lstlisting}
 
-L'interfaccia con il database avviene tramite il pacchetto \textbf{PubChemPy}, in particolare la funzione \textbf{pubchempy.get\_compounds} permette di ricercare nel database il record relativo allo specifico ligando il cui nome, a cui viene precedentemente aggiunto il suffisso \textit{ligand\_}, viene fornito in input. La funzione prende in input:
+L'interfaccia con il database \textbf{PubChem} avviene tramite il pacchetto \textbf{PubChemPy}, in particolare la funzione \textbf{pubchempy.get\_compounds} permette di ricercare nel database il record relativo allo specifico ligando il cui nome, a cui viene precedentemente aggiunto il suffisso \textit{ligand\_}, viene fornito in input. La funzione prende in input:
 
 \begin{itemize}
     \item \textit{identifier}, il composto da ricercare nel database
@@ -305,7 +321,7 @@ Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \
 \begin{figure}[H]
     \centering
     \includegraphics{immagini/capitolo3/progressCompletedLigands.png}
-    \caption{Messaggio processo completato con successo}
+    \caption{Messaggio relativo al completamento della preparazione dei ligandi}
     \label{fig:progress completed ligands}
 \end{figure}
 
@@ -550,6 +566,13 @@ Per ogni proteina vengono estratti gli attributi contenuti nel proprio file e vi
 
 La funzione \textbf{createGridbox} costruisce una \textit{grid box} per una singola proteina utilizzando gli attributi del file \textit{.pdb} rispettando i parametri precedentemente definiti per una \textit{grid box}.
 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{immagini/capitolo3/gridbox.jpg}
+    \caption{Gridbox mostrata all'interno della GUI di AutodockVina}
+    \label{fig:gridbox}
+\end{figure}
+
 \subsection{Preparazione dei recettori tramite GUI}
 La preparazione dei recettori tramite GUI avviene selezionando il tasto \textbf{Receptors} nella sezione \textbf{Preparation} del software. All'interno della pagina relativa alla preparazione dei recettori premendo il tasto \textbf{Execute} è possibile effettuare i procedimenti spiegati nella sezione relativa all'esecuzione tramite script (\ref{Preparazione dei recettori script}). Premendo il tasto \textbf{Back} è possibile tornare alla sezione \textbf{Preparation} relativa alla preparazione degli input.
 Come si osserva nella figura \ref{fig:receptors} all'interno di tale sezione sono presenti delle \textbf{entry} dove è possibile specificare diversi input tra cui:
@@ -599,7 +622,7 @@ Tutto ciò per restituire un feedback all'utente relativo al progresso della pre
 \begin{figure}[H]
     \centering
     \includegraphics{immagini/capitolo3/progressCompletedReceptors.png}
-    \caption{Messaggio processo completato con successo}
+    \caption{Messaggio relativo al completamento della preparazione dei ligandi}
     \label{fig:progress completed proteins}
 \end{figure}
 
@@ -721,7 +744,7 @@ Come si osserva nella figura \ref{fig:docking} all'interno di tale sezione sono 
 \end{itemize}
 
 Se lasciate vuote queste entry verrano impostate le configurazioni di default. E' presente anche un \textbf{checkbox} il quale se selezionato permette di mantenere i file precedentemente scaricati che altrimenti verrebbero cancellati.\newline
-Per andare a selezionare direttamente nel file system del PC le directory richieste sono stati implementati rispettivamente i tasti \textbf{Browse folders}, come è visibile nelle figure \ref{fig:docking} e \ref{fig:browse folder docking}.
+Per andare a selezionare direttamente nel file system del PC le directory richieste sono stati implementati i tasti \textbf{Browse folders}, come è visibile nelle figure \ref{fig:docking} e \ref{fig:browse folder docking}.
 
 \begin{figure}[H]
     \centering
@@ -758,7 +781,7 @@ Tutto questo per restituire un feedback all'utente relativo al progresso del doc
 \begin{figure}[H]
     \centering
     \includegraphics{immagini/capitolo3/progressCompletedDocking.png}
-    \caption{Messaggio processo completato con successo}
+    \caption{Messaggio relativo al completamento dell' esecuzione del docking}
     \label{fig:progress completed docking}
 \end{figure}
 
@@ -853,6 +876,6 @@ Tutto questo per restituire un feedback all'utente relativo al progresso del ana
 \begin{figure}[H]
     \centering
     \includegraphics{immagini/capitolo3/progressCompletedAnalysis.png}
-    \caption{Messaggio processo completato con successo}
+    \caption{Messaggio relativo al completamento dell'esecuzione dell'analisi con successo}
     \label{fig:progress completed analysis}
 \end{figure}
