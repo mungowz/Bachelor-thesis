@@ -4383,7 +4383,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -624,
-											"top": 512,
+											"top": 560,
 											"height": 13
 										},
 										{
@@ -4394,7 +4394,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 105,
-											"top": 487,
+											"top": 511,
 											"width": 91,
 											"height": 13,
 											"text": "Substance"
@@ -4408,7 +4408,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -624,
-											"top": 512,
+											"top": 560,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -4422,14 +4422,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -624,
-											"top": 512,
+											"top": 560,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 100,
-									"top": 480,
+									"top": 504,
 									"width": 101,
 									"height": 25,
 									"stereotypeLabel": {
@@ -4457,7 +4457,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 372,
-									"top": 256,
+									"top": 280,
 									"width": 10,
 									"height": 10
 								},
@@ -4473,7 +4473,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 372,
-									"top": 256,
+									"top": 280,
 									"width": 10,
 									"height": 10
 								},
@@ -4489,7 +4489,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 372,
-									"top": 256,
+									"top": 280,
 									"width": 10,
 									"height": 10
 								},
@@ -4505,7 +4505,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 372,
-									"top": 256,
+									"top": 280,
 									"width": 10,
 									"height": 10
 								}
@@ -4513,7 +4513,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 80,
-							"top": 480,
+							"top": 504,
 							"width": 121,
 							"height": 45,
 							"nameCompartment": {
@@ -4563,7 +4563,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -864,
-											"top": 720,
+											"top": 768,
 											"height": 13
 										},
 										{
@@ -4574,7 +4574,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 105,
-											"top": 543,
+											"top": 567,
 											"width": 91,
 											"height": 13,
 											"text": "BioAssay"
@@ -4588,7 +4588,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -864,
-											"top": 720,
+											"top": 768,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -4602,14 +4602,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -864,
-											"top": 720,
+											"top": 768,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 100,
-									"top": 536,
+									"top": 560,
 									"width": 101,
 									"height": 25,
 									"stereotypeLabel": {
@@ -4637,7 +4637,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 252,
-									"top": 360,
+									"top": 384,
 									"width": 10,
 									"height": 10
 								},
@@ -4653,7 +4653,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 252,
-									"top": 360,
+									"top": 384,
 									"width": 10,
 									"height": 10
 								},
@@ -4669,7 +4669,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 252,
-									"top": 360,
+									"top": 384,
 									"width": 10,
 									"height": 10
 								},
@@ -4685,7 +4685,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 252,
-									"top": 360,
+									"top": 384,
 									"width": 10,
 									"height": 10
 								}
@@ -4693,7 +4693,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 80,
-							"top": 536,
+							"top": 560,
 							"width": 121,
 							"height": 45,
 							"nameCompartment": {
@@ -4743,7 +4743,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -720,
-											"top": 464,
+											"top": 512,
 											"height": 13
 										},
 										{
@@ -4754,7 +4754,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 105,
-											"top": 431,
+											"top": 455,
 											"width": 91,
 											"height": 13,
 											"text": "Compound"
@@ -4768,7 +4768,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -720,
-											"top": 464,
+											"top": 512,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -4782,14 +4782,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -720,
-											"top": 464,
+											"top": 512,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 100,
-									"top": 424,
+									"top": 448,
 									"width": 101,
 									"height": 25,
 									"stereotypeLabel": {
@@ -4817,7 +4817,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 324,
-									"top": 232,
+									"top": 256,
 									"width": 10,
 									"height": 10
 								},
@@ -4833,7 +4833,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 324,
-									"top": 232,
+									"top": 256,
 									"width": 10,
 									"height": 10
 								},
@@ -4849,7 +4849,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 324,
-									"top": 232,
+									"top": 256,
 									"width": 10,
 									"height": 10
 								},
@@ -4865,7 +4865,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 324,
-									"top": 232,
+									"top": 256,
 									"width": 10,
 									"height": 10
 								}
@@ -4873,7 +4873,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 80,
-							"top": 424,
+							"top": 448,
 							"width": 121,
 							"height": 45,
 							"nameCompartment": {
