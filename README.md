@@ -33,4 +33,5 @@ gands and receptors), (ii) the execution of the ana-
 lysis of molecular docking, and (iii) the analysis of
 the results of the protein/ligand interaction predic-
 tion. The software is available on GitHub, released
-under a license Creative Commons*
+under a license Creative Commons.  
+[Visit AUDO4RIAS](https://github.com/mungowz/AUDO4RIAS)*
