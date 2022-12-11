@@ -8,7 +8,7 @@
 \usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[sorting=none]{biblatex}
+\usepackage[sorting=none,style=numeric,backend=biber,defernumbers]{biblatex}
 \usepackage{caption}
 \usepackage{longtable}
 \usepackage{appendix}
@@ -50,6 +50,7 @@
 \captionsetup{labelformat=parens, textfont=small}
 
 \addbibresource{bibliografia.bib}
+\addbibresource{sitografia.bib}
 
 \graphicspath{{immagini/}}
 
@@ -232,7 +233,11 @@
     \input{appendice.tex}
 
     \nocite{*}
-    \printbibliography[heading=bibintoc]
+    \backmatter
+    \printbibliography[nottype=misc, heading=bibintoc, title=Bibliografia]
+    \printbibliography[type=misc, heading=bibintoc, title=Sitografia]
+
+    \newpage
 
     \addcontentsline{toc}{chapter}{Ringraziamenti}
     \include{ringraziamenti.tex}
