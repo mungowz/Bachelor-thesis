@@ -1,14 +1,14 @@
 \chapter{Tecnologie e piattaforme}
-In questo capitolo saranno trattate le tecnologie utilizzate, a partire dai linguaggi, i tools impiegati e le piattaforme hardware di lavoro. È stato fondamentale l’utilizzo di macchine in remoto per eseguire le operazioni di training del modello. In questo caso le macchine messe a disposizione dall’Università Parthenope e dal CNR sono state fondamentali in quanto hanno garantito stabilità ed efficienza.
+\textit{In questo capitolo saranno trattate le tecnologie utilizzate, a partire dai linguaggi, i tools impiegati e le piattaforme hardware di lavoro. È stato fondamentale l’utilizzo di macchine in remoto per eseguire le operazioni di training del modello. In questo caso le macchine messe a disposizione dall’Università Parthenope e dal CNR sono state fondamentali in quanto hanno garantito stabilità ed efficienza.}
 
-\section{Linguaggi e tools}
+\vskip 1cm
+
+\section{Python}
 La scelta del linguaggio di programmazione è stata importante in quanto ci sono tantissimi linguaggi con librerie adatte allo scopo, solo pochi ricevono costante supporto e sono anche utilizzati nel mondo del lavoro.\newline
-Il linguaggio scelto per lo sviluppo di \textbf{Computational Docking} è il \textbf{Python}.
-
-\subsection{Python}
+Il linguaggio scelto per lo sviluppo di \textbf{AUDO4RIAS} è il \textbf{Python}.\newline
 \textbf{Python} è un linguaggio informatico facile da imparare che si sta affermando tra gli scienziati, probabilmente perché è semplice da usare e, sufficientemente potente per raggiungere la maggior parte degli obiettivi di programmazione. Con \textbf{Python} si può iniziare a programmare in modo molto rapido. Riviste come Computing in Science and Engineering, Briefings in Bioinformatics e PLOS Computational Biology hanno pubblicato articoli introduttivi sull'impiego del \textbf{Python} per lo sviluppo di software di bioInformatica. Gli scienziati utilizzano Python per la visualizzazione molecolare, l'annotazione genomica, la manipolazione dei dati e innumerevoli altre applicazioni. Nel caso particolare delle scienze della vita, lo sviluppo di \textbf{Python} è stato molto importante.\cite{bassi2016python}\newline
 Il linguaggio di programmazione \textbf{Python} è dinamico ed orientato agli oggetti, inoltre è utilizzabile per molti tipi  di sviluppo software. Offre un forte supporto all'integrazione con altri linguaggi e programmi, è fornito di una estesa libreria standard e può essere imparato in pochi giorni.\newline
-\textbf{Python} è dotato delle librerie di bioinformatica adatte allo scopo del software realizzato (\textbf{Computational Docking}). Di seguito le principali utilizzate:
+\textbf{Python} è dotato delle librerie di bioinformatica adatte allo scopo del software realizzato (\textbf{AUDO4RIAS}). Di seguito le principali utilizzate:
 
 \begin{itemize}
     \item \textbf{PubChemPy}, libreria utilizzata nelle ricerche chimiche per nome, sottostruttura e somiglianza, standardizzazione chimica, conversione tra formati di file chimici, rappresentazione e recupero delle proprietà chimiche
@@ -30,7 +30,7 @@ La versione di Python utilizzata è la \textbf{2.7} in quanto maggiormente compa
     \label{fig:python logo}
 \end{figure}
 
-\subsubsection{PubChemPy}
+\subsection{PubChemPy}
 La libreria \textbf{PubChemPy} si basa interamente sul database \textbf{PubChem} e sui toolkit chimici forniti tramite il servizio web PUG REST. Questo servizio fornisce un'interfaccia ai programmi per svolgere automaticamente le operazioni che altrimenti si potrebbero eseguire manualmente tramite il sito web di \textbf{PubChem}. È importante ricordare questo aspetto quando si utilizza \textbf{PubChemPy}: ogni richiesta effettuata viene trasmessa ai server di \textbf{PubChem}, dove viene valutata e quindi viene inviata una risposta. Ci sono alcuni aspetti negativi in questo processo: 
 
 \begin{itemize}
@@ -41,23 +41,23 @@ La libreria \textbf{PubChemPy} si basa interamente sul database \textbf{PubChem}
 
 D'altra parte, questo significa che si hanno a disposizione le vaste risorse del database \textbf{PubChem} e dei toolkit chimici. Di conseguenza, è possibile eseguire in pochi secondi complesse ricerche di somiglianza e di sottostruttura su un database contenente decine di milioni di composti, senza bisogno dello spazio di memoria o della potenza di calcolo del proprio computer locale \cite{PubChempyDocumentation}.
 
-\subsubsection{ProDy}
+\subsection{ProDy}
 \textbf{ProDy} è un pacchetto python per l'analisi della dinamica delle proteine basata sulla struttura. \textbf{ProDy} consente di caratterizzare quantitativamente le variazioni strutturali in insiemi eterogenei di strutture risolte sperimentalmente per un dato sistema biomolecolare e di confrontare queste variazioni con le dinamiche di equilibrio previste teoricamente. Gli insiemi di dati comprendono insiemi strutturali per una determinata famiglia o sottofamiglia di proteine, i loro mutanti e omologhi di sequenza, in presenza/assenza dei loro substrati, ligandi o inibitori. Numerose funzioni ausiliarie consentono l'analisi comparativa dei dati sperimentali e teorici e la visualizzazione dei principali cambiamenti nelle conformazioni accessibili nei diversi stati funzionali. L'interfaccia di programmazione delle applicazioni (API) di \textbf{ProDy} è stata progettata in modo che gli utenti possano facilmente estendere il software e implementare nuovi metodi\cite{10.1093/bioinformatics/btr168}.
 
-\subsubsection{Pandas}
+\subsection{Pandas}
 \textbf{Pandas} è un pacchetto \textbf{Python} che fornisce strutture di dati veloci e flessibili, progettate per rendere facile e intuitivo il lavoro con i dati "relazionali" o "strutturati". \textbf{Pandas} è la pietra miliare per l'analisi pratica ad alto livello dei dati del mondo reale in \textbf{Python}. Inoltre, ha l'obiettivo più ampio di diventare il più potente e flessibile strumento open source di analisi e manipolazione dei dati disponibile in qualsiasi linguaggio\cite{reback2020pandas}. 
 
-\subsubsection{Tkinter}
+\subsection{Tkinter}
 La libreria \textbf{Tkinter} fornisce alle applicazioni \textbf{Python} un'interfaccia utente facile da programmare. Tkinter supporta una collezione di widget Tk che supportano la maggior parte delle applicazioni. \textbf{Tkinter} è l'interfaccia Python a Tk. Il toolkit GUI per Tcl/Tk. Tcl/Tk è la struttura di scripting e grafica sviluppato da John Ousterhout, originariamente all'Università della California a Berkeley e successivamente presso Sun Microsystems. Attualmente, Tcl/Tk è sviluppato e supportato dalla Scriptics Corporation, fondata da Ousterhout. Tcl/Tk gode di un notevole seguito di sviluppatori in diversi campi in diversi campi, prevalentemente su sistemi UNIX, ma più recentemente su sistemi Win32 e MacOS.\newline
 Tcl/Tk è stato inizialmente progettato per essere eseguito sotto il sistema X Window e i suoi widget e le sue finestre sono stati realizzati in modo da assomigliare a Motif. Anche il comportamento dei controlli e dei collegamenti è stato progettato per imitare Motif. Nelle versioni recenti di Tcl/Tk (in particolare, la release 8.0 e successive), i widget assomigliano ai widget nativi dell'architettura implementata. In effetti, molti dei widget sono widget nativi e la tendenza ad aggiungerne altri probabilmente continuerà. Come le estensioni di \textbf{Python}, Tcl/Tk è implementato come un pacchetto di librerie C con moduli che supportano script interpretati o applicazioni. L'interfaccia \textbf{Tkinter} è implementata come un modulo \textbf{Python}\cite{grayson2000python}.
 
-\subsubsection{Matplotlib}
+\subsection{Matplotlib}
 \textbf{Matplotlib} è un pacchetto per la creazione di diagrammi e immagini in 2D, finalizzato principalmente alla visualizzazione di dati scientifici, ingegneristici e finanziari. \textbf{Matplotlib} può essere utilizzato in modo interattivo dalla shell \textbf{Python} o richiamato da come funzione \textbf{Python} o incorporato in un'applicazione GUI (GTK, Wx, Tk, Windows). Sono supportati molti formati tra cui JPEG, PNG, PostScript e SVG. Le caratteristiche includono la creazione di più assi e figure per pagina, la navigazione interattiva, molte linee predefinite, molti stili e simboli predefiniti, immagini, antialiasing, alpha blending, diagrammi di dati e finanziari, gestione dei font conformi al W3C e supporto di FreeType2, legende e figure, tabelle, grafici, testo matematico e altro ancora\cite{barrett2005matplotlib}.
 
 \subsection{NumPy}
 Nel mondo \textbf{Python}, gli array \textbf{NumPy} sono la rappresentazione standard dei dati numerici e consentono un'implementazione efficiente dei calcoli numerici in un linguaggio di alto livello. Le prestazioni di \textbf{NumPy} possono essere migliorate grazie a tre tecniche: vettorializzazione dei calcoli, evitare di copiare i dati in memoria e minimizzare il numero di operazioni\cite{van2011numpy}.
 
-\subsection{ADFRsuite}
+\section{ADFRsuite}
 \textbf{AutoDockFR} (o \textbf{ADFR} in breve) è un programma per il \textbf{docking tra proteine e ligandi} sviluppato nel laboratorio Sanner dello Scripps Research sotto l'egida di \textit{AutoDock}.\newline
 ADFR utilizza:
 
@@ -87,7 +87,7 @@ La suite software \textbf{MGLTools} è stata sviluppata nel laboratorio Sanner p
 
 \begin{itemize}
     \item \textbf{Python Molecular Viewer (PMV)}, un visualizzatore molecolare di uso generale
-    \item \textbf{AutoDockTools (ADT)}, un insieme di comandi PMV sviluppati specificamente per supportare gli utenti di AutoDock
+    \item \textbf{AutoDockTools (ADT)}, un insieme di comandi PMV sviluppati specificamente per supportare gli utenti di AutoDock \label{AutoDockTools}
     \item \textbf{Vision}, un ambiente di programmazione visuale.
 \end{itemize}
 
@@ -115,7 +115,7 @@ Chiaramente, la ricerca iterativa dello stesso insieme di molecole comporterà l
 \end{figure}
 
 \section{Database}
-I dati da cui attinge \textbf{Computational Docking} provengono da due database: 
+I dati da cui attinge \textbf{AUDO4RIAS} provengono da due database: 
 
 \begin{itemize}
     \item \textbf{PubChem} per i ligandi

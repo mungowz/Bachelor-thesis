@@ -1,11 +1,14 @@
 \chapter{Applicazione realizzata}
-L'applicazione realizzata, \textbf{Computational Docking}, effettua il docking tra i ligandi contenuti in specifici pesticidi e i recettori dell'Apis mellifera, infine effettua l'estrazione dei legami che si vengono a formare. 
+\textit{Questo capitolo tratta dei moduli dell'applicazione, come sono stati implementati ed il loro funzionamento, le modalità di installazione e di utilizzo del software, il formato dei dati in input ed output trattati.}
+
+\vskip 1cm
 
 \section{Installazione}
-L'applicazione viene scaricata dalla \href{https://github.com/mungowz/Computational-Docking.git}{repository di github} mediante il comando:
+L'applicazione realizzata, \textbf{AUDO4RIAS}, effettua il docking tra i ligandi contenuti in specifici pesticidi e i recettori dell'\textit{Apis mellifera}, infine effettua l'estrazione dei legami che si vengono a formare.\newline
+L'applicazione viene scaricata dalla \href{https://github.com/mungowz/AUDO4RIAS.git}{repository di github} mediante il comando:
 
 \begin{lstlisting}[language=Bash, label=lst:code1, caption={Comando per scaricare la repository}]
-git clone https://github.com/mungowz/Computational-Docking.git
+git clone https://github.com/mungowz/AUDO4RIAS.git
 \end{lstlisting}
 
 Verrà quindi installata nella directory corrente la repository contenente il progetto, all'interno di questa si trovano gli script utilizzati dall'applicazione e le directory ed i file di input di default, tra cui:
@@ -22,7 +25,7 @@ Verrà quindi installata nella directory corrente la repository contenente il pr
 Sarà necessario installare alcune dipendenze esterne (software esterni) ed interne (librerie e pacchetti di python) per far funzionare l'applicazione, la lista delle dipendenze e la procedura di installazione è specificata nel file \textit{README} della repository di github.
 
 \section{Modalità di utilizzo}
-\textbf{Computational Docking} può essere utilizzato in due modalità:
+\textbf{AUDO4RIAS} può essere utilizzato in due modalità:
 
 \begin{enumerate}[label=\arabic{*}., ref=(\arabic{*})]
     \item Mediante script python da terminale
@@ -87,9 +90,9 @@ Attraverso il menù a tendina in basso a sinistra sarà possibile scegliere il t
 \section{Dati in input}
 I dati in input all'applicazione trattata sono: ligandi e proteine.\newline
 La lista dei ligandi è fornita in input tramite foglio calcolo (\textit{.xlsx}, \textit{.xls}) o mediante file di testo (\textit{.txt}), 
-in entrambi i casi ogni riga corrisponde al nome di un ligando. Essendo l'applicazione incentrata sullo studio degli effetti dei ligandi dei pesticidi sull'Apis mellifera, come dati di esempio sono state utilizzati i ligandi le cui molecole costituiscono i pesticidi maggiormente diffusi sul mercato, per un totale di 297 ligandi. La lista è disponibile nell'appendice \ref{tab:Tabella dei Ligandi}.\newline
+in entrambi i casi ogni riga corrisponde al nome di un ligando. Essendo l'applicazione incentrata sullo studio degli effetti dei ligandi dei pesticidi sull'\textit{Apis mellifera}, come dati di esempio sono state utilizzati i ligandi le cui molecole costituiscono i pesticidi maggiormente diffusi sul mercato, per un totale di 297 ligandi. La lista è disponibile nell'appendice \ref{tab:Tabella dei Ligandi}.\newline
 I recettori vengono selezionati mediante una \textbf{WebView} aperta sulla pagina di ricerca del sito del database \href{https://www.rcsb.org/search}{RCSB}, da qui l'utente digiterà la propria query e, dopo aver selezionato il  tasto \textbf{search} gli verranno mostrati tutti i composti organici relativi alla query digitata, tramite il tasto \textbf{Get Query} l'utente andrà a scaricare tutti i file  dei composti organici in formato \textit{.pdb}.\newline
-Nel caso di esempio sono state scelte le proteine dei recettori dell'Apis Mellifera secondo la query mostrata nelle foto: \ref{fig:query recettori} e \ref{fig:file recettori}, per un totale di 11 file \textit{.pdb} contenenti le strutture di determinate proteine. La lista delle proteine scaricate è disponibile nell'appendice: \ref{Tabella dei Recettori}. L'applicazione usata tramite GUI dispone della sezione \textbf{Help} (\ref{fig:help}) contenente le informazioni relative alle impostazioni di default e al formato dei dati in input.
+Nel caso di esempio sono state scelte le proteine dei recettori dell'\textit{Apis Mellifera} secondo la query mostrata nelle foto: \ref{fig:query recettori} e \ref{fig:file recettori}, per un totale di 11 file \textit{.pdb} contenenti le strutture di determinate proteine. La lista delle proteine scaricate è disponibile nell'appendice: \ref{Tabella dei Recettori}. L'applicazione usata tramite GUI dispone della sezione \textbf{Help} (\ref{fig:help}) contenente le informazioni relative alle impostazioni di default e al formato dei dati in input.
 
 \begin{figure}[H]
     \centering
@@ -328,7 +331,7 @@ Al completamento di ogni fase sarà restituito un messaggio di avviso (figura: \
 \begin{figure}[H]
     \centering
     \includegraphics{immagini/capitolo3/progressCompletedLigands.png}
-    \caption{Messaggio relativo al completamento della preparazione dei ligandi}
+    \caption{Messaggio di completamento della preparazione dei ligandi}
     \label{fig:progress completed ligands}
 \end{figure}
 
@@ -629,7 +632,7 @@ Tutto ciò per restituire un feedback all'utente relativo al progresso della pre
 \begin{figure}[H]
     \centering
     \includegraphics{immagini/capitolo3/progressCompletedReceptors.png}
-    \caption{Messaggio relativo al completamento della preparazione dei ligandi}
+    \caption{Messaggio di completamento della preparazione dei ligandi}
     \label{fig:progress completed proteins}
 \end{figure}
 
@@ -641,7 +644,7 @@ Tutto ciò per restituire un feedback all'utente relativo al progresso della pre
 \end{figure}
 
 \section{Docking}
-Il docking può essere considerato come l'operazione principale eseguita da \textbf{Computational Docking}. Il software scelto per eseguire il docking come detto in precedenza è \textbf{AutoDock Vina}, in particolare è stata scelta la versione 1.1.2 perchè dotata della capacità di produrre i file di log.\newline
+Il docking può essere considerato come l'operazione principale eseguita da \textbf{AUDO4RIAS}. Il software scelto per eseguire il docking come detto in precedenza è \textbf{AutoDock Vina}, in particolare è stata scelta la versione 1.1.2 perchè dotata della capacità di produrre i file di log.\newline
 La procedura del docking prende in input i dati ricavati dalla fase di preparazione precedentemente descritta. Risulta chiaro quindi come sia necessaria la corretta esecuzione della preparazione dei ligandi e delle proteine affinchè il docking vada a buon fine.
 
 \subsection{Docking tramite script}
@@ -788,7 +791,7 @@ Tutto questo per restituire un feedback all'utente relativo al progresso del doc
 \begin{figure}[H]
     \centering
     \includegraphics{immagini/capitolo3/progressCompletedDocking.png}
-    \caption{Messaggio relativo al completamento dell' esecuzione del docking}
+    \caption{Messaggio di completamento dell' esecuzione del docking}
     \label{fig:progress completed docking}
 \end{figure}
 
@@ -883,6 +886,6 @@ Tutto questo per restituire un feedback all'utente relativo al progresso del ana
 \begin{figure}[H]
     \centering
     \includegraphics{immagini/capitolo3/progressCompletedAnalysis.png}
-    \caption{Messaggio relativo al completamento dell'esecuzione dell'analisi con successo}
+    \caption{Messaggio di completamento del processo dell'analisi}
     \label{fig:progress completed analysis}
 \end{figure}

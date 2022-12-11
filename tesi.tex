@@ -20,6 +20,11 @@
 \usepackage{fancyhdr}
 \usepackage{changepage}
 \usepackage{enumitem}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{siunitx}
 
 \titleformat*{\section}{\LARGE\bfseries}
 \titleformat*{\subsection}{\Large\bfseries}
@@ -129,59 +134,63 @@
 
     \vskip 1cm 
 
-    \large \centerline{\bf Universit\'a degli Studi di Napoli ``Parthenope''}
-    \centerline{\bf Scuola interdipartimentale delle Scienze, dell'Ingegneria e della Salute}
-    \centerline{\bf Dipartimento di Scienze e Tecnologie}
-
-    \centerline{\small Corso di laurea in Informatica}
+    {\fontsize{18pt}{5pt}\selectfont \centerline{\bf Universit\'a degli Studi di Napoli ``Parthenope''}}
+    \vskip 0.5cm
+    {\fontsize{16pt}{5pt}\selectfont \centerline{\bf Scuola interdipartimentale delle Scienze, dell'Ingegneria e della Salute}
+    \vskip 0.5cm
+    \centerline{\bf Dipartimento di Scienze e Tecnologie}}
+    \vskip 0.5cm
+    {\fontsize{14pt}{5pt}\selectfont \centerline{Corso di laurea in Informatica}}
 
     \vskip 1.0 cm
 
     \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.30]{immagini/logoParthenope.png}
+        \includegraphics[scale=0.40]{immagini/logoParthenope.png}
         \label{fig:parthenope logo}
     \end{figure}
 
     \vskip 0.5cm
 
-    \large \centerline {Tesi di laurea triennale}
+    {\fontsize{14pt}{5pt}\selectfont \centerline{Tesi di laurea triennale}}
 
     \vskip 0.5cm
 
-    \Large \centerline {\bf Analisi delle interazioni molecolari e sviluppo }
-    \Large \centerline {\bf di un software per l'automatizzazione del docking molecolare}
+    {\fontsize{18pt}{5pt} \selectfont \centerline {\bf Analisi delle interazioni molecolari e sviluppo }
+    \centerline {\bf di un software per l'automatizzazione del docking molecolare}}
+    \vskip 0.2cm
+    {\fontsize{16pt}{5pt}\selectfont \centerline{Preparazione dei ligandi e dei recettori, docking ed estrazione dei legami}}
 
-    \centerline {\small Preparazione dei ligandi e dei recettori, docking ed estrazione dei legami}
+    \vskip 0.1cm
 
-    \vskip 1.0cm
-
-    \large
     \begin{minipage}[t]{7cm}
-        \textbf{Relatore}
-
+        {\fontsize{14pt}{5pt}\selectfont \textbf{Relatore}}\\
+        \\
+        {\fontsize{12pt}{5pt}\selectfont
         Ch.mo 
 
-        Prof. Angelo Ciaramella\\
+        Prof. Angelo Ciaramella\\}
 
     \end{minipage}
     \hfill
     \begin{minipage}[t]{5cm}
-        \textbf{Laureando}
+        {\fontsize{14pt}{5pt}\selectfont \textbf{Laureando}}
 
+        {\fontsize{12pt}{5pt}\selectfont
         Alfredo Mungari\\
-        Matr. 0124002134
+        Matr. 0124002134}
     \end{minipage}
 
     \large
     \begin{minipage}[t]{7cm}
-        \textbf{Correlatore}
-
+        {\fontsize{14pt}{5pt}\selectfont \textbf{Correlatore}}\\
+        \\
+        \fontsize{12pt}{5pt}\selectfont
         Dott. Ferdinando Febbraio\\
 
     \end{minipage}
 
-    \vskip 1.5 cm
+    \vskip 1.0 cm
 
     \hrule
     \vskip 0.5 cm \Large \centerline {Anno Accademico 2021-2022}
@@ -189,7 +198,11 @@
     
     \pagenumbering{Roman}
 
-    \input{tesina/abstract.tex}
+    \addcontentsline{toc}{chapter}{Introduzione}
+    \include{introduzione.tex}
+
+    \addcontentsline{toc}{chapter}{Abstract}
+    \include{abstract.tex}
 
     \tableofcontents
 
@@ -212,10 +225,16 @@
     \input{tesina/capitolo2.tex}
     \input{tesina/capitolo3.tex}
     \input{tesina/capitolo4.tex}
-    \input{tesina/capitolo5.tex}
-    \input{tesina/appendice.tex}
+
+    \addcontentsline{toc}{chapter}{Conclusioni e sviluppi futuri}
+    \include{conclusioni.tex}
+
+    \input{appendice.tex}
 
     \nocite{*}
     \printbibliography[heading=bibintoc]
+
+    \addcontentsline{toc}{chapter}{Ringraziamenti}
+    \include{ringraziamenti.tex}
 
 \end{document}
